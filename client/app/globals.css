@@ -1,0 +1,69 @@
+.dark {
+  --primary-brand-color: #171a1b; /* Cor principal do tema escuro */
+  --secondary-brand-color: #1d2123; /* Cor secundária */
+  --tertiary-brand-color: #5d5d5d; /* Cor terciária */
+  --accent-color: #ed145b; /* Cor de destaque */
+  --text-color: #d9d9d9; /* Cor do texto */
+  --background-color: #171a1b; /* Cor de fundo */
+  --link-color: #bb86fc; /* Cor dos links */
+  --hover-color: #3700b3; /* Cor ao passar o mouse */
+  --border-color: #444; /* Cor das bordas */
+  --error-color: #cf6679; /* Cor de erro */
+  --success-color: #4caf50; /* Cor de sucesso */
+  --warning-color: #ff9800; /* Cor de aviso */
+  --info-color: #2196f3; /* Cor de informação */
+  --disabled-color: #757575; /* Cor para elementos desativados */
+  --logo: url("/assets/urban-vogue/bg-gray-login.jpg"); /* Logo da marca*/
+}
+
+.light {
+  --primary-brand-color: #ffffff; /* Cor principal do tema claro */
+  --secondary-brand-color: #f5f5f5; /* Cor secundária */
+  --tertiary-brand-color: #eeeeee; /* Cor terciária */
+  --accent-color: #ff4081; /* Cor de destaque */
+  --background-color: #ffffff; /* Cor de fundo */
+  --text-color: #000000; /* Cor do texto */
+  --link-color: #1a73e8; /* Cor dos links */
+  --hover-color: #0056b3; /* Cor ao passar o mouse */
+  --border-color: #ccc; /* Cor das bordas */
+  --error-color: #f44336; /* Cor de erro */
+  --success-color: #4caf50; /* Cor de sucesso */
+  --warning-color: #ff9800; /* Cor de aviso */
+  --info-color: #2196f3; /* Cor de informação */
+  --disabled-color: #bdbdbd; /* Cor para elementos desativados */
+  --logo: url("/assets/urban-vogue/bg-gray-login.jpg"); /* Logo da marca*/
+}
+
+.shadow-snipped {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+/* styles.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .hover-effect {
+    @apply transition ease-in-out duration-200;
+  }
+  @media (min-width: 1024px) {
+    .hover-opacity {
+      @apply hover:opacity-60;
+    }
+
+    .hover-link {
+      @apply hover:text-custom-accentColor;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .hover-opacity {
+      @apply focus:opacity-60;
+    }
+
+    .hover-link {
+      @apply focus:text-custom-accentColor;
+    }
+  }
+}

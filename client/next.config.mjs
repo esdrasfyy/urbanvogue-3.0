@@ -24,7 +24,12 @@ const nextConfig = {
     OAUTH_REDIRECT_URL: process.env.OAUTH_REDIRECT_URL,
   },
   experimental: {
-    missingSuspenseWithCSRBailout: false,
+    missingSuspenseWithCSRBailout: true,
+  },
+  webpack: (config, { isServer }) => {
+    // Habilitar sourcemaps
+    config.devtool = isServer ? "source-map" : "inline-source-map";
+    return config;
   },
 };
 

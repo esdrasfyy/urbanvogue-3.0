@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { OAuth } from "../components/oauth/oauth";
 import { FormRegister } from "./sub-components/form-register";
+import { trans } from "../libs/i18n.lib";
 
 export default function Register() {
   return (
@@ -15,7 +16,7 @@ export default function Register() {
           <div className="flex justify-between w-full">
             <Link href="/login" className="text-2xl hover-effect hover-opacity max-sm:text-lg"><HiMiniArrowUturnLeft /></Link>
           </div>
-          <h1 className="text-center text-3xl text-custom-accentColor my-5 max-sm:xl">REGISTER</h1>
+          <h1 className="text-center text-3xl text-custom-accentColor my-5 max-sm:xl uppercase">{trans.t("register")}</h1>
           <FormRegister />
           <OAuth />
         </main>

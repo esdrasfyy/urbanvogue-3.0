@@ -8,6 +8,7 @@ import { InputPassword } from "@/app/components/ui/inputs/input-password";
 import { InputSubmit } from "@/app/components/ui/inputs/input-submit";
 import Link from "next/link";
 import { InputCheckbox } from "@/app/components/ui/inputs/input-checkbox";
+import { trans } from "@/app/libs/i18n.lib";
 
 export function FormRegister() {
   const { register, handleSubmit, formState: { errors } } = useForm<InputsRegisterI>({ resolver: yupResolver(SchemaRegisterI) });
@@ -46,24 +47,24 @@ export function FormRegister() {
         register={register}
         classname={errors?.password?.message && "mt-3"}
       >
-        Eu concordo com os
+        {trans.t("I agree to the")}
         <Link
           href="https://www.snapic.com.br/pages/terms-and-conditions"
           className="font-semibold text-custom-accentColor mx-1 hover:underline"
         >
-          Termos de Uso
+          {trans.t("terms of use")}
         </Link>
         e
         <Link
           href="https://www.snapic.com.br/pages/privacy"
           className="font-semibold text-custom-accentColor mx-1 hover:underline"
         >
-          Política de Privacidade
+          {trans.t("privacy police")}
         </Link>
       </InputCheckbox>
       <InputSubmit
         type="submit"
-        content="Register"
+        content="register"
         icon="FaArrowRight"
         classname="mt-6"
       />

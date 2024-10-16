@@ -4,6 +4,8 @@ import { Input } from "@chakra-ui/react";
 import React from "react";
 import { InputPropsI } from "./types/types-inputs";
 import { useUser } from "@/app/contexts/user.context";
+import { trans } from "@/app/libs/i18n.lib";
+import { AlertInput } from "../alerts/alert-input";
 
 export function InputDefault(data: InputPropsI) {
   const { loading } = useUser();
@@ -13,17 +15,16 @@ export function InputDefault(data: InputPropsI) {
         className={`mb-2 text-sm text-custom-textColor uppercase max-md:text-[10px] max-md:mb-1`}
         htmlFor={data.name}
       >
-        {data.label}
+        {trans.t(data.label)}
       </label>
       <Input
         type={data.type}
-        placeholder={data.placeholder}
+        placeholder={trans.t(data.placeholder)}
         id={data.name}
         borderWidth="1px"
         paddingLeft="10px"
         borderRadius="4px"
         focusBorderColor="#ed145b"
-        autoFocus={data.autofocus}
         onFocus={data.focus}
         value={data.value}
         defaultValue={data.defaultvalue}
@@ -37,9 +38,7 @@ export function InputDefault(data: InputPropsI) {
           onChange: data.change,
         })}
       />
-      <span className="text-custom-error pt-2 text-sm italic text-right mr-2">
-        {data?.error}
-      </span>
+      {data.error && <AlertInput content={data.error} />}
     </>
   );
 }

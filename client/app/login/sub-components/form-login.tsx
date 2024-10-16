@@ -91,22 +91,22 @@ export function FormLogin() {
     >
       <InputDefault
         type="text"
-        label="Email or username"
-        placeholder="Enter you email or username"
+        label="email or username"
+        placeholder="enter you email or username"
         name="credential"
         register={register}
         error={errors?.credential?.message}
         autofocus={true}
       />
       <InputPassword
-        label="Password"
+        label="password"
         name="password"
         register={register}
         error={errors?.password?.message}
       />
       <ForgotPassword />
       {/* <Recaptcha /> */}
-      <InputSubmit type="submit" content="Login" icon="FaArrowRight" />
+      <InputSubmit type="submit" content="login" icon="FaArrowRight" />
     </form>
   );
 }

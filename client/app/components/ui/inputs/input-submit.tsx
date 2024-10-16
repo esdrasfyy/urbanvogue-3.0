@@ -3,6 +3,7 @@ import {
   IconsMapSubmit,
   InputSubmitPropsI,
 } from "@/app/components/ui/inputs/types/types-inputs";
+import { trans } from "@/app/libs/i18n.lib";
 
 export function InputSubmit(data: InputSubmitPropsI) {
   const Icon = IconsMapSubmit[data.icon];
@@ -14,7 +15,7 @@ export function InputSubmit(data: InputSubmitPropsI) {
       disabled={data.disabled}
     >
       <span className="flex justify-between items-center px-3 max-w-[100%] w-full">
-        <span className="ml-[45%] max-sm:ml-[15%] pb-1">{data.content}</span>
+        <span className="ml-[45%] max-sm:ml-[15%] pb-1">{trans.t(data.content)}</span>
         <span className="hover-effect -translate-x-7 hover-submit duration-1000">
           <Icon size={20} />
         </span>

@@ -14,15 +14,15 @@ export type FormLoginPropsI = {
 export const SchemaLoginI = yup.object().shape({
   credential: yup
     .string()
-    .required("This field is required!")
-    .min(8, "Minimum characters are 8."),
+    .required("this field is required!")
+    .min(8, "minimum characters are 8."),
   password: yup
     .string()
-    .min(8, "Minimum characters are 8.")
+    .min(8, "minimum characters are 8.")
     .matches(passwordRegex, {
       message:
-        "Password needs an uppercase, lowercase, number, and special character ($, @, #).",
+        "password needs an uppercase, lowercase, number, and special character ($, @, #).",
       excludeEmptyString: true,
     })
-    .required("This field is required!"),
+    .required("this field is required!"),
 });

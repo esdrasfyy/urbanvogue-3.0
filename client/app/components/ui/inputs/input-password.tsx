@@ -4,6 +4,8 @@ import React from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { InputPasswordPropsI } from "./types/types-inputs";
 import { useUser } from "@/app/contexts/user.context";
+import { trans } from "@/app/libs/i18n.lib";
+import { AlertInput } from "../alerts/alert-input";
 
 export function InputPassword(data: InputPasswordPropsI) {
   const [show, setShow] = React.useState(false);
@@ -15,8 +17,7 @@ export function InputPassword(data: InputPasswordPropsI) {
         className="mb-2 text-sm text-custom-textColor uppercase max-md:text-[10px] max-md:mb-1"
         htmlFor={data.name}
       >
-        {" "}
-        {data.label}
+        {trans.t(data.label)}
       </label>
       <InputGroup>
         <Input
@@ -51,9 +52,7 @@ export function InputPassword(data: InputPasswordPropsI) {
           </Button>
         </InputRightElement>
       </InputGroup>
-      <span className="text-custom-error pt-2 text-sm italic text-right mr-2">
-        {data?.error}
-      </span>
+      {data.error && <AlertInput content={data.error} />}
     </>
   );
 }

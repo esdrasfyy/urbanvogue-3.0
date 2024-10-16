@@ -17,11 +17,7 @@ export function FormLogin() {
   const router = useRouter();
   const { setUser, setLoading } = useUser();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<InputsLoginI>({ resolver: yupResolver(SchemaLoginI) });
+  const { register, handleSubmit, formState: { errors }} = useForm<InputsLoginI>({ resolver: yupResolver(SchemaLoginI) });
 
   const onSubmit: SubmitHandler<InputsLoginI> = async (data) => {
     const credential = data.credential;
@@ -85,35 +81,12 @@ export function FormLogin() {
   };
 
   return (
-    <form
-      className="flex w-full flex-col justify-center pb-3"
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <InputDefault
-        type="text"
-        label="Email or username"
-        placeholder="Enter you email or username"
-        classname="w-full text-custom-textColor"
-        name="credential"
-        register={register}
-        error={errors?.credential?.message}
-        autofocus={true}
-      />
-      <InputPassword
-        label="Password"
-        classname="w-full text-custom-textColor"
-        name="password"
-        register={register}
-        error={errors?.password?.message}
-      />
+    <form className="flex w-full flex-col justify-center pb-3" onSubmit={handleSubmit(onSubmit)}>
+      <InputDefault type="text" label="Email or username" placeholder="Enter you email or username" name="credential" register={register} error={errors?.credential?.message} autofocus={true}/>
+      <InputPassword label="Password" name="password" register={register} error={errors?.password?.message}/>
       <ForgotPassword />
       {/* <Recaptcha /> */}
-      <InputSubmit
-        type="submit"
-        content="Login"
-        icon="FaArrowRight"
-        classname="justify-end mt-6 max-sm:justify-start duration-300 ease-linear"
-      />
+      <InputSubmit type="submit"content="Login"icon="FaArrowRight"/>
     </form>
   );
 }

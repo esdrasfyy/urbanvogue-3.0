@@ -29,7 +29,7 @@ export interface InputPasswordPropsI {
   disabled?: boolean;
   name: string;
   label: string;
-  classname: string;
+  classname?: string;
   register: Function;
   error?: string;
   defaultvalue?: string | number;
@@ -42,7 +42,6 @@ export interface InputSubmitPropsI {
   classname?: string;
   error?: string;
   disabled?: boolean;
-  onclick?: ClickHandler;
 }
 
 export const IconsMapSubmit = {
@@ -50,3 +49,10 @@ export const IconsMapSubmit = {
   FaArrowRight: FaIcons.FaArrowRight,
   FaHome: FaIcons.FaHome,
 };
+export interface InputCheckboxPropsI {
+  children: React.ReactNode;
+  error?: string;
+  disabled?: boolean;
+  register: Function;
+  classname?: string;
+}

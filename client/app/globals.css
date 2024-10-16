@@ -51,9 +51,20 @@
     .hover-opacity {
       @apply hover:opacity-60;
     }
-
     .hover-link {
       @apply hover:text-custom-accentColor;
+    }
+    .hover-bg-text {
+      @apply hover:bg-custom-textColor;
+    }
+    .hover-text-bg {
+      @apply hover:text-custom-secondaryBrand;
+    }
+    .hover-bg-accent {
+      @apply hover:bg-custom-accentColor;
+    }
+    .hover-submit {
+      @apply group-hover:translate-x-0;
     }
   }
 
@@ -61,9 +72,70 @@
     .hover-opacity {
       @apply focus:opacity-60;
     }
-
     .hover-link {
       @apply focus:text-custom-accentColor;
     }
+    .hover-bg-text {
+      @apply focus:bg-custom-textColor;
+    }
+    .hover-text-bg {
+      @apply focus:text-custom-secondaryBrand;
+    }
+    .hover-bg-accent {
+      @apply focus:bg-custom-accentColor;
+    }
+    .hover-submit {
+      @apply group-focus:translate-x-0;
+    }
+  }
+}
+
+/* checkbox input */
+
+@layer components {
+  .check {
+    -webkit-tap-highlight-color: transparent;
+    transform: translate3d(0, 0, 0);
+    position: relative;
+  }
+
+  .check::before {
+    content: "";
+    position: absolute;
+    cursor: pointer;
+    top: -15px;
+    left: -15px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    @apply bg-custom-accentColor/5;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .check:hover::before {
+    opacity: 1;
+  }
+
+  .check svg {
+    @apply stroke-custom-textColor;
+    transform: translate3d(0, 0, 0);
+  }
+
+  #checkbox:checked + .check svg {
+    @apply stroke-custom-textColor;
+    @apply bg-custom-accentColor;
+    border-radius: 4px;
+  }
+
+  #checkbox:checked + .check svg path {
+    stroke-dashoffset: 60;
+    transition: all 0.3s linear;
+  }
+
+  #checkbox:checked + .check svg polyline {
+    stroke-dashoffset: 42;
+    transition: all 0.2s linear;
+    transition-delay: 0.15s;
   }
 }

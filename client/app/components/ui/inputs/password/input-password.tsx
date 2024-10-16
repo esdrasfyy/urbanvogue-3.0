@@ -6,16 +6,13 @@ import { InputPasswordPropsI } from "../types/inputs";
 import { useUser } from "@/app/contexts/user-context";
 
 export function InputPassword(data: InputPasswordPropsI) {
+
   const [show, setShow] = React.useState(false);
   const { loading } = useUser();
+
   return (
     <>
-      <label
-        className="mb-2 text-sm text-custom-textColor uppercase max-md:text-[10px] max-md:mb-1"
-        htmlFor={data.name}
-      >
-        {data.label}
-      </label>
+      <label className="mb-2 text-sm text-custom-textColor uppercase max-md:text-[10px] max-md:mb-1" htmlFor={data.name}> {data.label}</label>
       <InputGroup>
         <Input
           pr="4.5rem"
@@ -32,23 +29,12 @@ export function InputPassword(data: InputPasswordPropsI) {
           disabled={loading}
         />
         <InputRightElement width="4.5rem">
-          <Button
-            h="1.75rem"
-            background="none"
-            onClick={() => setShow(!show)}
-            _hover={{ background: "none" }}
-          >
-            <div
-              className={`group -mt-1.5 text-[25px] text-custom-tertiaryBrand  translate-y-[20%] hover:text-custom-accentColor duration-300 ease-in-out`}
-            >
-              {!show ? <FaEye /> : <FaEyeSlash />}
-            </div>
+          <Button h="1.75rem" background="none" paddingRight={0} onClick={() => setShow(!show)} _hover={{ background: "none" }}>
+            <div className={`group -mt-1.5 text-xl text-custom-tertiaryBrand  translate-y-[20%] hover:text-custom-accentColor duration-300 ease-in-out`}>{!show ? <FaEye /> : <FaEyeSlash />}</div>
           </Button>
         </InputRightElement>
       </InputGroup>
-      <span className="text-custom-error pt-2 text-sm italic text-right mr-2">
-        {data.error}
-      </span>
+      <span className="text-custom-error pt-2 text-sm italic text-right mr-2">{data?.error}</span>
     </>
   );
 }

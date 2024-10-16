@@ -37,11 +37,7 @@ export function InputDefault(data: InputPropsI) {
           onChange: data.change,
         })}
       />
-      {data.error && (
-        <span className="text-custom-error pt-2 text-sm italic text-right mr-2">
-          {data.error}
-        </span>
-      )}
+      <span className="text-custom-error pt-2 text-sm italic text-right mr-2">{data?.error}</span>
     </>
   );
 }

@@ -2,11 +2,11 @@ import { HiMiniArrowUturnLeft } from "react-icons/hi2";
 import Image from "next/image";
 import Link from "next/link";
 import { OAuth } from "../components/oauth/oauth";
-import { FormRegister } from "./sub-components/form";
+import { FormRegister } from "./sub-components/form-register";
 
 export default function Register() {
   return (
-    <div className="h-[100vh] w-full flex items-center justify-center">
+    <div className="pt-28 w-full flex items-center justify-center">
       <div className="bg-custom-secondaryBrand rounded-lg shadow-xl w-full max-w-[1150px] flex mx-2">
         <aside className="w-full max-w-[365px] relative shadow-lg max-md:hidden">
           <Image src="/brand/banner.png" alt="banner" fill className="rounded-lg"/>

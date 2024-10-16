@@ -8,11 +8,6 @@ export type InputsRegisterI = {
   terms?: boolean;
 };
 
-export type FormRegisterProps = {
-  loading: boolean;
-  handleLoading: Function;
-};
-
 export const SchemaRegisterI = yup.object().shape({
 username: yup
   .string()

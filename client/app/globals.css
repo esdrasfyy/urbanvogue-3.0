@@ -51,6 +51,9 @@
     .hover-opacity {
       @apply hover:opacity-60;
     }
+    .hover-no-opacity {
+      @apply hover:text-custom-textColor;
+    }
     .hover-link {
       @apply hover:text-custom-accentColor;
     }
@@ -66,11 +69,20 @@
     .hover-submit {
       @apply group-hover:translate-x-0;
     }
+    .hover-bg-tertiaryBrand {
+      @apply hover:bg-custom-tertiaryBrand;
+    }
+    .hover-item-header {
+      @apply hover:-translate-y-1.5;
+    }
   }
 
   @media (max-width: 1024px) {
     .hover-opacity {
       @apply focus:opacity-60;
+    }
+    .hover-no-opacity {
+      @apply focus:text-custom-textColor;
     }
     .hover-link {
       @apply focus:text-custom-accentColor;
@@ -86,6 +98,9 @@
     }
     .hover-submit {
       @apply group-focus:translate-x-0;
+    }
+    .hover-bg-tertiaryBrand {
+      @apply focus:bg-custom-tertiaryBrand;
     }
   }
 }
@@ -137,5 +152,40 @@
     stroke-dashoffset: 42;
     transition: all 0.2s linear;
     transition-delay: 0.15s;
+  }
+}
+
+.beforeEffect::before,
+.afterEffect::after {
+  content: "";
+  position: absolute;
+  height: 4px;
+  right: 0;
+  left: 0;
+}
+
+.beforeEffect::before {
+  bottom: 0;
+  background: linear-gradient(150deg, #ed145b, #171a1b, #171a1b);
+  background-size: 180% 180%;
+  animation: gradient-animation 5s ease infinite;
+}
+
+.afterEffect::after {
+  top: 0;
+  background: linear-gradient(300deg, #ed145b, #171a1b, #171a1b);
+  background-size: 180% 180%;
+  animation: gradient-animation 5s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

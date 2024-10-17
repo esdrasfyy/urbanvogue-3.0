@@ -1,0 +1,33 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                   Int       @id @default(autoincrement())
+  google_id            String?   @unique
+  facebook_id          String?   @unique
+  github_id            String?   @unique
+  apple_id             String?   @unique
+  microsoft_id         String?   @unique
+  fullname             String?
+  username             String    @unique
+  bio                  String    @unique
+  email                String?   @unique
+  phone                String?
+  email_verified_at    DateTime?
+  phone_verified_at    DateTime?
+  identity_verified_at DateTime?
+  avatar               String?
+  password             String?
+  birthdate            DateTime?
+  gender               String?
+  role                 String    @default("Client")
+  national_id          String?   @unique
+  enable_2fa           Boolean?  @default(false)
+  country_id           Int? 
+  created_at           DateTime  @default(now())
+  updated_at           DateTime  @updatedAt
+
+  @@map("users")
+}

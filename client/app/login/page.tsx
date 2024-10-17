@@ -4,11 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { OAuth } from "../components/oauth/oauth";
 import { trans } from "../libs/i18n.lib";
-import dynamic from "next/dynamic";
 
-const NoSSR = dynamic(() => import("@/app/components/no-ssr/no-ssr"), {
-  ssr: false,
-});
 export default function Login() {
   return (
     <div className="h-full pt-28   w-full flex items-center justify-center">
@@ -31,9 +27,7 @@ export default function Login() {
           <h1 className="text-center text-3xl text-custom-accentColor my-5 max-sm:xl uppercase">
             {trans.t("login")}
           </h1>
-          <NoSSR>
-            <FormLogin />
-          </NoSSR>
+          <FormLogin />
           <OAuth />
           <div className="w-full flex flex-col justify-end items-center text-custom-textColor pb-5">
             <p className="mt-8 pb-3 flex gap-3">

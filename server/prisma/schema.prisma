@@ -1,3 +1,7 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
@@ -12,7 +16,7 @@ model User {
   microsoft_id         String?   @unique
   fullname             String?
   username             String    @unique
-  bio                  String    @unique
+  bio                  String?
   email                String?   @unique
   phone                String?
   email_verified_at    DateTime?
@@ -22,10 +26,10 @@ model User {
   password             String?
   birthdate            DateTime?
   gender               String?
-  role                 String    @default("Client")
+  role_id              Int       @default(5)
   national_id          String?   @unique
   enable_2fa           Boolean?  @default(false)
-  country_id           Int? 
+  country_id           Int?
   created_at           DateTime  @default(now())
   updated_at           DateTime  @updatedAt
 

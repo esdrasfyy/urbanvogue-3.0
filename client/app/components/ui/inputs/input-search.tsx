@@ -3,7 +3,6 @@ import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { HiSearch } from "react-icons/hi";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useToast } from "@chakra-ui/react";
-import { Voice } from "../../voice/voice";
 
 export function InputSearch({classname}:{classname:string}) {
     
@@ -42,7 +41,7 @@ export function InputSearch({classname}:{classname:string}) {
       <div className={`relative w-full`}>
         <input type="search" className={`duration-300 shadow-lg relative bg-custom-tertiaryBrand border-custom-tertiaryBrand border-2 rounded-3xl py-[3px] pl-16 text-custom-textColor transition-all hover-effect hover-opacity w-full outline-none text-lg max-[400px]:pl-12 focus:outline-none focus:ring-0 focus:border-custom-accentColor focus:border-2  ring-0`} placeholder="ex: Camisa" onChange={(e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} value={value.split("-").join(" ")}/>
         <button type="submit" className="duration-300 absolute left-0 top-[50%] -translate-y-1/2 bg-custom-textColor text-custom-secondaryBrand hover-effect hover-opacity z-10 p-[6px] text-2xl rounded-full"><HiSearch /></button>
-        <Voice handleSubmit={handleSubmit} />
+        {/* <Voice handleSubmit={handleSubmit} /> */}
       </div>
     </form>
   );

@@ -38,6 +38,43 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+/* toast error */
+
+.chakra-alert[data-status="error"].css-i2y05k {
+  background-color: var(--tertiary-brand-color) !important;
+  border-left: solid 3px var(--error-color) !important;
+  font-size: 15px !important;
+}
+
+.chakra-alert__icon[data-status="error"] {
+  color: var(--error-color) !important;
+}
+
+/* toast warning */
+
+.chakra-alert[data-status="warning"].css-12urbrw {
+  background-color: var(--tertiary-brand-color) !important;
+  border-left: solid 3px var(--warning-color) !important;
+  font-size: 15px !important;
+}
+
+.chakra-alert__icon[data-status="warning"] {
+  color: var(--warning-color) !important;
+}
+
+/* toast success */
+
+.chakra-alert[data-status="success"].css-1af42be {
+  background-color: var(--tertiary-brand-color) !important;
+  border-left: solid 3px var(--success-color) !important;
+  font-size: 15px !important;
+}
+
+.chakra-alert__icon[data-status="success"] {
+  color: var(--success-color) !important;
+}
+
+
 /* styles.css */
 @tailwind base;
 @tailwind components;
@@ -47,6 +84,7 @@
   .hover-effect {
     @apply transition ease-in-out duration-200;
   }
+
   @media (min-width: 1024px) {
     .hover-opacity {
       @apply hover:opacity-60;

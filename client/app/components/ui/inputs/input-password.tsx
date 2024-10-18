@@ -3,13 +3,13 @@ import { Input, InputRightElement, Button, InputGroup } from "@chakra-ui/react";
 import React from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { InputPasswordPropsI } from "./types/types-inputs";
-import { useUser } from "@/app/contexts/user.context";
 import { trans } from "@/app/libs/i18n.lib";
 import { AlertInput } from "../alerts/alert-input";
+import { useApp } from "@/app/contexts/app.context";
 
 export function InputPassword(data: InputPasswordPropsI) {
   const [show, setShow] = React.useState(false);
-  const { loading } = useUser();
+  const { loading } = useApp();
 
   return (
     <>

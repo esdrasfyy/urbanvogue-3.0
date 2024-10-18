@@ -40,7 +40,6 @@ export interface InputSubmitPropsI {
   content: string;
   classname?: string;
   error?: string;
-  disabled?: boolean;
 }
 
 export const IconsMapSubmit = {
@@ -54,4 +53,5 @@ export interface InputCheckboxPropsI {
   disabled?: boolean;
   register: Function;
   classname?: string;
+  name: string
 }

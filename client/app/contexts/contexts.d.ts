@@ -1,13 +1,17 @@
 import { UseDisclosureReturn } from "@chakra-ui/react";
 import { UserI } from "../interfaces/user/user";
 
-export interface ContextUserProps {
-  user: UserI | null;
-  setUser: React.Dispatch<React.SetStateAction<UserI | null>>;
+export interface ContextAppProps {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   emailForRecovery: string | null;
   setEmailForRecovery: React.Dispatch<React.SetStateAction<string | null>>;
+  ShowToast: (title: string, description: string, status: "info" | "warning" | "success" | "error") => void;
+}
+
+export interface ContextUserProps {
+  user: UserI | null;
+  setUser: React.Dispatch<React.SetStateAction<UserI | null>>;
 }
 
 interface Size {
@@ -51,7 +55,7 @@ export interface ContextNotificationProps {
   notifications: UserNotifyI[] | null;
   setNotifications: React.Dispatch<React.SetStateAction<UserNotifyI[] | null>>;
   NotificationsRead: (ids: number[], action: "read" | "noRead") => Promise<void>;
-  NotificationsDelete: (ids: number[] ) => Promise<void>;
+  NotificationsDelete: (ids: number[]) => Promise<void>;
 }
 
 export interface UpdateItemQuantityParamsProps {

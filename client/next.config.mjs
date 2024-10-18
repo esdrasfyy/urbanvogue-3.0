@@ -3,20 +3,11 @@ import { config } from "dotenv";
 config();
 const nextConfig = {
   images: {
-    domains: [
-      "firebasestorage.googleapis.com",
-      "localhost",
-      "as1.ftcdn.net",
-      "www.balancaservice.com.br",
-      "static.ecosweb.com.br",
-      "ph-cdn3.ecosweb.com.br",
-      "example.com",
-      "lh3.googleusercontent.com",
-      "avatars.githubusercontent.com",
-    ],
+    domains: ["firebasestorage.googleapis.com", "localhost", "as1.ftcdn.net", "www.balancaservice.com.br", "static.ecosweb.com.br", "ph-cdn3.ecosweb.com.br", "example.com", "lh3.googleusercontent.com", "avatars.githubusercontent.com"],
   },
   env: {
-    API: process.env.API,
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     HOST: process.env.HOST,
     SECRET: process.env.SECRET,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
@@ -25,11 +16,6 @@ const nextConfig = {
   },
   experimental: {
     missingSuspenseWithCSRBailout: true,
-  },
-  webpack: (config, { isServer }) => {
-    // Habilitar sourcemaps
-    config.devtool = isServer ? "source-map" : "inline-source-map";
-    return config;
   },
 };
 

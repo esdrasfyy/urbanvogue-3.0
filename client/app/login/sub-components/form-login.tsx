@@ -8,14 +8,16 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { InputDefault } from "@/app/components/ui/inputs/input-default";
 import { InputSubmit } from "@/app/components/ui/inputs/input-submit";
-import { useUser } from "@/app/contexts/user.context";
+// import { useUser } from "@/app/contexts/user.context";
 import { Auth } from "@/app/api/auth/auth.api";
 import { ForgotPassword } from "./forgot-password";
+import { useApp } from "@/app/contexts/app.context";
 
 export function FormLogin() {
   const toast = useToast();
   const router = useRouter();
-  const { setUser, setLoading } = useUser();
+  // const { setUser } = useUser();
+  const { setLoading } = useApp();
 
   const {
     register,
@@ -35,7 +37,7 @@ export function FormLogin() {
       const response = await Auth.login({ credential, password });
 
       if (response.status === 200) {
-        setUser(response.user);
+        // setUser(response.user);
         toast({
           title: "Logged in user!",
           description: `Welcome back, enjoy the varieties!`,
@@ -85,25 +87,9 @@ export function FormLogin() {
   };
 
   return (
-    <form
-      className="flex w-full flex-col justify-center pb-3"
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <InputDefault
-        type="text"
-        label="email or username"
-        placeholder="enter you email or username"
-        name="credential"
-        register={register}
-        error={errors?.credential?.message}
-        autofocus={true}
-      />
-      <InputPassword
-        label="password"
-        name="password"
-        register={register}
-        error={errors?.password?.message}
-      />
+    <form className="flex w-full flex-col justify-center pb-3" onSubmit={handleSubmit(onSubmit)}>
+      <InputDefault type="text" label="email or username" placeholder="enter you email or username" name="credential" register={register} error={errors?.credential?.message} autofocus={true} />
+      <InputPassword label="password" name="password" register={register} error={errors?.password?.message} />
       <ForgotPassword />
       {/* <Recaptcha /> */}
       <InputSubmit type="submit" content="login" icon="FaArrowRight" />

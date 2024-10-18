@@ -2,7 +2,7 @@ import axios from "axios";
 // import { usePreferences } from "../store/preferences";
 
 const instance = axios.create({
-  baseURL: `${process.env.API_URL || "http://localhost:9090/"}`,
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   withCredentials: true,
 });
 

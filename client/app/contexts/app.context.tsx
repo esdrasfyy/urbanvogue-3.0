@@ -2,6 +2,7 @@
 import React, { createContext, useState, ReactNode, useContext } from "react";
 import { ContextAppProps } from "./contexts";
 import { useToast } from "@chakra-ui/react";
+import { trans } from "../libs/i18n.lib";
 
 export const ContextApp = createContext<ContextAppProps | undefined>(undefined);
 
@@ -11,8 +12,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const toast = useToast();
   const ShowToast = (title: string, description: string, status: "info" | "warning" | "success" | "error") => {
     toast({
-      title,
-      description,
+      title: trans.t(title),
+      description: trans.t(description),
       status,
       duration: 9000,
       isClosable: true,

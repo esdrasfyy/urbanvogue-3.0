@@ -22,14 +22,8 @@ export function FormRegister() {
   } = useForm<InputsRegisterI>({ resolver: yupResolver(SchemaRegisterI) });
 
   const { setLoading, ShowToast } = useApp();
-  const { user, setUser } = useUser();
+  const { setUser } = useUser();
   const router = useRouter();
-
-  useEffect(() => {
-    if (user) {
-      router.push("/");
-    }
-  }, [user, router]);
 
   const onSubmit: SubmitHandler<InputsRegisterI> = async ({ terms, ...data }) => {
     try {
@@ -46,8 +40,11 @@ export function FormRegister() {
       }
 
       setUser(response.user!);
+      
+      router.push("/account")
 
-      ShowToast("user logged in!", "take advantage of our innovative promotions", "success");
+      ShowToast("user logged in!", "take advantage of our innovative promotions.", "success");
+
     } catch (err) {
       if (err instanceof Error) {
         ShowToast("an error occurred!", err.message, "error");

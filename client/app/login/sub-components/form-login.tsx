@@ -1,23 +1,21 @@
 "use client";
 import { InputPassword } from "@/app/components/ui/inputs/input-password";
 import React from "react";
-import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { InputsLoginI, SchemaLoginI } from "../types/types-login";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { InputDefault } from "@/app/components/ui/inputs/input-default";
 import { InputSubmit } from "@/app/components/ui/inputs/input-submit";
-// import { useUser } from "@/app/contexts/user.context";
+import { useUser } from "@/app/contexts/user.context";
 import { Auth } from "@/app/api/auth/auth.api";
 import { ForgotPassword } from "./forgot-password";
 import { useApp } from "@/app/contexts/app.context";
 
 export function FormLogin() {
-  const toast = useToast();
-  const router = useRouter();
-  // const { setUser } = useUser();
-  const { setLoading } = useApp();
+  const router = useRouter()
+  const { setUser } = useUser();
+  const { setLoading, ShowToast } = useApp();
 
   const {
     register,
@@ -26,63 +24,28 @@ export function FormLogin() {
   } = useForm<InputsLoginI>({ resolver: yupResolver(SchemaLoginI) });
 
   const onSubmit: SubmitHandler<InputsLoginI> = async (data) => {
-    const credential = data.credential;
-    const password = data.password;
-    // const token = window.grecaptcha.execute();
-    // const secretKey = "YOUR_SECRET_KEY";
-    // const url = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}`;
-
     try {
-      setLoading(true);
-      const response = await Auth.login({ credential, password });
 
-      if (response.status === 200) {
-        // setUser(response.user);
-        toast({
-          title: "Logged in user!",
-          description: `Welcome back, enjoy the varieties!`,
-          status: "success",
-          duration: 9000,
-          isClosable: true,
-          variant: "left-accent",
-          position: "top-right",
-        });
-        setInterval(() => {
-          if (router) {
-            router.push("/account");
-          }
-        }, 2000);
+      setLoading(true);
+
+      const response = await Auth.login(data);
+
+      if (response.status !== 200) {
+        throw new Error(response?.message);
       }
-      if (response.status !== 200 && response.status !== 401) {
-        toast({
-          title: "Error unknown.",
-          description: "error when logging in, try again.",
-          status: "error",
-          duration: 9000,
-          isClosable: true,
-          variant: "left-accent",
-          position: "top-right",
-        });
-        setLoading(false);
+
+      setUser(response.user!);
+      
+      router.back()
+      
+      ShowToast("user logged in!", "take advantage of our innovative promotions.", "success");
+      
+    } catch (err) {
+      if (err instanceof Error) {
+        ShowToast("an error occurred!", err.message, "error");
       }
-      if (response.status === 401) {
-        toast({
-          title: "Invalid Credentials!",
-          description: "Incorrect credential or password.",
-          status: "error",
-          duration: 9000,
-          isClosable: true,
-          variant: "left-accent",
-          position: "top-right",
-        });
-        setLoading(false);
-      }
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        throw new Error(error.message || "Erro ao buscar usuário");
-      } else {
-        throw new Error("Erro ao buscar usuário");
-      }
+    } finally {
+      setLoading(false);
     }
   };
 

@@ -16,7 +16,9 @@
   "i agree to the": "Eu concordo com os",
   "username must be at least 5 characters long.": "O nome de usuário deve ter pelo menos 5 caracteres.",
   "username cannot be longer than 15 characters.": "O nome de usuário não pode ter mais de 15 caracteres.",
-  "username cannot contain spaces.": "O nome de usuário não pode conter espaços.",
+  "username cannot cont ain spaces.": "O nome de usuário não pode conter espaços.",
+  "username can only contain letters, numbers, and underscores.": "O nome de usuário só pode conter letras, números e underscores.",
+  "must be a valid email!": "Deve ser um e-mail válido!",
   "account": "Conta",
   "your account": "Sua Conta",
   "edit account": "Editar Conta",
@@ -41,5 +43,16 @@
   "contacts": "Contatos",
   "payments": "Pagamentos",
   "developed by": "Desenvolvido por",
-  "back to top": "VOLTAR AO TOPO"
+  "back to top": "VOLTAR AO TOPO",
+  "user logged in!": "Usuário logado!",
+  "logged out user.": "Usuário deslogado.",
+  "take advantage of our innovative promotions.": "Aproveite nossas promoções inovadoras.",
+  "it is necessary to sign the terms to proceed.": "É necessário assinar os termos para prosseguir.",
+  "an error occurred!": "Ocorreu um erro!",
+  "must be a valid credential!": "Deve ser uma credencial válida!",
+  "user not found.": "Usuário não encontrado.",
+  "incorrect password.": "Senha incorreta.",
+  "username already exists.": "Nome de usuário já existe.",
+  "email already exists.": "O e-mail já existe.",
+  "national ID already exists.": "O CPF já existe."
 }

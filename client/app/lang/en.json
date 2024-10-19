@@ -17,6 +17,8 @@
   "username must be at least 5 characters long.": "Username must be at least 5 characters long.",
   "username cannot be longer than 15 characters.": "Username cannot be longer than 15 characters.",
   "username cannot contain spaces.": "Username cannot contain spaces.",
+  "username can only contain letters, numbers, and underscores.": "Username can only contain letters, numbers, and underscores.",
+  "must be a valid email!": "Must be a valid email!",
   "account": "Account",
   "your account": "Your Account",
   "edit account": "Edit Account",
@@ -40,5 +42,16 @@
   "contacts": "Contacts",
   "payments": "Payments",
   "developed by": "Developed by",
-  "back to top": "BACK TOP TOP"
+  "back to top": "BACK TOP TOP",
+  "user logged in!": "User logged in!",
+  "logged out user.": "Logged out user.",
+  "take advantage of our innovative promotions.": "Take advantage of our innovative promotions.",
+  "it is necessary to sign the terms to proceed.": "It is necessary to sign the terms to proceed.",
+  "an error occurred!": "An error occurred!",
+  "must be a valid credential!": "Must be a valid credential!",
+  "user not found.": "User not found.",
+  "incorrect password.": "Incorrect password.",
+  "username already exists.": "username already exists.",
+  "email already exists.": "username already exists.",
+  "national ID already exists.": "username already exists."
 }

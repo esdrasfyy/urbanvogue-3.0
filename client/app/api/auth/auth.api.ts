@@ -5,8 +5,8 @@ import { LoginApiProps, LoginApiResponse, RegisterApiProps } from "../api";
 
 const getMe = async () => {
   try {
-    const { data } = await api.get<UserI | null>("/auth/me");
-    return data;
+    const response = await api.get<UserI | null>("/auth/me");
+    return response.data;
   } catch {
     return null;
   }
@@ -18,17 +18,19 @@ const login = async ({ credential, password }: LoginApiProps): Promise<LoginApiR
       throw new Error("credentials parameter is empty or undefined.");
     }
 
-    const response: AxiosResponse = await api.post("/login/credentials", {
+    const response: AxiosResponse = await api.post("/auth/login", {
       credential,
       password,
     });
 
-    return { ...response.data, status: response.status };
-  } catch (err: unknown) {
-    if (err instanceof Error) {
-      throw new Error(err.message);
+    return { user: response.data, status: response.status };
+  } catch (err) {
+    if (isAxiosError(err) && err.response) {
+      return { message: err.response.data.message || "an error occurred", status: err.response.status };
+    } else if (err instanceof Error) {
+      return { message: err.message, status: 500 };
     } else {
-      throw new Error("unknown error occurred");
+      return { message: "an unknown error occurred", status: 500 };
     }
   }
 };
@@ -46,7 +48,6 @@ const register = async ({ email, username, password }: RegisterApiProps): Promis
     });
 
     return { user: response.data, status: response.status };
-    
   } catch (err) {
     if (isAxiosError(err) && err.response) {
       return { message: err.response.data.message || "an error occurred", status: err.response.status };

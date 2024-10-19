@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { prisma } from 'src/services/prisma.service';
+import { Injectable } from "@nestjs/common";
+import { prisma } from "src/services/prisma.service";
 
 @Injectable()
 export class AccountRepository {
@@ -24,6 +24,22 @@ export class AccountRepository {
     return await prisma.user.findFirst({
       where: {
         OR: [{ email: credential }, { username: credential }],
+      },
+    });
+  }
+
+  async findByGithubID(id: number) {
+    return await prisma.user.findFirst({
+      where: {
+        github_id: String(id),
+      },
+    });
+  }
+  
+  async findGoogleAccount(id: string, email: string) {
+    return await prisma.user.findFirst({
+      where: {
+        OR: [{ google_id: String(id) }, { email: email }],
       },
     });
   }

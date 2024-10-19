@@ -23,7 +23,7 @@ export const GetSessionToken = (res: Response, req:Request) => {
       throw new HttpException('logged out user.', HttpStatus.BAD_REQUEST);
     }
     
-    const user = verify(token, process.env.SECRET, (err: VerifyErrors | null, decoded: Account.UserSessionI) => {
+    const user = verify(token, process.env.SECRET, (err: VerifyErrors | null, decoded: Auth.UserSessionI) => {
       if (err) {
         res.cookie(process.env.SESSION_COOKIE, '', {
           httpOnly: true,

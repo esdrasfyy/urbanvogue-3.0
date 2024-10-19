@@ -1,15 +1,4 @@
 declare namespace Account {
-  export type Register = {
-    username: string;
-    email: string;
-    password: string;
-  };
-
-  export type Login = {
-    credential: string;
-    password: string;
-  };
-
   export interface UserI {
     id?: number;
     google_id?: string;
@@ -35,11 +24,5 @@ declare namespace Account {
     country_id?: number;
     created_at?: Date;
     updated_at?: Date;
-  }
-
-  export interface UserSessionI {
-    user: UserI;
-    iat: number;
-    exp: number;
   }
 }

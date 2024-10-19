@@ -1,7 +1,7 @@
 "use client";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useEffect } from "react";
+import React from "react";
 import { InputDefault } from "@/app/components/ui/inputs/input-default";
 import { InputsRegisterI, SchemaRegisterI } from "../types/types-register";
 import { InputPassword } from "@/app/components/ui/inputs/input-password";
@@ -40,11 +40,10 @@ export function FormRegister() {
       }
 
       setUser(response.user!);
-      
-      router.push("/account")
+
+      router.push("/account");
 
       ShowToast("user logged in!", "take advantage of our innovative promotions.", "success");
-
     } catch (err) {
       if (err instanceof Error) {
         ShowToast("an error occurred!", err.message, "error");

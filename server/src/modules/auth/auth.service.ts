@@ -1,16 +1,23 @@
-import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { PrismaService } from "./../../services/prisma.service";
 import { generateUsername, regex_alphanumeric, regex_email, regex_password } from "src/utils/regex.util";
-import { ValidateFields, ValidationRule } from "src/utils/validate-fields.util";
-import * as bcrypt from "bcrypt";
-import { AccountRepository } from "src/repository";
-import { HandleErrors } from "src/utils/handle-errors-database";
-import { GetSessionToken, LoginUser } from "src/services/cookies.service";
-import { Response as ExpressResponse, Request as ExpressRequest } from "express";
 import { GetGithubOAuthTokens, GetGithubUser } from "src/services/github.service";
+import { Response as ExpressResponse, Request as ExpressRequest } from "express";
 import { GetGoogleOAuthToken, GetGoogleUser } from "src/services/google.service";
+import { ValidateFields, ValidationRule } from "src/utils/validate-fields.util";
+import { GetSessionToken, LoginUser } from "src/services/cookies.service";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { PasswordResetHtml } from "src/templates/password-reset";
+import { HandleErrors } from "src/utils/handle-errors-database";
+import { MailerService } from "src/services/mailer.sevice";
+import { VerifyErrors, sign, verify } from "jsonwebtoken";
+import { AccountRepository } from "src/repository";
+import * as bcrypt from "bcrypt";
 @Injectable()
 export class AuthService {
-  constructor(private readonly accountRepository: AccountRepository) {}
+  constructor(
+    private readonly accountRepository: AccountRepository,
+    private readonly mailer: MailerService
+  ) {}
 
   async register(dto: Auth.Register, res: ExpressResponse) {
     try {
@@ -60,7 +67,7 @@ export class AuthService {
 
       return res.status(HttpStatus.OK).json(user);
     } catch (error) {
-      throw new HttpException(HandleErrors(error), HttpStatus.BAD_REQUEST);
+      HandleErrors(error);
     }
   }
 
@@ -117,6 +124,58 @@ export class AuthService {
       return res.status(HttpStatus.OK).redirect(process.env.APP_URL);
     } catch (error: any) {
       HandleErrors(error);
+    }
+  }
+
+  async forgotPassword(res: ExpressResponse, dto: Auth.ForgotPassword) {
+    try {
+      if (!regex_email.test(dto.email)) {
+        throw new Error("must be a valid email!");
+      }
+
+      const user = await this.accountRepository.findAccountByEmail(dto.email);
+
+      if (!user) {
+        throw new HttpException("account not found.", HttpStatus.NOT_FOUND);
+      }
+
+      const token = await this.accountRepository.createPasswordReset(dto.email, user.id);
+
+      const link = `http://localhost:3000/password/reset/${token.token}`;
+      const html = await PasswordResetHtml(link);
+
+      this.mailer.Send({ email: dto.email, html, subject: "redefinicao da senha" });
+
+      return res.status(200).end();
+    } catch (error) {
+      HandleErrors(error);
+    }
+  }
+
+  async resetPassword(res: ExpressResponse, dto: Auth.ResetPassword) {
+    try {
+      const { email, id } = verify(dto.token, process.env.SECRET) as { email: string; id: number };
+
+      if (email !== dto.email) {
+        throw new HttpException("the emails do not match.", HttpStatus.BAD_REQUEST);
+      }
+
+      const { used } = await this.accountRepository.getTokenResetPassword(dto.token);
+
+      if (used) {
+        throw new Error("the link is expired or invalid.");
+      }
+
+      const salt = await bcrypt.genSalt(12);
+      const password = await bcrypt.hash(dto.password, salt);
+
+      await this.accountRepository.updatePassword(id, password, dto.token);
+
+      // mail of success
+
+      return res.status(200).end();
+    } catch {
+      throw new HttpException("the link is expired or invalid.", HttpStatus.BAD_REQUEST);
     }
   }
 }

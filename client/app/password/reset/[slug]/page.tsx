@@ -1,11 +1,10 @@
-import { HiMiniArrowUturnLeft } from "react-icons/hi2";
+import { trans } from "@/app/libs/i18n.lib";
 import Image from "next/image";
 import Link from "next/link";
-import { OAuth } from "../components/oauth/oauth";
-import { FormRegister } from "./sub-components/form-register";
-import { trans } from "../libs/i18n.lib";
+import { HiMiniArrowUturnLeft } from "react-icons/hi2";
+import { FormResetPassword } from "./sub-components/form-register";
 
-export default function Register() {
+export default function PasswordReset({ params }: { params: { slug: string } }) {
   return (
     <div className="pt-28 w-full flex items-center justify-center">
       <div className="bg-custom-secondaryBrand rounded-lg shadow-xl w-full max-w-[1150px] flex mx-2">
@@ -18,9 +17,8 @@ export default function Register() {
               <HiMiniArrowUturnLeft />
             </Link>
           </div>
-          <h1 className="text-center text-3xl text-custom-accentColor my-5 max-sm:xl uppercase max-sm:text-2xl">{trans.t("register")}</h1>
-          <FormRegister />
-          <OAuth />
+          <h1 className="text-center text-3xl text-custom-accentColor my-5 max-sm:xl uppercase max-sm:text-2xl">{trans.t("reset your password")}</h1>
+          <FormResetPassword token={params.slug} />
         </main>
       </div>
     </div>

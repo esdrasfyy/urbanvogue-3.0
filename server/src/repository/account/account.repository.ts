@@ -1,12 +1,13 @@
 import { Injectable } from "@nestjs/common";
-import { prisma } from "src/services/prisma.service";
+import { PrismaService } from "src/services/prisma.service";
+import * as jwt from "jsonwebtoken";
 
 @Injectable()
 export class AccountRepository {
-  constructor() {}
+  constructor(private readonly prisma: PrismaService) {}
 
   async create(dto: Account.UserI) {
-    return await prisma.user.create({
+    return await this.prisma.user.create({
       data: {
         email: dto.email,
         username: dto.username,
@@ -16,12 +17,8 @@ export class AccountRepository {
     });
   }
 
-  async update(dto) {
-    return await prisma.user.update(dto);
-  }
-
   async findByCredential(credential: string) {
-    return await prisma.user.findFirst({
+    return await this.prisma.user.findFirst({
       where: {
         OR: [{ email: credential }, { username: credential }],
       },
@@ -29,18 +26,44 @@ export class AccountRepository {
   }
 
   async findByGithubID(id: number) {
-    return await prisma.user.findFirst({
+    return await this.prisma.user.findFirst({
       where: {
         github_id: String(id),
       },
     });
   }
-  
+
   async findGoogleAccount(id: string, email: string) {
-    return await prisma.user.findFirst({
+    return await this.prisma.user.findFirst({
       where: {
         OR: [{ google_id: String(id) }, { email: email }],
       },
     });
+  }
+
+  async findAccountByEmail(email: string) {
+    return await this.prisma.user.findFirst({
+      where: { email: email },
+    });
+  }
+
+  async createPasswordReset(email: string, id: number) {
+    const token = jwt.sign({ email, id }, process.env.SECRET, { expiresIn: "1h" });
+
+    return await this.prisma.passwordReset.create({
+      data: {
+        email,
+        token,
+      },
+    });
+  }
+
+  async updatePassword(id: number, password: string, token: string) {
+    await this.prisma.user.update({ where: { id }, data: { password } });
+    return await this.prisma.passwordReset.update({ where: { token }, data: { used: true } });
+  }
+
+  async getTokenResetPassword(token: string) {
+    return await this.prisma.passwordReset.findFirst({ where: { token }, select: { used: true } });
   }
 }

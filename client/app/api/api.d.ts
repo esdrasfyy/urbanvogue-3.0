@@ -28,3 +28,12 @@ export interface RegisterApiProps {
   username: string;
   password: string;
 }
+
+export interface ForgotPasswordApiProps {
+  email: string;
+}
+export interface ResetPasswordApiProps {
+  email: string;
+  password: string;
+  token: string;
+}

@@ -1,15 +1,17 @@
 "use client";
 import React, { createContext, useState, ReactNode, useContext } from "react";
 import { ContextAppProps } from "./contexts";
-import { useToast } from "@chakra-ui/react";
+import { useDisclosure, useToast } from "@chakra-ui/react";
 import { trans } from "../libs/i18n.lib";
 
 export const ContextApp = createContext<ContextAppProps | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [emailForRecovery, setEmailForRecovery] = useState<string | null>(null);
+  const { isOpen: isOpenForgotPassword, onOpen: onOpenForgotPassword, onClose: onCloseForgotPassword } = useDisclosure();
   const [loading, setLoading] = useState<boolean>(false);
   const toast = useToast();
+
   const ShowToast = (title: string, description: string, status: "info" | "warning" | "success" | "error") => {
     toast({
       title: trans.t(title),
@@ -28,6 +30,9 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     loading,
     setLoading,
     ShowToast,
+    isOpenForgotPassword,
+    onCloseForgotPassword,
+    onOpenForgotPassword,
   };
 
   return <ContextApp.Provider value={contextValue}>{children}</ContextApp.Provider>;

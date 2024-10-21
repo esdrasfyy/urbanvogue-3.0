@@ -81,4 +81,14 @@ declare namespace Auth {
     picture: string;
     locale: string;
   }
+
+  export interface ForgotPassword {
+    email: string;
+  }
+
+  export interface ResetPassword {
+    email: string;
+    password: string;
+    token: string;
+  }
 }

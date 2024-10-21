@@ -1,10 +1,11 @@
-import { Global, Module } from '@nestjs/common';
-import * as ImportRepository from './index';
+import { Global, Module } from "@nestjs/common";
+import * as ImportRepository from "./index";
+import { PrismaService } from "src/services/prisma.service";
 const repositories = Object.values(ImportRepository);
 
 @Global()
 @Module({
-  providers: [...repositories],
+  providers: [...repositories, PrismaService],
   exports: repositories,
 })
 export class RepositoryModule {}

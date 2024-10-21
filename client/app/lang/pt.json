@@ -20,6 +20,7 @@
   "username can only contain letters, numbers, and underscores.": "O nome de usuário só pode conter letras, números e underscores.",
   "must be a valid email!": "Deve ser um e-mail válido!",
   "account": "Conta",
+  "account not found.": "Conta não encontrada.",
   "your account": "Sua Conta",
   "edit account": "Editar Conta",
   "wallet": "Carteira",
@@ -54,5 +55,15 @@
   "incorrect password.": "Senha incorreta.",
   "username already exists.": "Nome de usuário já existe.",
   "email already exists.": "O e-mail já existe.",
-  "national ID already exists.": "O CPF já existe."
+  "national ID already exists.": "O CPF já existe.",
+  "the emails do not match.": "Os emails não coincidem.",
+  "the link is expired or invalid.": "O link está expirado ou é inválido.",
+  "contact support!": "Contate o suporte!",
+  "email sent!": "Email enviado!",
+  "change your password": "Altere sua senha",
+  "reset your password": "Resete sua senha",
+  "if there is an account with that email, the code has been sent to it.": "Se houver uma conta com esse e-mail, o código foi enviado para ela.",
+  "enter your email address and we'll send you a code to reset your password.": "Digite seu email e enviaremos um código para redefinir sua senha.",
+  "password changed!": "Senha alterada!",
+  "your new password is now available.": "Sua nova senha já está disponível."
 }

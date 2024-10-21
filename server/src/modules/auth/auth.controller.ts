@@ -61,4 +61,28 @@ export class AuthController {
   async getMe(@Res() res: ExpressResponse, @Req() req: ExpressRequest) {
     await this.authService.authenticate(res, req);
   }
+
+  @Public()
+  @Post("forgot-password")
+  @ApiOperation({ summary: "returns decrypted user data via cookies." })
+  @ApiResponse({ status: 200, description: "user logged.", type: LoginSwagger })
+  @ApiResponse({ status: 404, description: "not found user." })
+  @ApiResponse({ status: 401, description: "incorrect password." })
+  @ApiResponse({ status: 400, description: "incorrect field." })
+  @ApiBody({ type: LoginSwagger })
+  async forgotPassword(@Res() res: ExpressResponse, @Body() dto: Auth.ForgotPassword) {
+    await this.authService.forgotPassword(res, dto);
+  }
+
+  @Public()
+  @Post("reset-password")
+  @ApiOperation({ summary: "returns decrypted user data via cookies." })
+  @ApiResponse({ status: 200, description: "user logged.", type: LoginSwagger })
+  @ApiResponse({ status: 404, description: "not found user." })
+  @ApiResponse({ status: 401, description: "incorrect password." })
+  @ApiResponse({ status: 400, description: "incorrect field." })
+  @ApiBody({ type: LoginSwagger })
+  async resetPassword(@Res() res: ExpressResponse, @Body() dto: Auth.ResetPassword) {
+    await this.authService.resetPassword(res, dto);
+  }
 }

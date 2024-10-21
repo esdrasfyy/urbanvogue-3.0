@@ -20,6 +20,7 @@
   "username can only contain letters, numbers, and underscores.": "Username can only contain letters, numbers, and underscores.",
   "must be a valid email!": "Must be a valid email!",
   "account": "Account",
+  "account not found.": "Account not found.",
   "your account": "Your Account",
   "edit account": "Edit Account",
   "wallet": "Wallet",
@@ -51,7 +52,17 @@
   "must be a valid credential!": "Must be a valid credential!",
   "user not found.": "User not found.",
   "incorrect password.": "Incorrect password.",
-  "username already exists.": "username already exists.",
-  "email already exists.": "username already exists.",
-  "national ID already exists.": "username already exists."
+  "username already exists.": "Username already exists.",
+  "email already exists.": "Email already exists.",
+  "national ID already exists.": "National ID already exists.",
+  "the emails do not match.": "The emails do not match.",
+  "the link is expired or invalid.": "The link is expired or invalid.",
+  "contact support!": "Contact support!",
+  "email sent!": "Email sent!",
+  "change your password": "Change your password",
+  "reset your password": "Reset your password",
+  "if there is an account with that email, the code has been sent to it.": "If there is an account with that email, the code has been sent to it.",
+  "enter your email address and we'll send you a code to reset your password.": "Enter your email address and we'll send you a code to reset your password.",
+  "password changed!": "Password changed!",
+  "your new password is now available.": "Your new password is now available."
 }

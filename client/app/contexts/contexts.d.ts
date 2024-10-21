@@ -7,6 +7,9 @@ export interface ContextAppProps {
   emailForRecovery: string | null;
   setEmailForRecovery: React.Dispatch<React.SetStateAction<string | null>>;
   ShowToast: (title: string, description: string, status: "info" | "warning" | "success" | "error") => void;
+  isOpenForgotPassword: boolean;
+  onOpenForgotPassword: () => void;
+  onCloseForgotPassword: () => void;
 }
 
 export interface ContextUserProps {

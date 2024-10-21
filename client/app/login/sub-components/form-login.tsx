@@ -13,7 +13,7 @@ import { ForgotPassword } from "./forgot-password";
 import { useApp } from "@/app/contexts/app.context";
 
 export function FormLogin() {
-  const router = useRouter()
+  const router = useRouter();
   const { setUser } = useUser();
   const { setLoading, ShowToast } = useApp();
 
@@ -25,7 +25,6 @@ export function FormLogin() {
 
   const onSubmit: SubmitHandler<InputsLoginI> = async (data) => {
     try {
-
       setLoading(true);
 
       const response = await Auth.login(data);
@@ -35,11 +34,10 @@ export function FormLogin() {
       }
 
       setUser(response.user!);
-      
-      router.back()
-      
+
+      router.back();
+
       ShowToast("user logged in!", "take advantage of our innovative promotions.", "success");
-      
     } catch (err) {
       if (err instanceof Error) {
         ShowToast("an error occurred!", err.message, "error");

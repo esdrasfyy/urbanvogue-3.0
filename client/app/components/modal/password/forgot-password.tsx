@@ -41,10 +41,10 @@ export function ModalForgotPassword() {
   return (
     <Modal blockScrollOnMount={false} isOpen={isOpenForgotPassword} onClose={onCloseForgotPassword} isCentered>
       <ModalOverlay bg="none" backdropFilter="saturate(150%) blur(4px)" backdropInvert="50%" backdropBlur="3px" />
-      <ModalContent backgroundColor={"#171a1b"} textColor={"#d9d9d9"} borderRadius={"7px"} position={"relative"} margin={"0px 14px"}>
+      <ModalContent backgroundColor="var(--primary-brand-color)" textColor="var(--text-color)" borderRadius={"7px"} position={"relative"} margin={"0px 14px"}>
         <ModalHeader>{trans.t("change your password")}</ModalHeader>
         <ModalBody>
-          <p className="mb-4 text-sm text-custom-textColor/35">{trans.t("enter your email address and we'll send you a code to reset your password.")}</p>
+          <p className="mb-4 text-sm text-custom-textColor">{trans.t("enter your email address and we'll send you a code to reset your password.")}</p>
           <form className="flex w-full flex-col justify-center pb-3" onSubmit={handleSubmit(onSubmit)}>
             <InputDefault type="text" label="email" placeholder="enter you email" name="email" register={register} error={errors?.email?.message} autofocus={true} />
             <InputSubmit type="submit" content="login" icon="FaArrowRight" classname="mt-5" />

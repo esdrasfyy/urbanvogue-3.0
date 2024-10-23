@@ -1,11 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./pages/**/*.{js,ts,jsx,tsx,mdx}", "./components/**/*.{js,ts,jsx,tsx,mdx}", "./app/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     screens: {
       sm: "640px",
@@ -15,12 +11,12 @@ const config: Config = {
     extend: {
       colors: {
         custom: {
-          primaryBrand: "#171a1b",
-          secondaryBrand: "#1d2123",
-          tertiaryBrand: "#5d5d5d",
-          accentColor: "#ed145b",
-          textColor: "#d9d9d9",
-          background: "#171a1b",
+          primaryBrand: "var(--primary-brand-color)",
+          secondaryBrand: "var(--secondary-brand-color)",
+          tertiaryBrand: "var(--tertiary-brand-color)",
+          accentColor: "var(--accent-color)",
+          accentColorOpacity: "var(--accent-color-opacity)",
+          textColor: "var(--text-color)",
           error: "#cf6679",
           success: "#4caf50",
           warning: "#ff9800",

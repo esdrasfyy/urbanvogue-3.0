@@ -64,5 +64,9 @@
   "if there is an account with that email, the code has been sent to it.": "If there is an account with that email, the code has been sent to it.",
   "enter your email address and we'll send you a code to reset your password.": "Enter your email address and we'll send you a code to reset your password.",
   "password changed!": "Password changed!",
-  "your new password is now available.": "Your new password is now available."
+  "your new password is now available.": "Your new password is now available.",
+  "brands": "brands",
+  "categories": "categories",
+  "releases": "releases",
+  "today's top 3": "Today's Top 3"
 }

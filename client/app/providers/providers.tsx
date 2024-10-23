@@ -5,6 +5,7 @@ import { UserProvider } from "../contexts/user.context";
 import { CartProvider } from "../contexts/cart.context";
 import { NotificationProvider } from "../contexts/notifications.context";
 import { AppProvider } from "../contexts/app.context";
+import { theme } from "../components/ui/theme/theme";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -12,7 +13,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <CartProvider>
         <UserProvider>
           <NotificationProvider>
-            <ChakraProvider>{children}</ChakraProvider>
+            <ChakraProvider theme={theme}>{children}</ChakraProvider>
           </NotificationProvider>
         </UserProvider>
       </CartProvider>

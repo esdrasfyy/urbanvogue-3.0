@@ -91,14 +91,20 @@ export function Voice({ handleSubmit }: { handleSubmit: (value: string) => void 
 
   return (
     <>
-      <span className="absolute right-3 z-10 top-[50%] translate-y-[-50%] text-custom-textColor text-2xl duration-200 transition-all ease-linear hover:text-custom-accentColor max-md:text-2xl cursor-pointer" onClick={handleOpen}><MdKeyboardVoice /></span>
-      <Modal isOpen={isOpen} isCentered size={"xs"}
+      <span className="absolute right-3 z-10 top-[50%] translate-y-[-50%] text-custom-textColor text-2xl duration-200 transition-all ease-linear hover:text-custom-accentColor max-md:text-2xl cursor-pointer" onClick={handleOpen}>
+        <MdKeyboardVoice />
+      </span>
+      <Modal
+        isOpen={isOpen}
+        isCentered
+        size={"xs"}
         onClose={() => {
           onClose();
           stopRecording();
-        }}>
-        <ModalOverlay backdropFilter="saturate(150%) blur(4px)" backdropInvert="50%" backdropBlur="3px"/>
-        <ModalContent background={"#1d2123"} textColor={"#d9d9d9"} margin={"0px 0px"} className="shadow-snipped">
+        }}
+      >
+        <ModalOverlay backdropFilter="saturate(150%) blur(4px)" backdropInvert="50%" backdropBlur="3px" />
+        <ModalContent background="var(--secondary-brand-color)" textColor="var(--text-color)" margin={"0px 0px"} className="shadow-md">
           <ModalBody>
             <div className="flex items-center justify-center flex-col my-10">
               <div className="h-16 flex justify-end mb-6">

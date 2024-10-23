@@ -1,40 +1,42 @@
 .dark {
-  --primary-brand-color: #171a1b; /* Cor principal do tema escuro */
-  --secondary-brand-color: #1d2123; /* Cor secundária */
-  --tertiary-brand-color: #5d5d5d; /* Cor terciária */
-  --accent-color: #ed145b; /* Cor de destaque */
-  --text-color: #d9d9d9; /* Cor do texto */
-  --background-color: #171a1b; /* Cor de fundo */
-  --link-color: #bb86fc; /* Cor dos links */
-  --hover-color: #3700b3; /* Cor ao passar o mouse */
-  --border-color: #444; /* Cor das bordas */
-  --error-color: #cf6679; /* Cor de erro */
-  --success-color: #4caf50; /* Cor de sucesso */
-  --warning-color: #ff9800; /* Cor de aviso */
-  --info-color: #2196f3; /* Cor de informação */
-  --disabled-color: #757575; /* Cor para elementos desativados */
-  --logo: url("/assets/urban-vogue/bg-gray-login.jpg"); /* Logo da marca*/
+  --primary-brand-color: #0f0f0f;
+  --secondary-brand-color: #1f1f1f;
+  --tertiary-brand-color: #353535;
+  --accent-color: #ed145b;
+  --accent-color-50: #ed145b50;
+  --accent-color-30: #ed145b30;
+  --accent-color-10: #ed145b10;
+  --text-color: #d9d9d9;
+  --text-color-50: #d9d9d950;
+  --text-color-30: #d9d9d930;
+  --text-color-10: #d9d9d910;
+  --header-color: #1f1f1f;
+  --error-color: #cf6679;
+  --success-color: #4caf50;
+  --warning-color: #ff9800;
+  --disabled-color: #757575;
 }
 
 .light {
-  --primary-brand-color: #ffffff; /* Cor principal do tema claro */
-  --secondary-brand-color: #f5f5f5; /* Cor secundária */
-  --tertiary-brand-color: #eeeeee; /* Cor terciária */
-  --accent-color: #ff4081; /* Cor de destaque */
-  --background-color: #ffffff; /* Cor de fundo */
-  --text-color: #000000; /* Cor do texto */
-  --link-color: #1a73e8; /* Cor dos links */
-  --hover-color: #0056b3; /* Cor ao passar o mouse */
-  --border-color: #ccc; /* Cor das bordas */
-  --error-color: #f44336; /* Cor de erro */
-  --success-color: #4caf50; /* Cor de sucesso */
-  --warning-color: #ff9800; /* Cor de aviso */
-  --info-color: #2196f3; /* Cor de informação */
-  --disabled-color: #bdbdbd; /* Cor para elementos desativados */
-  --logo: url("/assets/urban-vogue/bg-gray-login.jpg"); /* Logo da marca*/
+  --primary-brand-color: #fffefb;
+  --secondary-brand-color: #f5f4f1;
+  --tertiary-brand-color: #cccbc8;
+  --accent-color: #ed145b;
+  --accent-color-50: #ed145b50;
+  --accent-color-30: #ed145b30;
+  --accent-color-10: #ed145b10;
+  --text-color: #1d1c1c;
+  --text-color-50: #1d1c1c50;
+  --text-color-30: #1d1c1c30;
+  --text-color-10: #1d1c1c10;
+  --header-color: #f5f4f1;
+  --error-color: #f44336;
+  --success-color: #4caf50;
+  --warning-color: #ff9800;
+  --disabled-color: #bdbdbd;
 }
 
-.shadow-snipped {
+.shadow-md {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -74,7 +76,6 @@
   color: var(--success-color) !important;
 }
 
-
 /* styles.css */
 @tailwind base;
 @tailwind components;
@@ -82,7 +83,7 @@
 
 @layer components {
   .hover-effect {
-    @apply transition ease-in-out duration-200;
+    @apply transition ease-in-out duration-300;
   }
 
   @media (min-width: 1024px) {
@@ -90,19 +91,22 @@
       @apply hover:opacity-60;
     }
     .hover-no-opacity {
-      @apply hover:text-custom-textColor;
+      @apply hover:opacity-100;
     }
     .hover-link {
-      @apply hover:text-custom-accentColor;
+      @apply hover:text-[var(--accent-color)];
     }
     .hover-bg-text {
-      @apply hover:bg-custom-textColor;
+      @apply hover:bg-[var(--text-color)];
     }
     .hover-text-bg {
-      @apply hover:text-custom-secondaryBrand;
+      @apply hover:text-[var(--tertiary-brand-color)];
     }
     .hover-bg-accent {
-      @apply hover:bg-custom-accentColor;
+      @apply hover:bg-[var(--accent-color)];
+    }
+    .hover-bg-accent-opacity {
+      @apply hover:bg-[var(--accent-color-10)];
     }
     .hover-submit {
       @apply group-hover:translate-x-0;
@@ -120,19 +124,22 @@
       @apply focus:opacity-60;
     }
     .hover-no-opacity {
-      @apply focus:text-custom-textColor;
+      @apply focus:opacity-100;
     }
     .hover-link {
-      @apply focus:text-custom-accentColor;
+      @apply focus:text-[var(--accent-color)];
     }
     .hover-bg-text {
-      @apply focus:bg-custom-textColor;
+      @apply focus:bg-[var(--text-color)];
     }
     .hover-text-bg {
-      @apply focus:text-custom-secondaryBrand;
+      @apply focus:text-[var(--tertiary-brand-color)];
     }
     .hover-bg-accent {
-      @apply focus:bg-custom-accentColor;
+      @apply focus:bg-[var(--accent-color)];
+    }
+    .hover-bg-accent-opacity {
+      @apply focus:bg-[var(--accent-color-10)];
     }
     .hover-submit {
       @apply group-focus:translate-x-0;
@@ -150,6 +157,7 @@
     -webkit-tap-highlight-color: transparent;
     transform: translate3d(0, 0, 0);
     position: relative;
+    cursor: pointer;
   }
 
   .check::before {
@@ -161,13 +169,14 @@
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    @apply bg-custom-accentColor/5;
+    @apply bg-[var(--accent-color-30)];
     opacity: 0;
     transition: opacity 0.2s ease;
   }
 
   .check:hover::before {
     opacity: 1;
+    @apply bg-[var(--accent-color-30)];
   }
 
   .check svg {
@@ -177,7 +186,7 @@
 
   #checkbox:checked + .check svg {
     @apply stroke-custom-textColor;
-    @apply bg-custom-accentColor;
+    @apply bg-[var(--accent-color)];
     border-radius: 4px;
   }
 
@@ -204,14 +213,7 @@
 
 .beforeEffect::before {
   bottom: 0;
-  background: linear-gradient(150deg, #ed145b, #171a1b, #171a1b);
-  background-size: 180% 180%;
-  animation: gradient-animation 5s ease infinite;
-}
-
-.afterEffect::after {
-  top: 0;
-  background: linear-gradient(300deg, #ed145b, #171a1b, #171a1b);
+  background: linear-gradient(150deg, var(--accent-color), var(--secondary-brand-color), var(--secondary-brand-color));
   background-size: 180% 180%;
   animation: gradient-animation 5s ease infinite;
 }
@@ -226,4 +228,197 @@
   100% {
     background-position: 0% 50%;
   }
+}
+
+.embla {
+  --slide-height: 19rem;
+  --slide-spacing: 1rem;
+  --slide-size: 100%;
+}
+
+.embla__container {
+  touch-action: pan-y pinch-zoom;
+}
+
+.embla__button:disabled {
+  color: var(--detail-high-contrast);
+}
+
+.embla__dot {
+  -webkit-tap-highlight-color: rgba(var(--accent-color), 0.5);
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  touch-action: manipulation;
+  display: inline-flex;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  width: 0.8rem;
+  height: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.embla__dot:after {
+  box-shadow: inset 0 0 0 0.1rem var(--accent-color);
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  content: "";
+}
+.embla__dot--selected:after {
+  box-shadow: inset 0 0 0 0.1rem var(--tertiary-brand-color);
+}
+
+.input-effect {
+  border: none;
+  outline: none;
+  box-shadow: 0 0 0 1px var(--text-color);
+}
+
+.input-effect:focus {
+  box-shadow: 0 0 0 2px var(--accent-color);
+}
+
+.back-to-top {
+  animation: arrowFooter 1.5s infinite;
+  scroll-behavior: smooth;
+}
+
+@keyframes arrowFooter {
+  0% {
+    transform: translateY(4px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(4px);
+  }
+}
+
+.soft-entry {
+  animation: entrar 0.15s ease-in-out;
+}
+
+.gridHome {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+  height: 430px;
+  min-width: 100%;
+  grid-template-areas:
+    "a b  d"
+    "a  c  d";
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
+}
+.grid-item-1 {
+  grid-area: a;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #7d7d7d;
+  transition: all 0.5s ease-out;
+  font-size: 13px !important;
+}
+
+.model1 {
+  background: url(assets/home/mulher1.jpg) center center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+.grid-item-2 {
+  grid-area: b;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #7d7d7d;
+  transition: all 0.5s ease-out;
+}
+.model2 {
+  background: url(assets/home/model3.webp) center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.grid-item-3 {
+  grid-area: c;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #7d7d7d;
+  transition: all 0.5s ease-out;
+}
+.model3 {
+  background: url(assets/home/joias.jpg) center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+.grid-item-4 {
+  grid-area: d;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #7d7d7d;
+  transition: all 0.5s ease-out;
+  font-size: 13px !important;
+}
+.model4 {
+  background: url(assets/home/model1.jpg) center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .gridHome {
+    display: grid;
+    gap: 20px;
+    width: 100%;
+    height: 430px;
+    min-width: 100%;
+    grid-template-areas:
+      "a b c d"
+      "a b c d";
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .gridHome {
+    display: grid;
+    gap: 20px;
+    width: 100%;
+    height: 650px;
+    min-width: 100%;
+    grid-template-areas:
+      "a"
+      "d"
+      "b"
+      "c";
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
+}
+.writing {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-size: 1.7em;
 }

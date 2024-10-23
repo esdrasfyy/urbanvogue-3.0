@@ -5,10 +5,14 @@ import { LogoHeader } from "./sub-components/link-header";
 
 export async function Header() {
   return (
-      <header className="flex justify-between items-center bg-custom-secondaryBrand py-4 px-7 beforeEffect afterEffect absolute top-0 left-0 w-full z-50 max-sm:px-3 shadow-snipped">
+    <header className="flex justify-center bg-[var(--header-color)] py-3 afterEffect absolute top-0 left-0 w-full z-50 shadow-md">
+      <div className="max-w-[1250px] w-full flex justify-between px-2">
         <LogoHeader />
         {/* <InputSearch classname="max-md:hidden w-[60%]" /> */}
-        <div className="flex gap-6 items-center justify-center"><MenuHeader /></div>
-      </header>
+        <div className="flex gap-6 items-center justify-center">
+          <MenuHeader />
+        </div>
+      </div>
+    </header>
   );
 }

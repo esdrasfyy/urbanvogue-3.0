@@ -5,7 +5,7 @@ import { IoHome, IoReloadCircle } from "react-icons/io5";
 
 export default function NotFound() {
   return (
-    <main className="h-[100vh] w-full flex flex-col gap-10 max-md:pt-[16vh] pt-[25vh] pb-[20vh] px-6 justify-between items-center container-404 max-w-[1250px] mx-auto">
+    <main className="min-h-[100vh] w-full flex flex-col gap-10 max-md:pt-[16vh] pt-[25vh] pb-[20vh] px-6 justify-between items-center container-404 max-w-[1250px] mx-auto">
       <section className="flex w-full justify-between items-center max-md:flex-col-reverse">
         <div className="max-w-96 w-full flex flex-col gap-5">
           <h1 className="font-semibold text-3xl w-fit tracking-wider">Página não encontrada</h1>

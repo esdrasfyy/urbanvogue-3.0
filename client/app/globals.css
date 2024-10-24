@@ -10,7 +10,7 @@
   --text-color-50: #d9d9d950;
   --text-color-30: #d9d9d930;
   --text-color-10: #d9d9d910;
-  --header-color: #1f1f1f;
+  --header-color: #0f0f0f;
   --error-color: #cf6679;
   --success-color: #4caf50;
   --warning-color: #ff9800;
@@ -117,6 +117,9 @@
     .hover-item-header {
       @apply hover:-translate-y-1.5;
     }
+    .group-hover-stroke-accent {
+      @apply group-hover:stroke-custom-accentColor;
+    }
   }
 
   @media (max-width: 1024px) {
@@ -146,6 +149,9 @@
     }
     .hover-bg-tertiaryBrand {
       @apply focus:bg-custom-tertiaryBrand;
+    }
+    .group-hover-stroke-accent {
+      @apply group-focus:stroke-custom-accentColor;
     }
   }
 }
@@ -202,18 +208,14 @@
   }
 }
 
-.beforeEffect::before,
-.afterEffect::after {
+.beforeEffect::before {
   content: "";
   position: absolute;
   height: 4px;
-  right: 0;
+  width: 100%;
   left: 0;
-}
-
-.beforeEffect::before {
   bottom: 0;
-  background: linear-gradient(150deg, var(--accent-color), var(--secondary-brand-color), var(--secondary-brand-color));
+  background: linear-gradient(150deg, var(--accent-color), var(--header-color), var(--header-color));
   background-size: 180% 180%;
   animation: gradient-animation 5s ease infinite;
 }
@@ -421,4 +423,19 @@
   writing-mode: vertical-rl;
   text-orientation: upright;
   font-size: 1.7em;
+}
+
+/* From Uiverse.io by JulanDeAlb */
+
+.line-top-bottom {
+  stroke-dasharray: 12 63;
+}
+
+.menu-button input:checked + svg {
+  transform: rotate(-45deg);
+}
+
+.menu-button input:checked + svg .line-top-bottom {
+  stroke-dasharray: 20 300;
+  stroke-dashoffset: -32.42;
 }

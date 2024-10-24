@@ -1,18 +1,21 @@
 import React from "react";
-import { MenuHeader } from "./sub-components/menu-header";
-import { LogoHeader } from "./sub-components/link-header";
+import { MenuActions } from "./sub-components/menu-actions";
+import Link from "next/link";
+import Image from "next/image";
+import { MenuList } from "./sub-components/menu-list";
 // import { InputSearch } from "../ui/inputs/input-search";
 
 export async function Header() {
   return (
-    <header className="flex justify-center bg-[var(--header-color)] py-3 afterEffect absolute top-0 left-0 w-full z-50 shadow-md">
-      <div className="max-w-[1250px] w-full flex justify-between px-2">
-        <LogoHeader />
-        {/* <InputSearch classname="max-md:hidden w-[60%]" /> */}
-        <div className="flex gap-6 items-center justify-center">
-          <MenuHeader />
-        </div>
+    <header className="fixed flex beforeEffect justify-between py-5 px-8 bg-[var(--header-color)] top-0 left-0 w-full z-50 shadow-md">
+      <div className="flex gap-8 items-center">
+        <Link href={"/"} className="flex gap-3 w-fit h-fit">
+          <Image src="/brand/bird-logo.png" alt="logo image" width={45} height={45} />
+        </Link>
+        <MenuList />
       </div>
+      {/* <InputSearch classname="max-md:hidden w-[60%]" /> */}
+      <MenuActions />
     </header>
   );
 }

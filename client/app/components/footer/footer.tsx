@@ -1,19 +1,48 @@
 import React from "react";
-import Image from "next/image";
-import { BackToTop } from "../back-to-top/back-to-top";
-import { trans } from "@/app/libs/i18n.lib";
 import Link from "next/link";
+import { FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { BiSupport } from "react-icons/bi";
 
 export function Footer() {
   return (
-    <>
-      <footer></footer>
-      <aside className="flex w-full text-custom-textColor text-sm bg-custom-primaryBrand justify-center items-center py-3 rounded-md ">
-        {trans.t("Developed by")}{" "}
-        <Link target="_blank" href="https://esdras.dev" className="ml-1 underline hover-effect hover-link">
-          esdrasfyy
-        </Link>
-      </aside>
-    </>
+    <footer className="afterEffect relative bg-custom-secondaryBrand p-10 rounded-md shadow-md flex flex-col gap-10">
+      <ul className="flex gap-5 w-full px-2">
+        <li>
+          <Link href="#" className="text-2xl hover-effect hover-link">
+            <FaInstagram />
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="text-2xl hover-effect hover-link">
+            <FaWhatsapp />
+          </Link>
+        </li>
+        <li>
+          <Link href="#" className="text-2xl hover-effect hover-link">
+            <BiSupport />
+          </Link>
+        </li>
+      </ul>
+      <div className="flex justify-between items-center w-full px-2 max-lg:flex-col-reverse max-lg:items-start gap-5">
+        <h4 className="font-semibold">© 2024 - Urban Vogue - CNPJ 13.555.994/0001-54</h4>
+        <ul className="flex gap-3 font-semibold text-xl tracking-wide max-md:flex-col">
+          <li>
+            <Link href="#" className="hover-effect hover-link">
+              Politica de Cookies
+            </Link>
+          </li>
+          <li>
+            <Link href="#" className="hover-effect hover-link">
+              Termos de Uso
+            </Link>
+          </li>
+          <li>
+            <Link href="#" className="hover-effect hover-link">
+              Politica de Privacidade
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </footer>
   );
 }

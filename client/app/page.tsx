@@ -40,7 +40,7 @@ export default function Home() {
   const urls = ["https://static.ecosweb.com.br/public/produtos/plus-size-feminino/conjunto/conjunto-azul-marinho-em-canelado_374121_301_1.webp", "https://static.ecosweb.com.br/public/produtos/plus-size-feminino/conjunto/conjunto-azul-marinho-em-canelado_374121_301_2.webp"];
 
   return (
-    <main className="pt-28 m-auto max-w-[1250px] flex flex-col gap-20 px-3 relative">
+    <main className="pt-32 pb-14 m-auto max-w-[1250px] flex flex-col gap-20 px-3 relative">
       <GridCategories />
       <CarouselCategories slides={SLIDES4} options={OPTIONS4} />
       <CarouselProducts slides={SLIDES} options={OPTIONS} />

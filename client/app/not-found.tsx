@@ -7,9 +7,9 @@ export default function NotFound() {
   return (
     <main className="min-h-[100vh] w-full flex flex-col gap-10 max-md:pt-[16vh] pt-[25vh] pb-[20vh] max-md:pb-[12vh] px-6 justify-between items-center container-404 max-w-[1250px] mx-auto">
       <section className="flex w-full justify-between items-center max-md:flex-col-reverse">
-        <div className="max-w-96 w-full flex flex-col gap-5">
+        <div className="max-w-96 w-full flex flex-col gap-5 max-md:items-center max-md:text-center">
           <h1 className="font-semibold text-3xl w-fit tracking-wider max-sm:text-2xl">Página não encontrada</h1>
-          <p className="max-w-80 tracking-wider max-md:text-center">A página que você está buscando não existe ou não foi encontrada.</p>
+          <p className="max-w-80 tracking-wider">A página que você está buscando não existe ou não foi encontrada.</p>
           <InputSubmit type="submit" content="Ir para o inicio" icon="FaArrowRight" classname="w-full " />
         </div>
         <div title="404" id="page-404">

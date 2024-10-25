@@ -2,15 +2,16 @@ import React from "react";
 import { MdContactSupport } from "react-icons/md";
 import { InputSubmit } from "./components/ui/inputs/input-submit";
 import { IoHome, IoReloadCircle } from "react-icons/io5";
+import { trans } from "./libs/i18n.lib";
 
 export default function NotFound() {
   return (
     <main className="min-h-[100vh] w-full flex flex-col gap-10 max-md:pt-[16vh] pt-[25vh] pb-[20vh] max-md:pb-[12vh] px-6 justify-between items-center container-404 max-w-[1250px] mx-auto">
       <section className="flex w-full justify-between items-center max-md:flex-col-reverse">
         <div className="max-w-96 w-full flex flex-col gap-5 max-md:items-center max-md:text-center">
-          <h1 className="font-semibold text-3xl w-fit tracking-wider max-sm:text-2xl">Página não encontrada</h1>
-          <p className="max-w-80 tracking-wider">A página que você está buscando não existe ou não foi encontrada.</p>
-          <InputSubmit type="submit" content="Ir para o inicio" icon="FaArrowRight" classname="w-full " />
+          <h1 className="font-semibold text-3xl w-fit tracking-wider max-sm:text-2xl">{trans.t("page not found")}</h1>
+          <p className="max-w-80 tracking-wider">{trans.t("the page you are looking for does not exist or could not be found.")}</p>
+          <InputSubmit type="submit" content={trans.t("go to home")} icon="FaArrowRight" classname="w-full " />
         </div>
         <div title="404" id="page-404">
           404
@@ -22,8 +23,8 @@ export default function NotFound() {
             <IoHome />
           </div>
           <div className=" px-5 flex flex-col items-center justify-center gap-3">
-            <h4 className="text-xl font-semibold text-center max-sm:text-base">Retorne</h4>
-            <p className="text-sm max-w-80 opacity-60 text-center max-sm:text-xs">Se estiver perdido, volte para a página inicial e explore todas as seções para localizar o que você está procurando.</p>
+            <h4 className="text-xl font-semibold text-center max-sm:text-base uppercase">{trans.t("return")}</h4>
+            <p className="text-sm max-w-80 opacity-60 text-center max-sm:text-xs">{trans.t("if you get lost, go back to the home page and explore all the sections to find what you're looking for.")}</p>
           </div>
         </div>
 
@@ -32,8 +33,8 @@ export default function NotFound() {
             <IoReloadCircle />
           </div>
           <div className=" px-5 flex flex-col items-center justify-center gap-3">
-            <h4 className="text-xl font-semibold text-center max-sm:text-base">Atualize</h4>
-            <p className="text-sm max-w-80 opacity-60 text-center max-sm:text-xs">Se a informação estiver errada ou desatualizada, tente recarregar a página para ver os dados corretos.</p>
+            <h4 className="text-xl font-semibold text-center max-sm:text-base uppercase">{trans.t("reload")}</h4>
+            <p className="text-sm max-w-80 opacity-60 text-center max-sm:text-xs">{trans.t("if the information is incorrect or outdated, try reloading the page to see the correct data.")}</p>
           </div>
         </div>
 
@@ -42,8 +43,8 @@ export default function NotFound() {
             <MdContactSupport />
           </div>
           <div className=" px-5 flex flex-col items-center justify-center gap-3">
-            <h4 className="text-xl font-semibold text-center max-sm:text-base">Suporte</h4>
-            <p className="text-sm max-w-80 opacity-60 text-center max-sm:text-xs">Se precisar de ajuda, entre em contato com nosso suporte. Estamos aqui para resolver qualquer problema.</p>
+            <h4 className="text-xl font-semibold text-center max-sm:text-base uppercase">{trans.t("support")}</h4>
+            <p className="text-sm max-w-80 opacity-60 text-center max-sm:text-xs">{trans.t("if you need assistance, please reach out to our support. We are here to help resolve any issues.")}</p>
           </div>
         </div>
       </section>

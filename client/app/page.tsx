@@ -13,6 +13,7 @@ import { InputsLoginI, SchemaLoginI } from "./login/types/types-login";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { BackToTop } from "./components/back-to-top/back-to-top";
 import { GridCategories } from "./components/home/grid-categories";
+import { trans } from "./libs/i18n.lib";
 
 export default function Home() {
   const OPTIONS: EmblaOptionsType = { loop: true };
@@ -61,8 +62,8 @@ export default function Home() {
             <MdBeenhere />
           </div>
           <div className=" px-5 flex flex-col items-center justify-center gap-3">
-            <h4 className="text-xl font-semibold text-center max-sm:text-base">CONFIDENCE</h4>
-            <p className="text-sm max-w-80 opacity-60 text-center max-sm:text-xs">Buyer Protection safeguards your purchase from the moment you order until it reaches your door.</p>
+            <h4 className="text-xl font-semibold text-center max-sm:text-base uppercase">{trans.t("confidence")}</h4>
+            <p className="text-sm max-w-80 opacity-60 text-center max-sm:text-xs">{trans.t("buyer protection safeguards your purchase from the moment you order until it reaches your door.")}</p>
           </div>
         </div>
         <div className="w-full h-full border border-custom-accentColor shadow-md rounded-md flex justify-between py-3">
@@ -70,8 +71,8 @@ export default function Home() {
             <MdPayments />
           </div>
           <div className=" px-5 flex flex-col items-center justify-center gap-3">
-            <h4 className="text-xl font-semibold text-center max-sm:text-base">SECURE PAYMENT</h4>
-            <p className="text-sm max-w-80 opacity-60 text-center max-sm:text-xs">Pay with the world’s most popular and secure payment methods. Return money within 30 days.</p>
+            <h4 className="text-xl font-semibold text-center max-sm:text-base uppercase">{trans.t("secure payment")}</h4>
+            <p className="text-sm max-w-80 opacity-60 text-center max-sm:text-xs">{trans.t("pay with the world’s most popular and secure payment methods. Return money within 30 days.")}</p>
           </div>
         </div>
         <div className="w-full h-full border border-custom-accentColor shadow-md rounded-md flex justify-between py-3">
@@ -79,8 +80,8 @@ export default function Home() {
             <MdContactSupport />
           </div>
           <div className=" px-5 flex flex-col items-center justify-center gap-3">
-            <h4 className="text-xl font-semibold text-center max-sm:text-base">24/7 HELP CENTER</h4>
-            <p className="text-sm max-w-80 opacity-60 text-center max-sm:text-xs">Enjoy 24/7 assistance to ensure a hassle-free and smooth shopping experience at any time.</p>{" "}
+            <h4 className="text-xl font-semibold text-center max-sm:text-base uppercase">{trans.t("24/7 help center")}</h4>
+            <p className="text-sm max-w-80 opacity-60 text-center max-sm:text-xs">{trans.t("enjoy 24/7 assistance to ensure a hassle-free and smooth shopping experience at any time.")}</p>{" "}
           </div>
         </div>
       </section>

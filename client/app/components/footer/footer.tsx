@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { BiSupport } from "react-icons/bi";
+import { trans } from "@/app/libs/i18n.lib";
 
 export function Footer() {
   return (
@@ -28,17 +29,17 @@ export function Footer() {
         <ul className="flex gap-3 font-semibold text-xl tracking-wide max-md:flex-col">
           <li>
             <Link href="#" className="hover-effect hover-link">
-              Politica de Cookies
+             {trans.t("cookies policy")}
             </Link>
           </li>
           <li>
             <Link href="#" className="hover-effect hover-link">
-              Termos de Uso
+             {trans.t("terms of use")}
             </Link>
           </li>
           <li>
             <Link href="#" className="hover-effect hover-link">
-              Politica de Privacidade
+             {trans.t("privacy police")}
             </Link>
           </li>
         </ul>

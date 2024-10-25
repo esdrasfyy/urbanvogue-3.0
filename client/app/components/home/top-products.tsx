@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { ButtonPrimary } from "../ui/buttons/button-primary";
+import { trans } from "@/app/libs/i18n.lib";
 
 export function TopProducts() {
   return (
     <section className="w-full">
       <div className="mb-16 max-md:mb-6 border-l-4 px-4 py-1 rounded-md border-custom-accentColor bg-[var(--accent-color-10)] flex justify-between w-full items-center z-10">
-        <h3 className="text-lg uppercase font-semibold tracking-widest">{"today's top 3"}</h3>
+        <h3 className="text-lg uppercase font-semibold tracking-widest">{trans.t("today's top 3")}</h3>
       </div>
       <div className="w-full h-64 flex gap-6 max-lg:flex-col max-lg:h-full">
         {[1, 2, 3].map((_, index) => (

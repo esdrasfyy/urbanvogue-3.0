@@ -76,6 +76,26 @@
   color: var(--success-color) !important;
 }
 
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--secondary-brand-color);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 10px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--accent-color) var(--secondary-brand-color);
+  }
+}
+
 /* styles.css */
 @tailwind base;
 @tailwind components;

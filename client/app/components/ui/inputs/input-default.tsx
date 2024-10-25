@@ -1,12 +1,9 @@
 "use client";
-
-import { Input } from "@chakra-ui/react";
 import React from "react";
 import { InputPropsI } from "./types/types-inputs";
 import { trans } from "@/app/libs/i18n.lib";
 import { AlertInput } from "../alerts/alert-input";
 import { useApp } from "@/app/contexts/app.context";
-import { theme } from "../theme/theme";
 
 export function InputDefault(data: InputPropsI) {
   const { loading } = useApp();

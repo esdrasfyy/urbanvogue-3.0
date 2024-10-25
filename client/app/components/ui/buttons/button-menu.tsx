@@ -1,4 +1,4 @@
-export function ButtonMenu({ classname }: { classname?: string }) {
+export function ButtonMenu() {
   return (
     <label className="menu-button cursor-pointer group">
       <input type="checkbox" className="hidden" />

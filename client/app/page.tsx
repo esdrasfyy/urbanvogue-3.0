@@ -5,12 +5,7 @@ import { CarouselHomepage } from "./components/carousel/homepage/carousel-homepa
 import { CarouselBrands } from "./components/carousel/homepage/carousel-brands";
 import { CarouselCategories } from "./components/carousel/homepage/carousel-categories";
 import { TopProducts } from "./components/home/top-products";
-import { MiniCardProduct } from "./components/product/mini-card-product";
-import { MdBeenhere, MdContactSupport, MdNavigateNext, MdPayments } from "react-icons/md";
-import { InputDefault } from "./components/ui/inputs/input-default";
-import { useForm } from "react-hook-form";
-import { InputsLoginI, SchemaLoginI } from "./login/types/types-login";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { MdBeenhere, MdContactSupport, MdPayments } from "react-icons/md";
 import { BackToTop } from "./components/back-to-top/back-to-top";
 import { GridCategories } from "./components/home/grid-categories";
 import { trans } from "./libs/i18n.lib";
@@ -31,14 +26,6 @@ export default function Home() {
   const OPTIONS4: EmblaOptionsType = { loop: true };
   const SLIDE_COUNT4 = 22;
   const SLIDES4 = Array.from(Array(SLIDE_COUNT4).keys());
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<InputsLoginI>({ resolver: yupResolver(SchemaLoginI) });
-
-  const urls = ["https://static.ecosweb.com.br/public/produtos/plus-size-feminino/conjunto/conjunto-azul-marinho-em-canelado_374121_301_1.webp", "https://static.ecosweb.com.br/public/produtos/plus-size-feminino/conjunto/conjunto-azul-marinho-em-canelado_374121_301_2.webp"];
 
   return (
     <main className="pt-32 pb-14 m-auto max-w-[1250px] flex flex-col gap-20 px-3 relative">

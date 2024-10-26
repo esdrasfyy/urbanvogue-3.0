@@ -1,5 +1,5 @@
 import { PrismaService } from "./../../services/prisma.service";
-import { generateUsername, regex_alphanumeric, regex_email, regex_password } from "src/utils/regex.util";
+import { generateUsername, regex_alphanumeric, regex_email, regex_password, regex_username } from "src/utils/regex.util";
 import { GetGithubOAuthTokens, GetGithubUser } from "src/services/github.service";
 import { Response as ExpressResponse, Request as ExpressRequest } from "express";
 import { GetGoogleOAuthToken, GetGoogleUser } from "src/services/google.service";
@@ -9,20 +9,20 @@ import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { PasswordResetHtml } from "src/templates/password-reset";
 import { HandleErrors } from "src/utils/handle-errors-database";
 import { MailerService } from "src/services/mailer.sevice";
-import { VerifyErrors, sign, verify } from "jsonwebtoken";
-import { AccountRepository } from "src/repository";
+import { verify } from "jsonwebtoken";
+import { AuthRepository } from "src/repository";
 import * as bcrypt from "bcrypt";
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly accountRepository: AccountRepository,
+    private readonly authRepository: AuthRepository,
     private readonly mailer: MailerService
   ) {}
 
   async register(dto: Auth.Register, res: ExpressResponse) {
     try {
       const validators: { [key in keyof Auth.Register]: ValidationRule } = {
-        username: { regex: regex_alphanumeric, message: "username can only contain letters, numbers, and underscores.", optional: false },
+        username: { regex: regex_username, message: "username can only contain letters, numbers, and underscores.", optional: false },
         email: { regex: regex_email, message: "must be a valid email!", optional: false },
         password: { regex: regex_password, message: "password needs an uppercase, lowercase, number, and special character ($, @, #).", optional: false },
       };
@@ -32,7 +32,7 @@ export class AuthService {
       const salt = await bcrypt.genSalt(10);
       const passwordHash = await bcrypt.hash(dto.password, salt);
       dto.password = passwordHash;
-      const user = await this.accountRepository.create(dto);
+      const user = await this.authRepository.create(dto);
 
       LoginUser(res, user);
 
@@ -51,7 +51,7 @@ export class AuthService {
 
       ValidateFields(dto, validators);
 
-      const user = await this.accountRepository.findByCredential(dto.credential);
+      const user = await this.authRepository.findByCredential(dto.credential);
 
       if (!user) {
         throw new HttpException("user not found.", HttpStatus.NOT_FOUND);
@@ -88,10 +88,10 @@ export class AuthService {
 
       const user_github: Auth.GithubUserResult | undefined = await GetGithubUser(accessToken);
 
-      let user = await this.accountRepository.findByGithubID(user_github.id);
+      let user = await this.authRepository.findByGithubID(user_github.id);
 
       if (!user) {
-        user = await this.accountRepository.create({ github_id: String(user_github.id), username: generateUsername(), avatar: user_github.avatar_url, fullname: user_github.name });
+        user = await this.authRepository.create({ github_id: String(user_github.id), username: generateUsername(), avatar: user_github.avatar_url, fullname: user_github.name });
       }
 
       LoginUser(res, user);
@@ -113,10 +113,10 @@ export class AuthService {
 
       const user_google = await GetGoogleUser(access_token, id_token);
 
-      let user = await this.accountRepository.findGoogleAccount(user_google.id, user_google.email);
+      let user = await this.authRepository.findGoogleAccount(user_google.id, user_google.email);
 
       if (!user) {
-        user = await this.accountRepository.create({ google_id: String(user_google.id), email: user_google.email, username: generateUsername(), avatar: user_google.picture });
+        user = await this.authRepository.create({ google_id: String(user_google.id), email: user_google.email, username: generateUsername(), avatar: user_google.picture });
       }
 
       LoginUser(res, user);
@@ -133,13 +133,13 @@ export class AuthService {
         throw new Error("must be a valid email!");
       }
 
-      const user = await this.accountRepository.findAccountByEmail(dto.email);
+      const user = await this.authRepository.findAccountByEmail(dto.email);
 
       if (!user) {
         throw new HttpException("account not found.", HttpStatus.NOT_FOUND);
       }
 
-      const token = await this.accountRepository.createPasswordReset(dto.email, user.id);
+      const token = await this.authRepository.createPasswordReset(dto.email, user.id);
 
       const link = `http://localhost:3000/password/reset/${token.token}`;
       const html = await PasswordResetHtml(link);
@@ -160,7 +160,7 @@ export class AuthService {
         throw new HttpException("the emails do not match.", HttpStatus.BAD_REQUEST);
       }
 
-      const { used } = await this.accountRepository.getTokenResetPassword(dto.token);
+      const { used } = await this.authRepository.getTokenResetPassword(dto.token);
 
       if (used) {
         throw new Error("the link is expired or invalid.");
@@ -169,7 +169,7 @@ export class AuthService {
       const salt = await bcrypt.genSalt(12);
       const password = await bcrypt.hash(dto.password, salt);
 
-      await this.accountRepository.updatePassword(id, password, dto.token);
+      await this.authRepository.updatePassword(id, password, dto.token);
 
       // mail of success
 

@@ -146,6 +146,11 @@ body::-webkit-scrollbar-thumb {
     .group-hover-grid-w {
       @apply group-hover:w-0;
     }
+    .navigation-top {
+      @apply hover:bg-[var(--text-color-10)];
+      @apply hover:scale-105;
+      @apply hover:shadow-md;
+    }
   }
 
   @media (max-width: 1024px) {
@@ -184,6 +189,11 @@ body::-webkit-scrollbar-thumb {
     }
     .group-hover-grid-w {
       @apply group-focus:w-0;
+    }
+    .navigation-top {
+      @apply focus:bg-[var(--text-color-10)];
+      @apply focus:scale-105;
+      @apply focus:shadow-md;
     }
   }
 }

@@ -6,7 +6,6 @@ import { CarouselBrands } from "./components/carousel/homepage/carousel-brands";
 import { CarouselCategories } from "./components/carousel/homepage/carousel-categories";
 import { TopProducts } from "./components/home/top-products";
 import { MdBeenhere, MdContactSupport, MdPayments } from "react-icons/md";
-import { BackToTop } from "./components/back-to-top/back-to-top";
 import { GridCategories } from "./components/home/grid-categories";
 import { trans } from "./libs/i18n.lib";
 
@@ -72,7 +71,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <BackToTop />
     </main>
   );
 }

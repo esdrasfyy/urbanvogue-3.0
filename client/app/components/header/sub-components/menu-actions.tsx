@@ -4,11 +4,10 @@ import { useCart } from "@/app/contexts/cart.context";
 import { useNotifications } from "@/app/contexts/notifications.context";
 import { AlertItemHeader } from "../../ui/alerts/alert-header";
 import { ButtonMenu } from "../../ui/buttons/button-menu";
-import { RiShoppingCartFill } from "react-icons/ri";
+import { RiSearchEyeFill, RiShoppingCartFill } from "react-icons/ri";
 import { FaBell } from "react-icons/fa";
 
 export function MenuActions() {
-
   const {
     disclosure: { onOpen: onOpenCart },
   } = useCart();
@@ -18,6 +17,11 @@ export function MenuActions() {
   } = useNotifications();
   return (
     <ul className="flex gap-6 items-center justify-center">
+      <li className="relative w-10 h-10 flex justify-center items-center">
+        <button className="hover-effect hover-link text-[28px]">
+          <RiSearchEyeFill />
+        </button>
+      </li>
       <li className="relative w-10 h-10 flex justify-center items-center" onClick={onOpenNotifications}>
         <button className="hover-effect hover-link text-[28px]">
           <FaBell />

@@ -5,11 +5,10 @@ import { DotButton, useDotButton } from "./sub-components/carousel-product-dots"
 import { PrevButton, NextButton, usePrevNextButtons } from "./sub-components/carousel-product-arrows";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
-import { PropType } from "../types/carousel-types";
 import { trans } from "@/app/libs/i18n.lib";
 import { CardProduct } from "../../product/card-product";
 
-export const CarouselProducts: React.FC<PropType> = (props) => {
+export const CarouselProducts: React.FC<General.PropType> = (props) => {
   const { slides, options } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()]);
 

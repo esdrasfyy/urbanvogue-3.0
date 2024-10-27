@@ -3,9 +3,8 @@ import React from "react";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
-import { PropType } from "../types/carousel-types";
 
-export const CarouselHomepage: React.FC<PropType> = (props) => {
+export const CarouselHomepage: React.FC<General.PropType> = (props) => {
   const { slides, options } = props;
   const [emblaRef] = useEmblaCarousel(options, [Autoplay()]);
 

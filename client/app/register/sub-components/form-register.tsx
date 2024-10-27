@@ -3,7 +3,6 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React from "react";
 import { InputDefault } from "@/app/components/ui/inputs/input-default";
-import { InputsRegisterI, SchemaRegisterI } from "../types/types-register";
 import { InputPassword } from "@/app/components/ui/inputs/input-password";
 import { InputSubmit } from "@/app/components/ui/inputs/input-submit";
 import Link from "next/link";
@@ -13,6 +12,7 @@ import { Auth } from "@/app/api/auth/auth.api";
 import { useUser } from "@/app/contexts/user.context";
 import { useApp } from "@/app/contexts/app.context";
 import { useRouter } from "next/navigation";
+import { InputsRegisterI, SchemaRegisterI } from "@/app/entities/schemas.entitie";
 
 export function FormRegister() {
   const {
@@ -54,11 +54,11 @@ export function FormRegister() {
   };
 
   return (
-    <form className="flex w-full flex-col justify-center" onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex w-full flex-col justify-center gap-6" onSubmit={handleSubmit(onSubmit)}>
       <InputDefault type="text" label="Username" placeholder="johndoe" name="username" register={register} error={errors?.username?.message} />
       <InputDefault type="email" label="Email" placeholder="jhondoe@gmail.com" name="email" register={register} error={errors?.email?.message} />
       <InputPassword label="Password" name="password" register={register} error={errors?.password?.message} />
-      <InputCheckbox error={errors.terms?.message} register={register} classname={errors?.password?.message && "mt-3"} name="terms">
+      <InputCheckbox error={errors.terms?.message} register={register} name="terms">
         {trans.t("I agree to the")}
         <Link href="https://www.snapic.com.br/pages/terms-and-conditions" className="font-semibold text-custom-accentColor mx-1 hover:underline">
           {trans.t("terms of use")}
@@ -68,7 +68,7 @@ export function FormRegister() {
           {trans.t("privacy police")}
         </Link>
       </InputCheckbox>
-      <InputSubmit type="submit" content="register" icon="FaArrowRight" classname="mt-6" />
+      <InputSubmit type="submit" content="register" icon="FaArrowRight" />
     </form>
   );
 }

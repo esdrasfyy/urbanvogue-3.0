@@ -7,8 +7,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Auth } from "@/app/api/auth/auth.api";
 import { InputDefault } from "../../ui/inputs/input-default";
 import { InputSubmit } from "../../ui/inputs/input-submit";
-import { InputsForgotPasswordI, SchemaForgotPasswordI } from "../types/types-modal";
 import { trans } from "@/app/libs/i18n.lib";
+import { SchemaForgotPasswordI, ForgotPasswordI } from "@/app/entities/schemas.entitie";
 
 export function ModalForgotPassword() {
   const { setLoading, ShowToast, onCloseForgotPassword, isOpenForgotPassword } = useApp();
@@ -16,9 +16,9 @@ export function ModalForgotPassword() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<InputsForgotPasswordI>({ resolver: yupResolver(SchemaForgotPasswordI) });
+  } = useForm<ForgotPasswordI>({ resolver: yupResolver(SchemaForgotPasswordI) });
 
-  const onSubmit: SubmitHandler<InputsForgotPasswordI> = async (data) => {
+  const onSubmit: SubmitHandler<ForgotPasswordI> = async (data) => {
     try {
       setLoading(true);
 

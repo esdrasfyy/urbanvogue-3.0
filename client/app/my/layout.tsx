@@ -2,6 +2,7 @@ import React from "react";
 import { ProfilePreview } from "./sub-components/profile-preview";
 import { LinkScale } from "../components/ui/links/link-scale";
 import { GoChecklist } from "react-icons/go";
+import { TbBellCog } from "react-icons/tb";
 
 interface LoginLayoutProps {
   children: React.ReactNode;
@@ -38,7 +39,7 @@ export default function MyLayout({ children }: LoginLayoutProps) {
           <h2 className="font-semibold text-3xl">Privacy and Security</h2>
           <ul>
             <LinkScale content="Notifications" href="/my/notifications">
-              <GoChecklist />
+              <TbBellCog />
             </LinkScale>
             <LinkScale content="Enable 2FA" href="/my/2fa">
               <GoChecklist />
@@ -49,7 +50,7 @@ export default function MyLayout({ children }: LoginLayoutProps) {
             <LinkScale content="Disable Your Account" href="/my/disable-account">
               <GoChecklist />
             </LinkScale>
-            <LinkScale content="Connections" href="/my/connections">
+            <LinkScale content="Connections" href="#">
               <GoChecklist />
             </LinkScale>
           </ul>

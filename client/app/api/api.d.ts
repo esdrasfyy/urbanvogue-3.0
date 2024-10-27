@@ -1,5 +1,5 @@
-import { UserI } from "../interfaces/user/user";
-import { UserNotificationsI } from "../interfaces/user/user-notifications";
+import { UserI } from "../@types/user";
+import { UserNotificationsI } from "../@types/user-notifications";
 
 export interface LoginApiProps {
   credential: string;

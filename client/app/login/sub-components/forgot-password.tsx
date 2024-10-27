@@ -5,10 +5,8 @@ import React from "react";
 export function ForgotPassword() {
   const { onOpenForgotPassword } = useApp();
   return (
-    <div className="mb-6">
-      <button type="button" onClick={onOpenForgotPassword} className="text-custom-textColor font-light text-sm hover-effect hover-link">
-        {trans.t("forgot your password?")}
-      </button>
-    </div>
+    <button type="button" onClick={onOpenForgotPassword} className="text-custom-textColor text-start font-light text-sm hover-effect hover-link">
+      {trans.t("forgot your password?")}
+    </button>
   );
 }

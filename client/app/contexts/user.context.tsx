@@ -1,13 +1,12 @@
 "use client";
 import React, { createContext, useEffect, useState, ReactNode, useCallback, useContext } from "react";
-import { UserI } from "@/app/interfaces/user/user";
-import { ContextUserProps } from "./contexts";
 import { Auth } from "../api/auth/auth.api";
+import { Contexts } from "../entities/contexts.entitie";
 
-export const ContextUser = createContext<ContextUserProps | undefined>(undefined);
+export const ContextUser = createContext<Contexts.UserProps | undefined>(undefined);
 
 export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<UserI | null>(null);
+  const [user, setUser] = useState<Account.UserI | null>(null);
 
   const FetchUser = useCallback(async () => {
     const response = await Auth.getMe();
@@ -20,9 +19,9 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     FetchUser();
   }, [FetchUser]);
 
-  const contextValue: ContextUserProps = {
+  const contextValue: Contexts.UserProps = {
     user,
-    setUser
+    setUser,
   };
 
   return <ContextUser.Provider value={contextValue}>{children}</ContextUser.Provider>;

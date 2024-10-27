@@ -1,7 +1,7 @@
+import { Inputs } from "@/app/entities/inputs.entitie";
 import React from "react";
-import { InputCheckboxPropsI } from "@/app/components/ui/inputs/types/types-inputs";
 
-export function InputCheckbox(data: InputCheckboxPropsI) {
+export function InputCheckbox(data: Inputs.CheckboxPropsI) {
   return (
     <div className={`flex w-fit container items-center ${data.classname}`}>
       <input type="checkbox" className="cursor-pointer relative m-auto w-[18px] h-[18px] " id="checkbox" style={{ display: "none" }} disabled={data.disabled} {...data.register(data.name)} />

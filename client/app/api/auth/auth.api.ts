@@ -1,11 +1,10 @@
 import { AxiosResponse, isAxiosError } from "axios";
-import { UserI } from "../../interfaces/user/user";
 import { api } from "../../libs/axios.lib";
 import { ForgotPasswordApiProps, LoginApiProps, LoginApiResponse, RegisterApiProps, ResetPasswordApiProps } from "../api";
 
 const getMe = async () => {
   try {
-    const response = await api.get<UserI | null>("/auth/me");
+    const response = await api.get<Account.UserI | null>("/auth/me");
     return response.data;
   } catch {
     return null;

@@ -8,7 +8,7 @@ import { InputSubmit } from "@/app/components/ui/inputs/input-submit";
 import { Auth } from "@/app/api/auth/auth.api";
 import { useApp } from "@/app/contexts/app.context";
 import { useRouter } from "next/navigation";
-import { InputsResetPasswordI, SchemaResetPasswordI } from "../types/types-reset-password";
+import { InputsResetPasswordI, SchemaResetPasswordI } from "@/app/entities/schemas.entitie";
 
 export function FormResetPassword({ token }: { token: string }) {
   const { register, handleSubmit, formState: { errors } } = useForm<InputsResetPasswordI>({ resolver: yupResolver(SchemaResetPasswordI) });

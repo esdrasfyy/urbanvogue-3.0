@@ -1,19 +1,17 @@
 import React, { createContext, ReactNode, useState, useEffect, useContext } from "react";
 import { useDisclosure } from "@chakra-ui/react";
-import { CartSummary, ContextCartProps, ProductCartI, UpdateItemQuantityParamsProps } from "./contexts";
+import { Contexts } from "../entities/contexts.entitie";
 
-export const ContextCart = createContext<ContextCartProps | undefined>(undefined);
+export const ContextCart = createContext<Contexts.CartProps | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [productsInCart, setProductsInCart] = useState<ProductCartI[]>([]);
-  const [cartResume, setCartResume] = useState<CartSummary | null>(null);
+  const [productsInCart, setProductsInCart] = useState<Contexts.ProductCartI[]>([]);
+  const [cartResume, setCartResume] = useState<Contexts.CartSummary | null>(null);
 
   useEffect(() => {
     const storedCart = localStorage.getItem("MyCart");
     if (storedCart) {
-      const cartItems = Array.isArray(JSON.parse(storedCart))
-        ? (JSON.parse(storedCart) as ProductCartI[])
-        : [];
+      const cartItems = Array.isArray(JSON.parse(storedCart)) ? (JSON.parse(storedCart) as Contexts.ProductCartI[]) : [];
 
       setProductsInCart(cartItems);
       setCartResume(calcCartSum(cartItems));
@@ -23,19 +21,14 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   }, []);
 
-  const addItemToCart = (data: ProductCartI) => {
-    let updatedCart: ProductCartI[];
+  const addItemToCart = (data: Contexts.ProductCartI) => {
+    let updatedCart: Contexts.ProductCartI[];
     let existingProductIndex: number;
 
     if (!productsInCart || !Array.isArray(productsInCart)) {
       updatedCart = [{ ...data, quantity: data.quantity }];
     } else {
-      existingProductIndex = productsInCart.findIndex(
-        (product) =>
-          product.id === data.id &&
-          product.color === data.color &&
-          product.size === data.size
-      );
+      existingProductIndex = productsInCart.findIndex((product) => product.id === data.id && product.color === data.color && product.size === data.size);
 
       if (existingProductIndex !== -1) {
         updatedCart = [...productsInCart];
@@ -50,8 +43,8 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setCartResume(calcCartSum(updatedCart));
   };
 
-  const calcCartSum = (cartItems: ProductCartI[] | null | undefined): CartSummary => {
-    const defaultSummary: CartSummary = {
+  const calcCartSum = (cartItems: Contexts.ProductCartI[] | null | undefined): Contexts.CartSummary => {
+    const defaultSummary: Contexts.CartSummary = {
       totalPrice: 0,
       totalQuantity: 0,
       products: [],
@@ -71,15 +64,11 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       { totalPrice: 0, totalQuantity: 0 }
     );
 
-    return { totalPrice, totalQuantity, products: cartItems};
+    return { totalPrice, totalQuantity, products: cartItems };
   };
 
-  const updateItemQuantity = (data: UpdateItemQuantityParamsProps) => {
-    const updatedCart = productsInCart.map((product, i) =>
-      i === data.index && product.id === data.id
-        ? { ...product, quantity: data.quantity,size: data.size,color: data.color }
-        : product
-    );
+  const updateItemQuantity = (data: Contexts.UpdateItemQuantityParamsProps) => {
+    const updatedCart = productsInCart.map((product, i) => (i === data.index && product.id === data.id ? { ...product, quantity: data.quantity, size: data.size, color: data.color } : product));
 
     setProductsInCart(() => updatedCart);
     localStorage.setItem("MyCart", JSON.stringify(updatedCart));
@@ -87,9 +76,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   const removeItemFromCart = async (id: number, index: number) => {
-    const updatedCart = await productsInCart.filter(
-      (item, indexItem) => item.id !== id || indexItem !== index
-    );
+    const updatedCart = await productsInCart.filter((item, indexItem) => item.id !== id || indexItem !== index);
     setProductsInCart(() => updatedCart);
     localStorage.setItem("MyCart", JSON.stringify(updatedCart));
     setCartResume(calcCartSum(updatedCart));
@@ -97,7 +84,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   const disclosure = useDisclosure();
-  const contextValue: ContextCartProps = {
+  const contextValue: Contexts.CartProps = {
     disclosure,
     cartResume,
     setCartResume,
@@ -118,4 +105,3 @@ export const useCart = () => {
   }
   return context;
 };
-

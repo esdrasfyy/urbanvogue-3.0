@@ -1,11 +1,18 @@
 "use client";
 import React from "react";
-import { IconsMapSubmit, InputSubmitPropsI } from "@/app/components/ui/inputs/types/types-inputs";
 import { trans } from "@/app/libs/i18n.lib";
 import { ImSpinner10 } from "react-icons/im";
 import { useApp } from "@/app/contexts/app.context";
+import { Inputs } from "@/app/entities/inputs.entitie";
+import * as FaIcons from "react-icons/fa";
 
-export function InputSubmit(data: InputSubmitPropsI) {
+const IconsMapSubmit = {
+  FaStar: FaIcons.FaStar,
+  FaArrowRight: FaIcons.FaArrowRight,
+  FaHome: FaIcons.FaHome,
+};
+
+export function InputSubmit(data: Inputs.SubmitPropsI) {
   const Icon = IconsMapSubmit[data.icon];
   const { loading } = useApp();
   return (

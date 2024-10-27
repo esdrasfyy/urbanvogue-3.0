@@ -3,10 +3,9 @@ import React, { useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
 import { SiNike } from "react-icons/si";
-import { PropType } from "../types/carousel-types";
 import { trans } from "@/app/libs/i18n.lib";
 
-export const CarouselBrands: React.FC<PropType> = ({ slides, options }) => {
+export const CarouselBrands: React.FC<General.PropType> = ({ slides, options }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       ...options,

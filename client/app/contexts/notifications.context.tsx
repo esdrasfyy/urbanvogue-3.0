@@ -1,14 +1,13 @@
 import React, { createContext, ReactNode, useState, useEffect, useContext } from "react";
 import { useDisclosure } from "@chakra-ui/react";
-import { ContextNotificationProps } from "./contexts";
-import { UserNotificationsI } from "../interfaces/user/user-notifications";
 import { useUser } from "./user.context";
 import { Notifications } from "../api/user/notifications.api";
+import { Contexts } from "../entities/contexts.entitie";
 
-export const ContextNotification = createContext<ContextNotificationProps | undefined>(undefined);
+export const ContextNotification = createContext<Contexts.NotificationProps | undefined>(undefined);
 
 export const NotificationProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [notifications, setNotifications] = useState<UserNotificationsI[] | null>(null);
+  const [notifications, setNotifications] = useState<Account.UserNotificationsI[] | null>(null);
 
   const { user } = useUser();
 
@@ -19,8 +18,8 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({ childr
       if (status === 200 && notifications) {
         setNotifications(notifications);
       }
-    } catch{
-      return
+    } catch {
+      return;
     }
   };
 
@@ -30,12 +29,11 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({ childr
     }
   }, [user]);
 
- const NotificationsRead: (ids: number[], action: "read" | "noRead") => Promise<void> = async (ids, action) => {
-  const status = await Notifications.updateNotifications({ ids, action });
+  const NotificationsRead: (ids: number[], action: "read" | "noRead") => Promise<void> = async (ids, action) => {
+    const status = await Notifications.updateNotifications({ ids, action });
 
-  if (status === 200) {
-    const updatedNotifications = notifications?.map(
-      (notification: UserNotificationsI) => {
+    if (status === 200) {
+      const updatedNotifications = notifications?.map((notification: Account.UserNotificationsI) => {
         if (ids.includes(notification.notify_id)) {
           return {
             ...notification,
@@ -43,26 +41,23 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({ childr
           };
         }
         return notification;
-      }
-    );
-    setNotifications(updatedNotifications || null);
-  }
-};
+      });
+      setNotifications(updatedNotifications || null);
+    }
+  };
 
-const NotificationsDelete: (ids: number[]) => Promise<void> = async (ids) => {
-  const status = await Notifications.updateNotifications({ ids, action: "delete" });
+  const NotificationsDelete: (ids: number[]) => Promise<void> = async (ids) => {
+    const status = await Notifications.updateNotifications({ ids, action: "delete" });
 
-  if (status === 200) {
-    const updatedNotifications = notifications?.filter(
-      (notification: UserNotificationsI) => !ids.includes(notification.notify_id)
-    );
+    if (status === 200) {
+      const updatedNotifications = notifications?.filter((notification: Account.UserNotificationsI) => !ids.includes(notification.notify_id));
 
-    setNotifications(updatedNotifications || null);
-  }
-};
+      setNotifications(updatedNotifications || null);
+    }
+  };
 
   const disclosure = useDisclosure();
-  const contextValue: ContextNotificationProps = {
+  const contextValue: Contexts.NotificationProps = {
     disclosure,
     notifications,
     setNotifications,
@@ -76,9 +71,7 @@ const NotificationsDelete: (ids: number[]) => Promise<void> = async (ids) => {
 export const useNotifications = () => {
   const context = useContext(ContextNotification);
   if (!context) {
-    throw new Error(
-      "useNotifications must be used within a NotificationsProvider"
-    );
+    throw new Error("useNotifications must be used within a NotificationsProvider");
   }
   return context;
 };

@@ -4,11 +4,10 @@ import { EmblaCarouselType } from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import { NextButton, PrevButton, usePrevNextButtons } from "../product/sub-components/carousel-product-arrows";
-import { PropType } from "../types/carousel-types";
 import { trans } from "@/app/libs/i18n.lib";
 import Image from "next/image";
 
-export const CarouselCategories: React.FC<PropType> = (props) => {
+export const CarouselCategories: React.FC<General.PropType> = (props) => {
   const { slides, options } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()]);
 

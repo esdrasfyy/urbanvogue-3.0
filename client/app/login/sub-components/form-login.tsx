@@ -2,7 +2,6 @@
 import { InputPassword } from "@/app/components/ui/inputs/input-password";
 import React from "react";
 import { useRouter } from "next/navigation";
-import { InputsLoginI, SchemaLoginI } from "../types/types-login";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { InputDefault } from "@/app/components/ui/inputs/input-default";
@@ -11,6 +10,7 @@ import { useUser } from "@/app/contexts/user.context";
 import { Auth } from "@/app/api/auth/auth.api";
 import { ForgotPassword } from "./forgot-password";
 import { useApp } from "@/app/contexts/app.context";
+import { InputsLoginI, SchemaLoginI } from "@/app/entities/schemas.entitie";
 
 export function FormLogin() {
   const router = useRouter();
@@ -48,7 +48,7 @@ export function FormLogin() {
   };
 
   return (
-    <form className="flex w-full flex-col justify-center pb-3" onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex w-full flex-col justify-center pb-3 gap-6" onSubmit={handleSubmit(onSubmit)}>
       <InputDefault type="text" label="email or username" placeholder="enter you email or username" name="credential" register={register} error={errors?.credential?.message} autofocus={true} />
       <InputPassword label="password" name="password" register={register} error={errors?.password?.message} />
       <ForgotPassword />

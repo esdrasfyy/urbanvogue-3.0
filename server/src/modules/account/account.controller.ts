@@ -22,7 +22,7 @@ export class AccountController {
   
   @Post("edit")
   async edit(@Body() dto: Account.UpdateI, @Res() res, @User() user: Account.UserI, @UploadedFile() avatar: Express.Multer.File) {
-    await this.accountService.edit(dto, avatar, user);
+    await this.accountService.edit(dto, user);
     return res.status(HttpStatus.OK).end();
   }
 }

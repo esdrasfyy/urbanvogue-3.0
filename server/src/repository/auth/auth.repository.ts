@@ -6,7 +6,7 @@ import * as jwt from "jsonwebtoken";
 export class AuthRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(dto: Account.UserI) {
+  async create(dto: Account.CreateI) {
     return await this.prisma.user.create({
       data: {
         email: dto.email,

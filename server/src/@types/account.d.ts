@@ -1,6 +1,6 @@
 declare namespace Account {
   export interface UserI {
-    id?: number;
+    id: number;
     google_id?: string;
     facebook_id?: string;
     github_id?: string;
@@ -28,12 +28,26 @@ declare namespace Account {
 
   export interface UpdateI {
     fullname?: string;
-    username: string;
-    bio?: string;
+    username?: string;
     birthdate?: Date;
-    gender?: string;
     national_id?: string;
-    enable_2fa?: boolean;
     country_id?: number;
+    gender_id?: number;
+  }
+
+  export interface CreateI {
+    google_id?: string;
+    facebook_id?: string;
+    github_id?: string;
+    apple_id?: string;
+    microsoft_id?: string;
+    fullname?: string;
+    username: string;
+    email?: string;
+    phone?: string;
+    email_verified_at?: Date;
+    avatar?: string;
+    password?: string;
+    birthdate?: Date;
   }
 }

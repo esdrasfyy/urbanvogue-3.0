@@ -7,6 +7,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Country {
+  id        Int    @id @default(autoincrement())
+  name      String @unique
+  code      String @unique
+  continent String
+  User      User[]
+
+  @@map("countries")
+}
+
+model Gender {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  User User[]
+
+  @@map("genders")
+}
+
 model User {
   id                   Int       @id @default(autoincrement())
   google_id            String?   @unique
@@ -25,11 +43,13 @@ model User {
   avatar               String?
   password             String?
   birthdate            DateTime?
-  gender               String?
   role_id              Int       @default(5)
   national_id          String?   @unique
   enable_2fa           Boolean?  @default(false)
   country_id           Int?
+  gender_id            Int?
+  country              Country?  @relation(fields: [country_id], references: [id])
+  gender               Gender?   @relation(fields: [gender_id], references: [id])
   created_at           DateTime  @default(now())
   updated_at           DateTime  @updatedAt
 

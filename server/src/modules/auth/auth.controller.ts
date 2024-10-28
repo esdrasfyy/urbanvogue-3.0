@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Res, Req } from "@nestjs/common";
 import { AuthService } from "./auth.service";
-import { isPublic } from "src/decorators/public.decorator.js";
+import { isPublic } from "src/decorators/is-public.js";
 import { Response as ExpressResponse, Request as ExpressRequest } from "express";
 import { ApiBody, ApiOperation, ApiQuery, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { LoginSwagger, RegisterSwagger } from "src/docs/auth.doc";

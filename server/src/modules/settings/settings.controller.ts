@@ -1,5 +1,5 @@
 import { Controller, Get, HttpStatus, Res } from "@nestjs/common";
-import { isPublic } from "src/decorators/public.decorator.js";
+import { isPublic } from "src/decorators/is-public";
 import { SettingsService } from "./settings.service";
 
 @Controller("settings")

@@ -53,10 +53,13 @@ function Profile() {
     try {
       if (!isChanged(getValues, user!)) return;
       setLoading(true);
-      const status = await Account.edit(data);
+      const { status, message } = await Account.edit(data);
 
       if (status === 500) {
-        throw new Error("Contact support!");
+        throw new Error("contact support!");
+      }
+      if (status !== 200) {
+        throw new Error(message);
       }
       /* eslint-disable @typescript-eslint/no-explicit-any */
       setUser((prev: any) => {
@@ -76,10 +79,10 @@ function Profile() {
       /* eslint-enable @typescript-eslint/no-explicit-any */
       reset();
       route.back();
-      ShowToast("Perfil atualizado!", "Seus dados foram atualizados com sucesso.", "success");
+      ShowToast("profile updated!", "your information has been successfully updated.", "success");
     } catch (err) {
       if (err instanceof Error) {
-        ShowToast("An error occurred!", err.message, "error");
+        ShowToast("an error occurred!", err.message, "error");
       }
     } finally {
       setLoading(false);
@@ -106,7 +109,7 @@ function Profile() {
 
   const onClose = () => {
     if (isChanged(getValues, user!) && !canClose) {
-      ShowToast("Nao perca seu progresso!", "Suas mudanças vão sumir se continuar.", "warning");
+      ShowToast("don't lose your progress!", "your changes will be discarded if you proceed.", "warning");
       setCanClose(true);
       return;
     }
@@ -121,15 +124,15 @@ function Profile() {
         <ModalHeader>{trans.t("Altere seus dados")}</ModalHeader>
         <ModalBody>
           <form className="flex w-full flex-col justify-center pb-6 gap-6" onSubmit={handleSubmit(onSubmit)}>
-            <InputDefault defaultvalue={user?.username} type="text" label="Username" placeholder="Enter your username" name="username" register={register} error={formState.errors?.username?.message} autofocus={true} />
-            <InputDefault defaultvalue={user?.fullname} type="text" label="fullname" placeholder="Enter your fullname" name="fullname" register={register} error={formState.errors?.fullname?.message} />
+            <InputDefault defaultvalue={user?.username} type="text" label="Username" placeholder="enter a username" name="username" register={register} error={formState.errors?.username?.message} autofocus={true} />
+            <InputDefault defaultvalue={user?.fullname} type="text" label="fullname" placeholder="enter a fullname" name="fullname" register={register} error={formState.errors?.fullname?.message} />
             <div className="flex justify-between w-full gap-6 max-sm:flex-col">
               <InputDate defaultvalue={user?.birthdate} label="birthdate" name="birthdate" register={register} error={formState.errors.birthdate?.message} />
-              <InputDefault type="text" label="CPF" placeholder="enter national ID" name="national_id" register={register} error={formState.errors?.national_id?.message} defaultvalue={user?.national_id} />
+              <InputDefault type="text" label="national_id" placeholder="enter national ID" name="national_id" register={register} error={formState.errors?.national_id?.message} defaultvalue={user?.national_id} />
             </div>
-            {formattedGenders && <InputSelectSingle defaultvalue={String(user?.gender_id)} onchange={handleGender} label="Genders" list={formattedGenders} />}
-            {formattedCountries && <InputSelectSingle defaultvalue={String(user?.country_id)} onchange={handleCountry} label="Country" list={formattedCountries} />}
-            <InputSubmit type="submit" content="Update" icon="FaArrowRight" classname="mt-5" />
+            {formattedGenders && <InputSelectSingle defaultvalue={String(user?.gender_id)} onchange={handleGender} label="gender" list={formattedGenders} />}
+            {formattedCountries && <InputSelectSingle defaultvalue={String(user?.country_id)} onchange={handleCountry} label="country" list={formattedCountries} />}
+            <InputSubmit type="submit" content="update" icon="FaArrowRight" classname="mt-5" />
           </form>
         </ModalBody>
       </ModalContent>

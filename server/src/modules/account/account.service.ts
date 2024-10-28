@@ -15,13 +15,15 @@ export class AccountService {
   ) {}
   async edit(res: ExpressResponse, dto: Account.UpdateI, user: Account.UserI) {
     try {
+      // criar genero e pais
+      
       const validators: { [key in keyof Account.UpdateI]: ValidationRule } = {
         fullname: { regex: regex_fullname, message: "must be a valid fullname!", optional: true },
         username: { regex: regex_username, message: "must be a valid username!", optional: true },
         birthdate: { regex: null, message: "must be a valid birthdate!", optional: true },
         gender_id: { regex: regex_number, message: "must be a valid gender!", optional: true },
         national_id: { regex: regex_alphanumeric, message: "must be a valid national id!", optional: true },
-        country_id: { regex: regex_number, message: "must be a valid country_id!", optional: true },
+        country_id: { regex: regex_number, message: "must be a valid country!", optional: true },
       };
 
       const data = RemoveNullValues(dto);

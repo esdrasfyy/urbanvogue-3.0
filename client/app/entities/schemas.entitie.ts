@@ -51,12 +51,12 @@ export type InputsProfileI = {
 export const SchemaProfileI = yup.object().shape({
   username: yup
     .string()
-    .required("!The field is required")
-    .test("username", "Username must be between 5 and 15 characters", (value) => {
+    .required("the field is required!")
+    .test("username", "username must be between 5 and 15 characters", (value) => {
       if (!value) return true;
       return value.length >= 5 && value.length <= 15 && /^\S+$/.test(value) && /^[a-zA-Z0-9_]+$/.test(value);
     })
-    .test("username-format", "Username must be between 5 and 15 characters and cannot contain spaces or special characters.", (value) => {
+    .test("username-format", "username must be between 5 and 15 characters and cannot contain spaces or special characters.", (value) => {
       if (!value) return true;
       return value.length >= 5 && value.length <= 15 && /^\S+$/.test(value) && /^[a-zA-Z0-9_]+$/.test(value);
     }),
@@ -65,7 +65,7 @@ export const SchemaProfileI = yup.object().shape({
     .transform((value, originalValue) => {
       return originalValue === "" ? null : value;
     })
-    .test("fullname", "Incorrect format", (value) => {
+    .test("fullname", "incorrect format!", (value) => {
       if (!value) return true;
       return /^[A-Z][a-zA-Zà-úÀ-Ú\s'-]{1,}(\s[A-Z][a-zA-Zà-úÀ-Ú\s'-]{1,}){1,}$/.test(value);
     })
@@ -75,7 +75,7 @@ export const SchemaProfileI = yup.object().shape({
     .transform((value, originalValue) => {
       return originalValue === "" ? null : value;
     })
-    .test("is-18-years-old", "Must be 18 or older.", (value) => {
+    .test("is-18-years-old", "must be 18 or older.", (value) => {
       if (!value) return true;
       return is18YearsOld(value) >= 18;
     })

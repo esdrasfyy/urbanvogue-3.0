@@ -1,9 +1,9 @@
 import { Module } from "@nestjs/common";
 import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
-import { AuthRepository } from "src/repository";
-import { MailerService } from "src/services/mailer.sevice";
-import { PrismaService } from "src/services/prisma.service";
+import { AuthRepository } from "../../repository";
+import { MailerService } from "../../services/mailer.sevice";
+import { PrismaService } from "../../services/prisma.service";
 
 @Module({
   imports: [],

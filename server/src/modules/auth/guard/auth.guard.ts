@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
-import { IS_PUBLIC_KEY } from "src/decorators/public.decorator";
+import { IS_PUBLIC_KEY } from "../../../decorators/public.decorator";
 import { verify, VerifyErrors } from "jsonwebtoken";
 
 @Injectable()

@@ -3,7 +3,7 @@ import { AuthService } from "./auth.service";
 import { isPublic } from "../../decorators/public.decorator";
 import { Response as ExpressResponse, Request as ExpressRequest } from "express";
 import { ApiBody, ApiOperation, ApiQuery, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { LoginSwagger, RegisterSwagger } from "src/docs/auth.doc";
+import { LoginSwagger, RegisterSwagger } from "../../docs/auth.doc";
 
 @ApiTags("Auth")
 @Controller("auth")

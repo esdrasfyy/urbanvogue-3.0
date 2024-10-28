@@ -1,15 +1,15 @@
-import { generateUsername, regex_email, regex_password, regex_username } from "src/utils/regex.util";
-import { GetGithubOAuthTokens, GetGithubUser } from "src/services/github.service";
+import { generateUsername, regex_email, regex_password, regex_username } from "../../utils/regex.util";
+import { GetGithubOAuthTokens, GetGithubUser } from "../../services/github.service";
 import { Response as ExpressResponse, Request as ExpressRequest } from "express";
-import { GetGoogleOAuthToken, GetGoogleUser } from "src/services/google.service";
-import { ValidateFields, ValidationRule } from "src/utils/validate-fields.util";
-import { GetSessionToken, LoginUser } from "src/services/cookies.service";
+import { GetGoogleOAuthToken, GetGoogleUser } from "../../services/google.service";
+import { ValidateFields, ValidationRule } from "../../utils/validate-fields.util";
+import { GetSessionToken, LoginUser } from "../../services/cookies.service";
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
-import { PasswordResetHtml } from "src/templates/password-reset";
-import { HandleErrors } from "src/utils/handle-errors-database";
-import { MailerService } from "src/services/mailer.sevice";
+import { PasswordResetHtml } from "../../templates/password-reset";
+import { HandleErrors } from "../../utils/handle-errors-database";
+import { MailerService } from "../../services/mailer.sevice";
 import { verify } from "jsonwebtoken";
-import { AuthRepository } from "src/repository";
+import { AuthRepository } from "../../repository";
 import * as bcrypt from "bcrypt";
 @Injectable()
 export class AuthService {

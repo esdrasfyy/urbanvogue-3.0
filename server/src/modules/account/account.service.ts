@@ -1,11 +1,11 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { Response as ExpressResponse } from "express";
-import { AccountRepository } from "src/repository";
-import { LoginUser } from "src/services/cookies.service";
-import { MailerService } from "src/services/mailer.sevice";
-import { HandleErrors } from "src/utils/handle-errors-database";
-import { regex_alphanumeric, regex_fullname, regex_number, regex_username } from "src/utils/regex.util";
-import { RemoveNullValues, ValidateFields, ValidationRule } from "src/utils/validate-fields.util";
+import { AccountRepository } from "../../repository";
+import { LoginUser } from "../../services/cookies.service";
+import { MailerService } from "../../services/mailer.sevice";
+import { HandleErrors } from "../../utils/handle-errors-database";
+import { regex_alphanumeric, regex_fullname, regex_number, regex_username } from "../../utils/regex.util";
+import { RemoveNullValues, ValidateFields, ValidationRule } from "../../utils/validate-fields.util";
 
 @Injectable()
 export class AccountService {

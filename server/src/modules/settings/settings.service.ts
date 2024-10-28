@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { SettingsRepository } from "src/repository";
+import { SettingsRepository } from "../../repository";
 
 @Injectable()
 export class SettingsService {

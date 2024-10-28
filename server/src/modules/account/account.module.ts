@@ -1,9 +1,9 @@
 import { Module } from "@nestjs/common";
-import { MailerService } from "src/services/mailer.sevice";
-import { PrismaService } from "src/services/prisma.service";
+import { MailerService } from "../../services/mailer.sevice";
+import { PrismaService } from "../../services/prisma.service";
 import { AccountController } from "./account.controller";
 import { AccountService } from "./account.service";
-import { AccountRepository } from "src/repository";
+import { AccountRepository } from "../../repository";
 
 @Module({
   imports: [],

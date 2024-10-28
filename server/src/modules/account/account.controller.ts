@@ -1,4 +1,4 @@
-import { Body, Controller, HttpStatus, Post, Res, UploadedFile, UseInterceptors } from "@nestjs/common";
+import { Body, Controller, HttpStatus, Post, Put, Res, UploadedFile, UseInterceptors } from "@nestjs/common";
 import { AccountService } from "./account.service";
 import { User } from "src/decorators/user.decorator";
 import { Public } from "src/decorators/public.decorator";
@@ -20,7 +20,7 @@ export class AccountController {
   //   })
   // )
 
-  @Post("edit")
+  @Put("edit")
   async edit(@Body() dto: Account.UpdateI, @Res() res, @User() user: Account.UserI, @UploadedFile() avatar: Express.Multer.File) {
     await this.accountService.edit(res, dto, user);
     return res.status(HttpStatus.OK).end();

@@ -1,7 +1,7 @@
 import { createParamDecorator, ExecutionContext } from "@nestjs/common";
-import { verify, VerifyErrors } from "jsonwebtoken";
+import { verify } from "jsonwebtoken";
 
-export const User = createParamDecorator((data: unknown, context: ExecutionContext): Account.UserI => {
+export const User = createParamDecorator((context: ExecutionContext): Account.UserI => {
   const cookies = context.switchToHttp().getRequest().headers.cookie;
   const token = cookies
     ?.split("; ")

@@ -13,7 +13,7 @@ export class AccountService {
     private readonly accountRepository: AccountRepository,
     private readonly mailer: MailerService
   ) {}
-  async edit(res:ExpressResponse, dto: Account.UpdateI, user: Account.UserI) {
+  async edit(res: ExpressResponse, dto: Account.UpdateI, user: Account.UserI) {
     try {
       const validators: { [key in keyof Account.UpdateI]: ValidationRule } = {
         fullname: { regex: regex_fullname, message: "must be a valid fullname!", optional: true },

@@ -5,7 +5,7 @@ import { InputsProfileI } from "@/app/entities/schemas.entitie";
 
 async function edit(data: InputsProfileI) {
     try {
-      const response: AxiosResponse = await api.post(`/account/edit`,{...data});
+      const response: AxiosResponse = await api.put(`/account/edit`,{...data});
       return { ...response.data, status: response.status };
     } catch (err: unknown) {
       if (err instanceof Error) {

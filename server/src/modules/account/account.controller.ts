@@ -1,9 +1,6 @@
 import { Body, Controller, HttpStatus, Post, Put, Res, UploadedFile, UseInterceptors } from "@nestjs/common";
 import { AccountService } from "./account.service";
 import { User } from "src/decorators/user.decorator";
-import { Public } from "src/decorators/public.decorator";
-import { FileInterceptor } from "@nestjs/platform-express";
-import { diskStorage } from "multer";
 
 @Controller("account")
 export class AccountController {

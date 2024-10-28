@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Res, Req } from "@nestjs/common";
 import { AuthService } from "./auth.service";
-import { Public } from "src/decorators/public.decorator.js";
+import { isPublic } from "src/decorators/public.decorator.js";
 import { Response as ExpressResponse, Request as ExpressRequest } from "express";
 import { ApiBody, ApiOperation, ApiQuery, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { LoginSwagger, RegisterSwagger } from "src/docs/auth.doc";
@@ -10,7 +10,7 @@ import { LoginSwagger, RegisterSwagger } from "src/docs/auth.doc";
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Public()
+  @isPublic()
   @Post("register")
   @ApiOperation({ summary: "create user and returns decrypted user data via cookies." })
   @ApiResponse({ status: 201, description: "user created and logged.", type: LoginSwagger })
@@ -21,7 +21,7 @@ export class AuthController {
     await this.authService.register(dto, res);
   }
 
-  @Public()
+  @isPublic()
   @Get("github")
   @ApiOperation({ summary: "Authenticate user via GitHub and return session data" })
   @ApiResponse({ status: 200, description: "User successfully authenticated via GitHub. Session data returned." })
@@ -31,7 +31,7 @@ export class AuthController {
     await this.authService.github(res, req);
   }
 
-  @Public()
+  @isPublic()
   @Get("google")
   @ApiOperation({ summary: "Authenticate user via Google and return session data" })
   @ApiResponse({ status: 200, description: "User successfully authenticated via Google. Session data returned." })
@@ -41,7 +41,7 @@ export class AuthController {
     await this.authService.google(res, req);
   }
 
-  @Public()
+  @isPublic()
   @Post("login")
   @ApiOperation({ summary: "returns decrypted user data via cookies." })
   @ApiResponse({ status: 200, description: "user logged.", type: LoginSwagger })
@@ -53,7 +53,7 @@ export class AuthController {
     await this.authService.login(dto, res);
   }
 
-  @Public()
+  @isPublic()
   @Get("me")
   @ApiOperation({ summary: "capture user session and return via body" })
   @ApiResponse({ status: 200, description: "data captured and returned.", type: LoginSwagger })
@@ -62,7 +62,7 @@ export class AuthController {
     await this.authService.authenticate(res, req);
   }
 
-  @Public()
+  @isPublic()
   @Post("forgot-password")
   @ApiOperation({ summary: "returns decrypted user data via cookies." })
   @ApiResponse({ status: 200, description: "user logged.", type: LoginSwagger })
@@ -74,7 +74,7 @@ export class AuthController {
     await this.authService.forgotPassword(res, dto);
   }
 
-  @Public()
+  @isPublic()
   @Post("reset-password")
   @ApiOperation({ summary: "returns decrypted user data via cookies." })
   @ApiResponse({ status: 200, description: "user logged.", type: LoginSwagger })

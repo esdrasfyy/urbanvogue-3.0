@@ -124,7 +124,7 @@ function Profile() {
         <ModalHeader>{trans.t("Altere seus dados")}</ModalHeader>
         <ModalBody>
           <form className="flex w-full flex-col justify-center pb-6 gap-6" onSubmit={handleSubmit(onSubmit)}>
-            <InputDefault defaultvalue={user?.username} type="text" label="Username" placeholder="enter a username" name="username" register={register} error={formState.errors?.username?.message} autofocus={true} />
+            <InputDefault defaultvalue={user?.username} type="text" label="username" placeholder="enter a username" name="username" register={register} error={formState.errors?.username?.message} autofocus={true} />
             <InputDefault defaultvalue={user?.fullname} type="text" label="fullname" placeholder="enter a fullname" name="fullname" register={register} error={formState.errors?.fullname?.message} />
             <div className="flex justify-between w-full gap-6 max-sm:flex-col">
               <InputDate defaultvalue={user?.birthdate} label="birthdate" name="birthdate" register={register} error={formState.errors.birthdate?.message} />

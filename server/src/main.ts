@@ -1,9 +1,9 @@
 import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
-import * as cookieParser from "cookie-parser";
-import * as dotenv from "dotenv";
-import * as cors from "cors";
+import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
+import cors from "cors";
 
 async function bootstrap() {
   dotenv.config();

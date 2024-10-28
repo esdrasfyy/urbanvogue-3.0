@@ -118,13 +118,12 @@ function Profile() {
     <Modal blockScrollOnMount={false} isOpen={true} onClose={onClose} isCentered>
       <ModalOverlay bg="none" backdropFilter="saturate(150%) blur(4px)" backdropInvert="50%" backdropBlur="3px" />
       <ModalContent backgroundColor="var(--primary-brand-color)" textColor="var(--text-color)" borderRadius="7px" margin="0px 14px">
-        <ModalHeader>{trans.t("Change your password")}</ModalHeader>
+        <ModalHeader>{trans.t("Altere seus dados")}</ModalHeader>
         <ModalBody>
-          <p className="mb-4 text-sm text-custom-textColor">{trans.t("Enter your email address and we'll send you a code to reset your password.")}</p>
-          <form className="flex w-full flex-col justify-center pb-3 gap-6" onSubmit={handleSubmit(onSubmit)}>
+          <form className="flex w-full flex-col justify-center pb-6 gap-6" onSubmit={handleSubmit(onSubmit)}>
             <InputDefault defaultvalue={user?.username} type="text" label="Username" placeholder="Enter your username" name="username" register={register} error={formState.errors?.username?.message} autofocus={true} />
             <InputDefault defaultvalue={user?.fullname} type="text" label="fullname" placeholder="Enter your fullname" name="fullname" register={register} error={formState.errors?.fullname?.message} />
-            <div className="flex justify-between w-full gap-6 max-sm:flex-wrap max-sm:gap-0">
+            <div className="flex justify-between w-full gap-6 max-sm:flex-col">
               <InputDate defaultvalue={user?.birthdate} label="birthdate" name="birthdate" register={register} error={formState.errors.birthdate?.message} />
               <InputDefault type="text" label="CPF" placeholder="enter national ID" name="national_id" register={register} error={formState.errors?.national_id?.message} defaultvalue={user?.national_id} />
             </div>

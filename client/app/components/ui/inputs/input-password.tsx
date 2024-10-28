@@ -12,7 +12,7 @@ export function InputPassword(data: Inputs.PasswordPropsI) {
   const { loading } = useApp();
 
   return (
-    <label className="relative text-sm text-custom-textColor uppercase max-md:text-[10px] flex flex-col gap-0.5" htmlFor={data.name}>
+    <label className="w-full relative text-sm text-custom-textColor uppercase max-md:text-[10px] flex flex-col gap-0.5" htmlFor={data.name}>
       <span>{trans.t(data.label)}</span>
       <InputGroup>
         <input defaultValue={data.defaultvalue} type={show ? "text" : "password"} id={data.name} disabled={loading} className="font-semibold bg-transparent border-custom-accentColor rounded-sm px-3 py-2 w-full duration-500 input-effect max-sm:text-sm" {...data.register(data.name)} placeholder="••••••••••••" />

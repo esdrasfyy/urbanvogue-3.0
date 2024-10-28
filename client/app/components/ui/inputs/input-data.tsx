@@ -9,7 +9,7 @@ import { format } from "date-fns";
 export function InputDate(data: Inputs.DatePropsI) {
   const { loading } = useApp();
   return (
-    <label className="relative text-sm text-custom-textColor uppercase max-md:text-[10px] flex flex-col gap-0.5" htmlFor={data.name}>
+    <label className="w-full relative text-sm text-custom-textColor uppercase max-md:text-[10px] flex flex-col gap-0.5" htmlFor={data.name}>
       <span>{trans.t(data.label)}</span>
       <input
         type="date"

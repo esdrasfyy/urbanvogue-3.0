@@ -7,7 +7,7 @@ import { Inputs } from "@/app/entities/inputs.entitie";
 export function InputSelectSingle(data: Inputs.SelectPropsI) {
   return (
     <>
-      <label className="text-sm text-custom-textColor uppercase max-md:text-[10px] flex flex-col gap-0.5">
+      <label className="w-full text-sm text-custom-textColor uppercase max-md:text-[10px] flex flex-col gap-0.5">
         <span>{trans.t(data.label)}</span>
         <CreatableSelect
           isClearable

@@ -8,7 +8,6 @@ declare namespace Account {
     microsoft_id?: string;
     fullname?: string;
     username: string;
-    bio?: string;
     email?: string;
     phone?: string;
     email_verified_at?: Date;
@@ -17,13 +16,13 @@ declare namespace Account {
     avatar?: string;
     password?: string;
     birthdate?: Date;
-    gender?: string;
-    role_id?: number;
+    gender_id?: number;
+    role_id: number;
     national_id?: string;
     enable_2fa?: boolean;
     country_id?: number;
-    created_at?: Date;
-    updated_at?: Date;
+    created_at: Date;
+    updated_at: Date;
   }
 
   export interface UpdateI {

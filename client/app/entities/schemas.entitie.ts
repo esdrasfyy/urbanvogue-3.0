@@ -41,7 +41,7 @@ export const SchemaLoginI = yup.object().shape({
 
 export type InputsProfileI = {
   fullname?: string | null;
-  username?: string | null;
+  username: string;
   birthdate?: Date | null;
   national_id?: string | null;
   country_id?: number | null;
@@ -51,9 +51,7 @@ export type InputsProfileI = {
 export const SchemaProfileI = yup.object().shape({
   username: yup
     .string()
-    .transform((value, originalValue) => {
-      return originalValue === "" ? null : value;
-    })
+    .required("!The field is required")
     .test("username", "Username must be between 5 and 15 characters", (value) => {
       if (!value) return true;
       return value.length >= 5 && value.length <= 15 && /^\S+$/.test(value) && /^[a-zA-Z0-9_]+$/.test(value);
@@ -61,8 +59,7 @@ export const SchemaProfileI = yup.object().shape({
     .test("username-format", "Username must be between 5 and 15 characters and cannot contain spaces or special characters.", (value) => {
       if (!value) return true;
       return value.length >= 5 && value.length <= 15 && /^\S+$/.test(value) && /^[a-zA-Z0-9_]+$/.test(value);
-    })
-    .nullable(),
+    }),
   fullname: yup
     .string()
     .transform((value, originalValue) => {

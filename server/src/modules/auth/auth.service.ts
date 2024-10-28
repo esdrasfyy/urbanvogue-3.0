@@ -1,5 +1,4 @@
-import { PrismaService } from "./../../services/prisma.service";
-import { generateUsername, regex_alphanumeric, regex_email, regex_password, regex_username } from "src/utils/regex.util";
+import { generateUsername, regex_email, regex_password, regex_username } from "src/utils/regex.util";
 import { GetGithubOAuthTokens, GetGithubUser } from "src/services/github.service";
 import { Response as ExpressResponse, Request as ExpressRequest } from "express";
 import { GetGoogleOAuthToken, GetGoogleUser } from "src/services/google.service";

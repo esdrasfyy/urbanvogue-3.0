@@ -1,10 +1,11 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
-import { User } from "src/decorators/user.decorator";
+import { Response as ExpressResponse } from "express";
 import { AccountRepository } from "src/repository";
+import { LoginUser } from "src/services/cookies.service";
 import { MailerService } from "src/services/mailer.sevice";
 import { HandleErrors } from "src/utils/handle-errors-database";
-import { regex_alphanumeric, regex_boolean, regex_date, regex_fullname, regex_letters, regex_number, regex_username } from "src/utils/regex.util";
-import { ValidateFields, ValidationRule } from "src/utils/validate-fields.util";
+import { regex_alphanumeric, regex_fullname, regex_number, regex_username } from "src/utils/regex.util";
+import { RemoveNullValues, ValidateFields, ValidationRule } from "src/utils/validate-fields.util";
 
 @Injectable()
 export class AccountService {
@@ -12,24 +13,29 @@ export class AccountService {
     private readonly accountRepository: AccountRepository,
     private readonly mailer: MailerService
   ) {}
-  async edit(dto: Account.UpdateI, user: Account.UserI) {
+  async edit(res:ExpressResponse, dto: Account.UpdateI, user: Account.UserI) {
     try {
       const validators: { [key in keyof Account.UpdateI]: ValidationRule } = {
         fullname: { regex: regex_fullname, message: "must be a valid fullname!", optional: true },
         username: { regex: regex_username, message: "must be a valid username!", optional: true },
-        birthdate: { regex: regex_date, message: "must be a valid birthdate!", optional: true },
+        birthdate: { regex: null, message: "must be a valid birthdate!", optional: true },
         gender_id: { regex: regex_number, message: "must be a valid gender!", optional: true },
         national_id: { regex: regex_alphanumeric, message: "must be a valid national id!", optional: true },
         country_id: { regex: regex_number, message: "must be a valid country_id!", optional: true },
       };
 
-      ValidateFields(dto, validators);
+      const data = RemoveNullValues(dto);
 
-      await this.accountRepository.update(dto, user.id);
+      ValidateFields(data, validators);
 
+      const newuser = await this.accountRepository.update(data, user.id);
+
+      LoginUser(res, newuser);
       // mail of success
       new HttpException("ok", HttpStatus.OK);
     } catch (error) {
+      console.log(error);
+
       HandleErrors(error);
     }
   }

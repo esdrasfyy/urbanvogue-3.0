@@ -7,7 +7,7 @@ import { trans } from "../libs/i18n.lib";
 
 export default function Register() {
   return (
-    <div className="pt-28 pb-7 w-full flex items-center justify-center">
+    <div className="pt-28 pb-7 w-full flex items-center justify-center mx-2">
       <div className="bg-custom-secondaryBrand rounded-lg shadow-xl w-full max-w-[1150px] flex mx-2">
         <aside className="w-full max-w-[365px] relative shadow-lg max-md:hidden">
           <Image src="/brand/banner.png" alt="banner" fill className="rounded-lg" />

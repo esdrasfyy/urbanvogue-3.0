@@ -1,25 +1,31 @@
 declare namespace Account {
-  interface UserI {
-    user_id: number;
-    google_id: string;
-    facebook_id: number;
-    github_id: string;
-    fullname: string;
+  export interface UserI {
+    id: number;
+    google_id?: string;
+    facebook_id?: string;
+    github_id?: string;
+    apple_id?: string;
+    microsoft_id?: string;
+    fullname?: string;
     username: string;
-    email: string;
-    verify_email: boolean;
-    profile_img: string;
-    password_hash: string;
-    date_of_birth: Date;
-    phone: string;
-    verify_phone: boolean;
-    gender: string;
-    role: "Client" | "Client Vip" | "Product Manager" | "Order Manager" | "Customer Service" | "Accounting and Finance" | "Admin" | "Owner";
-    cpf: string;
-    createdAt: Date;
-    updatedAt: Date;
+    email?: string;
+    phone?: string;
+    email_verified_at?: Date;
+    phone_verified_at?: Date;
+    identity_verified_at?: Date;
+    avatar?: string;
+    password?: string;
+    birthdate?: Date;
+    gender_id?: number;
+    role_id: number;
+    national_id?: string;
+    enable_2fa?: boolean;
+    country_id?: number;
+    created_at: Date;
+    updated_at: Date;
   }
 
+  //role: "Client" | "Client Vip" | "Product Manager" | "Order Manager" | "Customer Service" | "Accounting and Finance" | "Admin" | "Owner";
   interface OrderI {
     order_id: number;
     user_id: number;

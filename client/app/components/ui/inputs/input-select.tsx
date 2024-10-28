@@ -13,6 +13,7 @@ export function InputSelectSingle(data: Inputs.SelectPropsI) {
           isClearable
           options={data.list}
           styles={customStylesSelect}
+          defaultValue={data.list.find((option) => option.value === data?.defaultvalue)}
           onChange={(selectedOption) => {
             data.onchange(selectedOption);
           }}

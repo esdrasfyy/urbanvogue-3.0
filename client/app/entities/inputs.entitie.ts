@@ -58,7 +58,7 @@ export declare namespace Inputs {
     register: Function;
     required?: boolean;
     error?: string;
-    defaultvalue?: string;
+    defaultvalue?: Date;
   }
 
   interface Option {

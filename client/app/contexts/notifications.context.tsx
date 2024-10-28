@@ -1,7 +1,7 @@
 import React, { createContext, ReactNode, useState, useEffect, useContext } from "react";
 import { useDisclosure } from "@chakra-ui/react";
 import { useUser } from "./user.context";
-import { Notifications } from "../api/user/notifications.api";
+import { Account } from "../api/user/notifications.api";
 import { Contexts } from "../entities/contexts.entitie";
 
 export const ContextNotification = createContext<Contexts.NotificationProps | undefined>(undefined);
@@ -13,7 +13,7 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({ childr
 
   const fetchNotifications = async (user_id: number) => {
     try {
-      const { notifications, status } = await Notifications.getNotifications({ user_id });
+      const { notifications, status } = await Account.getNotifications({ user_id });
 
       if (status === 200 && notifications) {
         setNotifications(notifications);
@@ -24,13 +24,13 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({ childr
   };
 
   useEffect(() => {
-    if (user && user.user_id) {
-      fetchNotifications(user.user_id);
+    if (user && user.id) {
+      fetchNotifications(user.id);
     }
   }, [user]);
 
   const NotificationsRead: (ids: number[], action: "read" | "noRead") => Promise<void> = async (ids, action) => {
-    const status = await Notifications.updateNotifications({ ids, action });
+    const status = await Account.updateNotifications({ ids, action });
 
     if (status === 200) {
       const updatedNotifications = notifications?.map((notification: Account.UserNotificationsI) => {
@@ -47,7 +47,7 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({ childr
   };
 
   const NotificationsDelete: (ids: number[]) => Promise<void> = async (ids) => {
-    const status = await Notifications.updateNotifications({ ids, action: "delete" });
+    const status = await Account.updateNotifications({ ids, action: "delete" });
 
     if (status === 200) {
       const updatedNotifications = notifications?.filter((notification: Account.UserNotificationsI) => !ids.includes(notification.notify_id));

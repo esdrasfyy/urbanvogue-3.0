@@ -1,6 +1,21 @@
 import { AxiosResponse } from "axios";
 import { api } from "../../libs/axios.lib";
 import { getNotificationsApiResponse, updateNotificationsProps} from "../api";
+import { InputsProfileI } from "@/app/entities/schemas.entitie";
+
+async function edit(data: InputsProfileI) {
+    try {
+      const response: AxiosResponse = await api.post(`/account/edit`,{...data});
+      return { ...response.data, status: response.status };
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        throw new Error(err.message);
+      } else {
+        throw new Error("Unknown error occurred");
+      }
+    }
+}
+
 
 async function getNotifications({user_id}:{user_id: number}): Promise<getNotificationsApiResponse> {
 
@@ -45,4 +60,4 @@ async function updateNotifications({ids, action}: updateNotificationsProps): Pro
   }
 }
 
-export const Notifications = { getNotifications, updateNotifications };
+export const Account = {edit, getNotifications, updateNotifications };

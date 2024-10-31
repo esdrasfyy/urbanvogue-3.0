@@ -77,10 +77,10 @@ model Brand {
 }
 
 model Category {
-  id      Int       @id @default(autoincrement())
-  name    String
-  picture String
-  Product Product[]
+  id                Int                 @id @default(autoincrement())
+  name              String
+  picture           String
+  productCategories ProductCategories[] @relation("ProductCategories")
 
   @@map("categories")
 }
@@ -97,84 +97,77 @@ model Store {
   @@map("stores")
 }
 
+model ProductCategories {
+  id          Int      @id @default(autoincrement())
+  product_id  Int
+  category_id Int
+  product     Product  @relation(fields: [product_id], references: [id])
+  category    Category @relation(fields: [category_id], references: [id], name: "ProductCategories") // Nome da relação explícito
+
+  @@unique([product_id, category_id])
+  @@map("product_categories")
+}
+
 model Product {
-  id               Int             @id @default(autoincrement())
+  id               Int                 @id @default(autoincrement())
   title            String
   summary          String
-  quantidy         Int
   condition        String
   brand_id         Int
-  brand            Brand           @relation(fields: [brand_id], references: [id])
-  category_id      Int
-  category         Category        @relation(fields: [category_id], references: [id])
-  store_id         Int?
-  store            Store?          @relation(fields: [store_id], references: [id])
-  price            Decimal         @db.Decimal(10, 2)
-  last_price       Decimal         @db.Decimal(10, 2)
-  colors           ProductColor[]
-  images           ProductImage[]
-  sizes            ProductSize[]
-  details          ProductDetail[]
-  flags            ProductFlag[]
-  parcelable       Boolean         @default(true)
-  max_installments Int?            @default(12)
-  created_at       DateTime        @default(now())
-  updated_at       DateTime        @default(now())
+  brand            Brand               @relation(fields: [brand_id], references: [id])
+  store_id         Int
+  store            Store               @relation(fields: [store_id], references: [id])
+  price            Decimal             @db.Decimal(10, 2)
+  last_price       Decimal             @db.Decimal(10, 2)
+  details          ProductDetails?
+  flags            ProductFlags?
+  categories       ProductCategories[]
+  variations       ProductVariations[]
+  parcelable       Boolean             @default(true)
+  max_installments Int?                @default(12)
+  created_at       DateTime            @default(now())
+  updated_at       DateTime            @default(now())
 
   @@map("products")
 }
 
-model ProductColor {
-  id           Int            @id @default(autoincrement())
-  name         String
-  product_id   Int
-  product      Product        @relation(fields: [product_id], references: [id])
-  increment    Decimal        @db.Decimal(10, 2)
-  decrement    Decimal        @db.Decimal(10, 2)
-  ProductImage ProductImage[]
-
-  @@map("product_colors")
-}
-
-model ProductSize {
-  id           Int            @id @default(autoincrement())
-  name         String
-  product_id   Int
-  product      Product        @relation(fields: [product_id], references: [id])
-  increment    Decimal        @db.Decimal(10, 2)
-  decrement    Decimal        @db.Decimal(10, 2)
-  ProductImage ProductImage[]
-
-  @@map("product_sizes")
-}
-
-model ProductImage {
-  id         Int          @id @default(autoincrement())
-  url        String
-  product_id Int
-  product    Product      @relation(fields: [product_id], references: [id])
-  color_id   Int
-  color      ProductColor @relation(fields: [color_id], references: [id])
-  size_id    Int
-  size       ProductSize  @relation(fields: [size_id], references: [id])
-
-  @@map("product_images")
-}
-
-model ProductDetail {
+model ProductDetails {
   id         Int     @id @default(autoincrement())
-  text       String
-  product_id Int
+  data       Json
+  product_id Int     @unique
   product    Product @relation(fields: [product_id], references: [id])
 
   @@map("product_details")
 }
 
-model ProductFlag {
+model ProductFlags {
   id         Int     @id @default(autoincrement())
-  text       String
-  product_id Int
+  data       Json
+  product_id Int     @unique
   product    Product @relation(fields: [product_id], references: [id])
 
   @@map("product_flags")
+}
+
+model ProductVariations {
+  id         Int              @id @default(autoincrement())
+  increment  Decimal?         @default(0) @db.Decimal(10, 2)
+  decrement  Decimal?         @default(0) @db.Decimal(10, 2)
+  sizes      VariationSizes[]
+  color      String
+  url        String
+  product_id Int
+  product    Product          @relation(fields: [product_id], references: [id])
+
+  @@map("product_variations")
+}
+
+model VariationSizes {
+  id           Int               @id @default(autoincrement())
+  name         String
+  qtd          Int               @default(10)
+  variation    ProductVariations @relation(fields: [variation_id], references: [id])
+  variation_id Int
+
+  @@map("variation_sizes")
 }

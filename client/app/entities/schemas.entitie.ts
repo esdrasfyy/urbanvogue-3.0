@@ -187,8 +187,8 @@ export const SchemaAdminProductCreateI = yup.object().shape({
         name: yup.string().required("O nome da cor é obrigatório"),
         images: yup.array().required("A URL é obrigatória"),
         qtd: yup.number().integer("Quantidade deve ser um número inteiro").min(0, "Quantidade não pode ser negativa").required("A quantidade é obrigatória"),
-        increment: yup.number().typeError("O preço deve ser um número").positive("O preço deve ser positivo").max(999999.99, "O preço deve ser menor que 1 milhão").default(0),
-        decrement: yup.number().typeError("O preço deve ser um número").positive("O preço deve ser positivo").max(999999.99, "O preço deve ser menor que 1 milhão").default(0),
+        increment: yup.number().typeError("O preço deve ser um número").max(999999.99, "O preço deve ser menor que 1 milhão").default(0),
+        decrement: yup.number().typeError("O preço deve ser um número").max(999999.99, "O preço deve ser menor que 1 milhão").default(0),
       })
     )
     .required("O campo de cores é obrigatório"),

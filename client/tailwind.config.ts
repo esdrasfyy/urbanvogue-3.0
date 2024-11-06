@@ -15,7 +15,7 @@ const config: Config = {
           secondaryBrand: "var(--secondary-brand-color)",
           tertiaryBrand: "var(--tertiary-brand-color)",
           accentColor: "var(--accent-color)",
-          accentColorOpacity: "var(--accent-color-opacity)",
+          accentColorOpacity: "var(--accent-color-10)",
           textColor: "var(--text-color)",
           error: "#cf6679",
           success: "#4caf50",

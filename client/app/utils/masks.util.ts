@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { UseFormSetValue } from "react-hook-form";
 
 export function FormatNationalID(value: string) {

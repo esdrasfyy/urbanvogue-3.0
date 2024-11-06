@@ -4,7 +4,7 @@ import { theme } from "../components/ui/theme/theme";
 export const customStylesSelect = {
   control: (base: any) => ({
     ...base,
-    background: theme.colors.primary,
+    background: "transparent",
     padding: "1.5px 6px",
     color: theme.colors.text,
     fontWeight: "600",
@@ -25,6 +25,22 @@ export const customStylesSelect = {
   menu: (base: any) => ({
     ...base,
     background: theme.colors.secondary,
+  }),
+  multiValue: (base: any) => ({
+    ...base,
+    backgroundColor: theme.colors.tertiary,
+  }),
+  multiValueLabel: (base: any) => ({
+    ...base,
+    color: theme.colors.text,
+  }),
+  multiValueRemove: (base: any) => ({
+    ...base,
+    transition: "all 0.3s ease",
+    ":hover": {
+      backgroundColor: theme.colors.accent_10,
+      color: theme.colors.accent,
+    },
   }),
   menuList: (base: any) => ({
     ...base,

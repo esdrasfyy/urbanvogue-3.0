@@ -1,11 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React from "react";
 import { useMemo } from "react";
 import { ColumnDef, flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
-import { TbCaretDownFilled, TbCaretUpDownFilled, TbCaretUpFilled, TbDownload, TbPencil, TbPlus, TbTrash, TbViewfinder, TbX, TbZoomInArea, TbZoomPan } from "react-icons/tb";
+import { TbCaretDownFilled, TbCaretUpDownFilled, TbCaretUpFilled, TbDownload, TbPencil, TbPlus, TbX, TbZoomPan } from "react-icons/tb";
 import { format } from "date-fns";
-import { useQuery } from "@tanstack/react-query";
-import { Settings } from "@/app/api/settings/settings.api";
 import Link from "next/link";
 
 export default function AdminProduct() {
@@ -49,31 +48,31 @@ export default function AdminProduct() {
       },
       {
         header: "Preco",
-        cell: (row) => <h2>10</h2>,
+        cell: () => <h2>10</h2>,
         accessorKey: "Quantity",
         size: 75,
       },
       {
         header: "Vendas",
-        cell: (row) => <h2>10</h2>,
+        cell: () => <h2>10</h2>,
         accessorKey: "Quantity",
         size: 75,
       },
       {
         header: "Estoque",
-        cell: (row) => <h2>10</h2>,
+        cell: () => <h2>10</h2>,
         accessorKey: "Quantity",
         size: 75,
       },
       {
         header: "Marca",
-        cell: (row) => <h2>10</h2>,
+        cell: () => <h2>10</h2>,
         accessorKey: "Quantity",
         size: 75,
       },
       {
         header: "Categoria",
-        cell: (row) => <h2>10</h2>,
+        cell: () => <h2>10</h2>,
         accessorKey: "Quantity",
         size: 75,
       },
@@ -84,7 +83,7 @@ export default function AdminProduct() {
       },
       {
         header: "Loja",
-        cell: (row) => <h1>1</h1>,
+        cell: () => <h1>1</h1>,
         accessorKey: "Status",
       },
     ],
@@ -97,8 +96,8 @@ export default function AdminProduct() {
   };
   const [pagination, setPagination] = React.useState(initialState.pagination);
   const [sorting, setSorting] = React.useState<any>(initialState.sorting);
-  const sortingDisabled = false; // Defina essa variável conforme necessário
-  const pageCount = 2; // Defina o número total de páginas
+  const sortingDisabled = false;
+  const pageCount = 2;
 
   const table = useReactTable({
     data,
@@ -125,20 +124,6 @@ export default function AdminProduct() {
     manualPagination: true,
     pageCount,
   });
-
-  const { data: genders } = useQuery({
-    queryFn: Settings.getGenders,
-    queryKey: ["genders"],
-  });
-
-  const formattedGenders = genders?.map((gender) => ({
-    value: String(gender.id),
-    label: gender.name,
-  }));
-
-  const handleGender = (data: { value: string; label: string }) => {
-    console.log(data);
-  };
 
   return (
     <main className="max-w-[calc(100%-385px)] bg-custom-secondaryBrand mx-6 ml-auto rounded-md shadow-md p-3 flex flex-col gap-3 ">

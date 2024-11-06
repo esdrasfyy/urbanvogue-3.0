@@ -1,6 +1,6 @@
 "use client";
 import { Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay } from "@chakra-ui/react";
-import { InputSelectSingle } from "@/app/components/ui/inputs/input-select";
+import { InputSelect } from "@/app/components/ui/inputs/input-select";
 import { InputDefault } from "@/app/components/ui/inputs/input-default";
 import { InputSubmit } from "@/app/components/ui/inputs/input-submit";
 import { InputDate } from "@/app/components/ui/inputs/input-data";
@@ -130,8 +130,8 @@ function Profile() {
               <InputDate defaultvalue={user?.birthdate} label="birthdate" name="birthdate" register={register} error={formState.errors.birthdate?.message} />
               <InputDefault type="text" label="national_id" placeholder="enter national ID" name="national_id" register={register} error={formState.errors?.national_id?.message} defaultvalue={user?.national_id} />
             </div>
-            {formattedGenders && <InputSelectSingle defaultvalue={String(user?.gender_id)} onchange={handleGender} label="gender" list={formattedGenders} />}
-            {formattedCountries && <InputSelectSingle defaultvalue={String(user?.country_id)} onchange={handleCountry} label="country" list={formattedCountries} />}
+            {formattedGenders && <InputSelect defaultvalue={String(user?.gender_id)} onchange={handleGender} label="gender" list={formattedGenders} />}
+            {formattedCountries && <InputSelect defaultvalue={String(user?.country_id)} onchange={handleCountry} label="country" list={formattedCountries} />}
             <InputSubmit type="submit" content="update" icon="FaArrowRight" classname="mt-5" />
           </form>
         </ModalBody>

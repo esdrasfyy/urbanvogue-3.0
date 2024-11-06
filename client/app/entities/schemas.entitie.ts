@@ -138,3 +138,70 @@ export const SchemaResetPasswordI = yup.object().shape({
     .oneOf([yup.ref("password")], "passwords do not match.")
     .required("this field is required!"),
 });
+
+export type InputsAdminProductCreateI = {
+  title: string;
+  summary: string;
+  condition: string;
+  price: number;
+  last_price: number;
+  parcelable: boolean;
+  installments?: number;
+  brand: number;
+  store: number;
+  categories: number[];
+  details: string[];
+  flags: string[];
+  colors: {
+    name: string;
+    images: string[];
+    qtd: number;
+    increment: number;
+    decrement: number;
+  }[];
+};
+// sizes: {
+//   data: string[];
+//   qtd: number;
+//   increment: number;
+//   decrement: number;
+// }[];
+
+export const SchemaAdminProductCreateI = yup.object().shape({
+  title: yup.string().required("this field is required!"),
+  summary: yup.string().required("this field is required!"),
+  condition: yup.string().required("this field is required!"),
+  price: yup.number().typeError("O preço deve ser um número").positive("O preço deve ser positivo").max(999999.99, "O preço deve ser menor que 1 milhão").required("this field is required!"),
+  last_price: yup.number().typeError("O preço deve ser um número").positive("O preço deve ser positivo").max(999999.99, "O preço deve ser menor que 1 milhão").required("this field is required!"),
+  parcelable: yup.boolean().default(false),
+  installments: yup.number().max(24, "max 24 parcelas"),
+  brand: yup.number().required("Este campo é obrigatório!"),
+  store: yup.number().required("Este campo é obrigatório!"),
+  categories: yup.array().of(yup.number().required("Cada categoria deve ser uma string")).min(1, "É necessário ter pelo menos uma categoria").max(10, "Não é permitido mais de 10 categorias").required("O campo de categorias é obrigatório"),
+  details: yup.array().of(yup.string().required("Detalhes devem ser strings")).max(10, "Não é permitido mais de 10 detalhes").required("O campo de categorias é obrigatório"),
+  flags: yup.array().of(yup.string().required("Detalhes devem ser strings")).max(10, "Não é permitido mais de 10 detalhes").required("O campo de categorias é obrigatório"),
+  colors: yup
+    .array()
+    .of(
+      yup.object().shape({
+        name: yup.string().required("O nome da cor é obrigatório"),
+        images: yup.array().required("A URL é obrigatória"),
+        qtd: yup.number().integer("Quantidade deve ser um número inteiro").min(0, "Quantidade não pode ser negativa").required("A quantidade é obrigatória"),
+        increment: yup.number().typeError("O preço deve ser um número").positive("O preço deve ser positivo").max(999999.99, "O preço deve ser menor que 1 milhão").default(0),
+        decrement: yup.number().typeError("O preço deve ser um número").positive("O preço deve ser positivo").max(999999.99, "O preço deve ser menor que 1 milhão").default(0),
+      })
+    )
+    .required("O campo de cores é obrigatório"),
+});
+
+// sizes: yup
+//   .array()
+//   .of(
+//     yup.object().shape({
+//       data: yup.array().of(yup.string().required("O tamanho é obrigatório")).min(1, "Deve haver pelo menos um tamanho").required("this field is required!"),
+//       qtd: yup.number().integer("Quantidade deve ser um número inteiro").min(0, "Quantidade não pode ser negativa").required("A quantidade é obrigatória"),
+//       increment: yup.number().typeError("O preço deve ser um número").positive("O preço deve ser positivo").max(999999.99, "O preço deve ser menor que 1 milhão").default(0),
+//       decrement: yup.number().typeError("O preço deve ser um número").positive("O preço deve ser positivo").max(999999.99, "O preço deve ser menor que 1 milhão").default(0),
+//     })
+//   )
+//   .required("O campo de tamanhos é obrigatório"),

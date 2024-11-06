@@ -1,3 +1,5 @@
+import { UseFormSetValue } from "react-hook-form";
+
 export function FormatNationalID(value: string) {
   const country = ["pt", "en"];
 
@@ -20,3 +22,22 @@ export function FormatNationalID(value: string) {
       return value;
   }
 }
+
+export const formatOptions = (items: { id: number; name: string }[]) =>
+  items?.map((item) => ({
+    value: String(item.id),
+    label: item.name,
+  }));
+
+export const handleSingleSelect = (name: string, setValue: UseFormSetValue<any>) => (data: { value: string; label: string }) => {
+  setValue(name, Number(data.value));
+};
+
+export const handleMultiSelect =
+  (name: string, setValue: UseFormSetValue<any>, isNumber: boolean = true) =>
+  (data: { value: string; label: string }[]) => {
+    let values;
+    if (isNumber) values = data.map((item) => Number(item.value));
+    if (!isNumber) values = data.map((item) => item.value);
+    setValue(name, values);
+  };

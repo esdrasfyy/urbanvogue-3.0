@@ -16,7 +16,7 @@ export function InputSubmit(data: Inputs.SubmitPropsI) {
   const Icon = IconsMapSubmit[data.icon];
   const { loading } = useApp();
   return (
-    <button type="submit" className={`relative group bg-none border-[1px] border-custom-accentColor flex justify-center text-custom-textColor py-1.5 ${data.classname}  rounded text-xl hover-effect ${!loading && "hover-bg-accent"} shadow-lg`} disabled={loading}>
+    <button type={data.type} className={`relative group bg-none border-[1px] border-custom-accentColor flex justify-center text-custom-textColor py-1.5 ${data.classname}  rounded text-xl hover-effect ${!loading && "hover-bg-accent"} shadow-lg`} disabled={loading}>
       {trans.t(data.content)}
       {loading ? (
         <span className="absolute right-5 animate-spin text-custom-accentColor">

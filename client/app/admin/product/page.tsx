@@ -2,11 +2,11 @@
 import React from "react";
 import { useMemo } from "react";
 import { ColumnDef, flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
-import { TbCaretDownFilled, TbCaretUpDownFilled, TbCaretUpFilled, TbPencil, TbTrash, TbViewfinder, TbX, TbZoomInArea, TbZoomPan } from "react-icons/tb";
+import { TbCaretDownFilled, TbCaretUpDownFilled, TbCaretUpFilled, TbDownload, TbPencil, TbPlus, TbTrash, TbViewfinder, TbX, TbZoomInArea, TbZoomPan } from "react-icons/tb";
 import { format } from "date-fns";
-import { InputSelectSingle } from "@/app/components/ui/inputs/input-select";
 import { useQuery } from "@tanstack/react-query";
 import { Settings } from "@/app/api/settings/settings.api";
+import Link from "next/link";
 
 export default function AdminProduct() {
   const data = useMemo<any>(
@@ -142,7 +142,14 @@ export default function AdminProduct() {
 
   return (
     <main className="max-w-[calc(100%-385px)] bg-custom-secondaryBrand mx-6 ml-auto rounded-md shadow-md p-3 flex flex-col gap-3 ">
-      <div className="w-full bg-custom-primaryBrand p-3 rounded-md font-semibold"> {formattedGenders && <InputSelectSingle onchange={handleGender} label="gender" list={formattedGenders} />}</div>
+      <div className="w-full flex justify-between p-3">
+        <Link href="/admin/product/upload" className="border border-custom-accentColor rounded-md shadow-md p-2 text-xl hover-effect hover-bg-accent">
+          <TbDownload />
+        </Link>
+        <Link href="/admin/product/create" className="border border-custom-accentColor rounded-md shadow-md p-2 text-xl hover-effect hover-bg-accent">
+          <TbPlus />
+        </Link>
+      </div>
       <div className="w-full bg-custom-primaryBrand p-3 rounded-md font-semibold">
         {table.getHeaderGroups().length > 0 && (
           <ul className="w-full flex justify-between gap-2 pr-10">

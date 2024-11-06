@@ -12,4 +12,13 @@ export class SettingsRepository {
   async getGenders() {
     return await this.prisma.gender.findMany();
   }
+  async getBrands() {
+    return await this.prisma.brand.findMany();
+  }
+  async getStores() {
+    return await this.prisma.store.findMany();
+  }
+  async getCategories() {
+    return await this.prisma.category.findMany();
+  }
 }

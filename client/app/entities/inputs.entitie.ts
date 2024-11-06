@@ -10,7 +10,7 @@ const IconsMapSubmit = {
 export declare namespace Inputs {
   interface DefaultPropsI {
     type: string;
-    label: string;
+    label?: string;
     name: string;
     register: Function;
     change?: ChangeEventHandler<HTMLInputElement>;
@@ -66,6 +66,7 @@ export declare namespace Inputs {
     label: string;
   }
   interface SelectPropsI {
+    isMulti?: boolean;
     label: string;
     defaultvalue?: string;
     list: Option[];

@@ -5,7 +5,19 @@ const getGenders = async () => {
   return response.data;
 };
 const getCountries = async () => {
-  const response = await api.get<Settings.Country[] | null>("/settings/countries"); // Corrigido de "contries" para "countries"
+  const response = await api.get<Settings.Country[] | null>("/settings/countries");
   return response.data;
 };
-export const Settings = { getGenders, getCountries };
+const getStores = async () => {
+  const response = await api.get<Settings.Store[] | null>("/settings/stores");
+  return response.data;
+};
+const getCategories = async () => {
+  const response = await api.get<Settings.Category[] | null>("/settings/categories");
+  return response.data;
+};
+const getBrands = async () => {
+  const response = await api.get<Settings.Brand[] | null>("/settings/brands");
+  return response.data;
+};
+export const Settings = { getGenders, getCountries, getBrands, getCategories, getStores };

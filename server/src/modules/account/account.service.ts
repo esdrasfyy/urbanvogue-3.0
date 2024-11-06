@@ -15,8 +15,7 @@ export class AccountService {
   ) {}
   async edit(res: ExpressResponse, dto: Account.UpdateI, user: Account.UserI) {
     try {
-      // criar genero e pais
-      
+
       const validators: { [key in keyof Account.UpdateI]: ValidationRule } = {
         fullname: { regex: regex_fullname, message: "must be a valid fullname!", optional: true },
         username: { regex: regex_username, message: "must be a valid username!", optional: true },
@@ -33,11 +32,9 @@ export class AccountService {
       const newuser = await this.accountRepository.update(data, user.id);
 
       LoginUser(res, newuser);
-      // mail of success
+
       new HttpException("ok", HttpStatus.OK);
     } catch (error) {
-      console.log(error);
-
       HandleErrors(error);
     }
   }

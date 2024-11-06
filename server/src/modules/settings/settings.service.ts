@@ -10,4 +10,13 @@ export class SettingsService {
   async getGenders() {
     return await this.settingsRepository.getGenders();
   }
+  async getBrands() {
+    return await this.settingsRepository.getBrands();
+  }
+  async getStores() {
+    return await this.settingsRepository.getStores();
+  }
+  async getCategories() {
+    return await this.settingsRepository.getCategories();
+  }
 }

@@ -26,4 +26,28 @@ export class SettingsController {
     const data = await this.settingsService.getGenders();
     return res.status(HttpStatus.OK).json(data);
   }
+  @isPublic()
+  @Get("brands")
+  @ApiOperation({ summary: "Retrieve a list of available genders." })
+  @ApiResponse({ status: 200, description: "List of genders retrieved successfully.", type: [GenderSwagger] })
+  async getBrands(@Res() res) {
+    const data = await this.settingsService.getBrands();
+    return res.status(HttpStatus.OK).json(data);
+  }
+  @isPublic()
+  @Get("stores")
+  @ApiOperation({ summary: "Retrieve a list of available genders." })
+  @ApiResponse({ status: 200, description: "List of genders retrieved successfully.", type: [GenderSwagger] })
+  async getStores(@Res() res) {
+    const data = await this.settingsService.getStores();
+    return res.status(HttpStatus.OK).json(data);
+  }
+  @isPublic()
+  @Get("categories")
+  @ApiOperation({ summary: "Retrieve a list of available genders." })
+  @ApiResponse({ status: 200, description: "List of genders retrieved successfully.", type: [GenderSwagger] })
+  async getCategories(@Res() res) {
+    const data = await this.settingsService.getCategories();
+    return res.status(HttpStatus.OK).json(data);
+  }
 }

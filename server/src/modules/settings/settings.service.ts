@@ -19,4 +19,10 @@ export class SettingsService {
   async getCategories() {
     return await this.settingsRepository.getCategories();
   }
+  async getSizes() {
+    return await this.settingsRepository.getSizes();
+  }
+  async getColors() {
+    return await this.settingsRepository.getColors();
+  }
 }

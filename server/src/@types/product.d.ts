@@ -1,30 +1,26 @@
 declare namespace Product {
-  interface Create {
-    title: string;
-    summary: string;
-    condition: string;
-    brand_id: number;
-    store_id: number;
-    price: number;
-    last_price: number;
-    details: string[];
-    flags?: string[];
+  type Create = {
+    brand: number;
     categories: number[];
-    variations: VariationOption[];
-    sizes: SizeOption[];
-    parcelable: boolean;
-    max_installments: number;
-  }
-  interface VariationInput {
-    name: string;
-    increment: number;
-    decrement: number;
-    sizes: SizeOption[];
-    color: string;
-  }
-
-  interface SizeOption {
-    name: string;
-    qtd: number;
-  }
+    colors: {
+      product_id: number;
+      name: string;
+      images: string[];
+      sizes: {
+        name: string;
+        qtd: number;
+        increment: number;
+        decrement: number;
+      }[];
+    }[];
+    condition: "new" | "used" | "refurbished";
+    details: string[];
+    flags: string[];
+    installments: number;
+    last_price: string;
+    price: string;
+    store_id: number;
+    summary: string;
+    title: string;
+  };
 }

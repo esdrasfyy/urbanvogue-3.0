@@ -1,7 +1,13 @@
 import React, { useState, DragEvent } from "react";
 import { TbCloudUpload } from "react-icons/tb";
 
-export const ImageDragDrop: React.FC<{ handleImages: (image: string, index: number) => void; index: number; max: number; current: number }> = ({ handleImages, index, current, max }) => {
+interface ImageDragDropProps {
+  handleImages: (image: string) => void;
+  max: number;
+  current: number;
+}
+
+export const ImageDragDrop: React.FC<ImageDragDropProps> = ({ handleImages, current, max }) => {
   const [isHouvered, setIsHouvered] = useState<boolean>(false);
   const handleDrop = (e: React.DragEvent<HTMLLabelElement>) => {
     e.preventDefault();
@@ -13,7 +19,7 @@ export const ImageDragDrop: React.FC<{ handleImages: (image: string, index: numb
       reader.onload = () => {
         const image = reader.result?.toString();
         if (image) {
-          handleImages(image, index);
+          handleImages(image);
           setIsHouvered(false);
         }
       };
@@ -29,7 +35,7 @@ export const ImageDragDrop: React.FC<{ handleImages: (image: string, index: numb
       reader.onload = () => {
         const image = reader.result?.toString();
         if (image) {
-          handleImages(image, index);
+          handleImages(image);
         }
       };
       reader.readAsDataURL(file);

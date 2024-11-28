@@ -30,4 +30,14 @@ declare namespace Settings {
     name: string;
     picture: string;
   }
+
+  interface Sizes {
+    id: number;
+    name: string;
+  }
+
+  interface Colors {
+    id: number;
+    name: string;
+  }
 }

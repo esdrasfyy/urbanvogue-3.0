@@ -126,7 +126,7 @@ export default function AdminProduct() {
   });
 
   return (
-    <main className="max-w-[calc(100%-385px)] bg-custom-secondaryBrand mx-6 ml-auto rounded-md shadow-md p-3 flex flex-col gap-3 ">
+    <main className="max-w-[1250px] bg-custom-secondaryBrand mx-auto rounded-md shadow-md p-3 flex flex-col gap-3 ">
       <div className="w-full flex justify-between p-3">
         <Link href="/admin/product/upload" className="border border-custom-accentColor rounded-md shadow-md p-2 text-xl hover-effect hover-bg-accent">
           <TbDownload />

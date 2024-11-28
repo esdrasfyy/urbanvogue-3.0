@@ -11,10 +11,10 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [loading, setLoading] = useState<boolean>(false);
   const toast = useToast();
 
-  const ShowToast = (title: string, description: string, status: "info" | "warning" | "success" | "error") => {
+  const ShowToast = (title: string, status: "info" | "warning" | "success" | "error") => {
     toast({
       title: trans.t(title),
-      description: trans.t(description),
+      description: "",
       status,
       duration: 9000,
       isClosable: true,

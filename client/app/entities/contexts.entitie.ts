@@ -5,7 +5,7 @@ export declare namespace Contexts {
   interface AppProps {
     loading: boolean;
     setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-    ShowToast: (title: string, description: string, status: "info" | "warning" | "success" | "error") => void;
+    ShowToast: (title: string, status: "info" | "warning" | "success" | "error") => void;
     isOpenForgotPassword: boolean;
     onOpenForgotPassword: () => void;
     onCloseForgotPassword: () => void;

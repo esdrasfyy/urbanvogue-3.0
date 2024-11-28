@@ -48,8 +48,8 @@ model User {
   enable_2fa           Boolean?  @default(false)
   country_id           Int?
   gender_id            Int?
-  country              Country?  @relation(fields: [country_id], references: [id])
-  gender               Gender?   @relation(fields: [gender_id], references: [id])
+  country              Country?  @relation(fields: [country_id], references: [id], onUpdate: Cascade)
+  gender               Gender?   @relation(fields: [gender_id], references: [id], onUpdate: Cascade)
   created_at           DateTime  @default(now())
   updated_at           DateTime  @updatedAt
 
@@ -85,6 +85,20 @@ model Category {
   @@map("categories")
 }
 
+model Colors {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  @@map("colors")
+}
+
+model Sizes {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  @@map("sizes")
+}
+
 model Store {
   id                   Int       @id @default(autoincrement())
   name                 String
@@ -101,32 +115,31 @@ model ProductCategories {
   id          Int      @id @default(autoincrement())
   product_id  Int
   category_id Int
-  product     Product  @relation(fields: [product_id], references: [id])
-  category    Category @relation(fields: [category_id], references: [id], name: "ProductCategories")
+  product     Product  @relation(fields: [product_id], references: [id], onUpdate: Cascade)
+  category    Category @relation(fields: [category_id], references: [id], onUpdate: Cascade, name: "ProductCategories")
 
   @@unique([product_id, category_id])
   @@map("product_categories")
 }
 
 model Product {
-  id               Int                 @id @default(autoincrement())
-  title            String
-  summary          String
-  condition        String
-  brand_id         Int
-  brand            Brand               @relation(fields: [brand_id], references: [id])
-  store_id         Int
-  store            Store               @relation(fields: [store_id], references: [id])
-  price            Decimal             @db.Decimal(10, 2)
-  last_price       Decimal             @db.Decimal(10, 2)
-  details          ProductDetails?
-  flags            ProductFlags?
-  categories       ProductCategories[]
-  variations       ProductVariations[]
-  parcelable       Boolean             @default(true)
-  max_installments Int?                @default(12)
-  created_at       DateTime            @default(now())
-  updated_at       DateTime            @default(now())
+  id           Int                 @id @default(autoincrement())
+  title        String
+  summary      String
+  condition    String
+  brand_id     Int
+  brand        Brand               @relation(fields: [brand_id], references: [id], onUpdate: Cascade)
+  store_id     Int
+  store        Store               @relation(fields: [store_id], references: [id], onDelete: Cascade)
+  price        Decimal             @db.Decimal(10, 2)
+  last_price   Decimal             @db.Decimal(10, 2)
+  details      ProductDetails?
+  flags        ProductFlags?
+  categories   ProductCategories[]
+  colors       ProductColors[]
+  installments Int?                @default(12)
+  created_at   DateTime            @default(now())
+  updated_at   DateTime            @default(now())
 
   @@map("products")
 }
@@ -135,7 +148,7 @@ model ProductDetails {
   id         Int     @id @default(autoincrement())
   data       Json
   product_id Int     @unique
-  product    Product @relation(fields: [product_id], references: [id])
+  product    Product @relation(fields: [product_id], references: [id], onDelete: Cascade)
 
   @@map("product_details")
 }
@@ -144,30 +157,31 @@ model ProductFlags {
   id         Int     @id @default(autoincrement())
   data       Json
   product_id Int     @unique
-  product    Product @relation(fields: [product_id], references: [id])
+  product    Product @relation(fields: [product_id], references: [id], onDelete: Cascade)
 
   @@map("product_flags")
 }
 
-model ProductVariations {
-  id         Int              @id @default(autoincrement())
-  increment  Decimal?         @default(0) @db.Decimal(10, 2)
-  decrement  Decimal?         @default(0) @db.Decimal(10, 2)
-  sizes      VariationSizes[]
-  color      String
+model ProductColors {
+  id         Int     @id @default(autoincrement())
+  name       String
   images     Json
   product_id Int
-  product    Product          @relation(fields: [product_id], references: [id])
+  product    Product @relation(fields: [product_id], references: [id], onDelete: Cascade)
 
-  @@map("product_variations")
+  sizes ProductColorsSizes[]
+
+  @@map("product_colors")
 }
 
-model VariationSizes {
-  id           Int               @id @default(autoincrement())
+model ProductColorsSizes {
+  id           Int           @id @default(autoincrement())
   name         String
-  qtd          Int               @default(10)
-  variation    ProductVariations @relation(fields: [variation_id], references: [id])
+  qtd          Int           @default(10)
+  increment    Decimal       @default(0) @db.Decimal(10, 2)
+  decrement    Decimal       @default(0) @db.Decimal(10, 2)
   variation_id Int
+  variation    ProductColors @relation(fields: [variation_id], references: [id], onDelete: Cascade)
 
-  @@map("variation_sizes")
+  @@map("product_colors_sizes")
 }

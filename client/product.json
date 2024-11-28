@@ -1,44 +1,41 @@
 {
-  "title": "Smartphone X1",
-  "summary": "Latest smartphone with advanced features",
-  "condition": "new",
-  "brand_id": 1,
-  "store_id": 1,
-  "price": "999.99",
-  "last_price": "1099.99",
-  "details": ["64GB Storage", "12MP Camera", "5G Compatible"],
-  "flags": ["featured", "discounted"],
-  "categories": [1, 2],
-  "colors": [
-    {
-      "name": "Black",
-      "url": "https://example.com/black.jpg",
-      "qtd": 10,
-      "increment": "0.00",
-      "decrement": "0.00"
-    },
-    {
-      "name": "White",
-      "url": "https://example.com/white.jpg",
-      "qtd": 5,
-      "increment": "0.00",
-      "decrement": "0.00"
-    }
-  ],
-  "sizes": [
-    {
-      "data": ["64GB"],
-      "qtd": 5,
-      "increment": "50.00",
-      "decrement": "0.00"
-    },
-    {
-      "data": ["128GB"],
-      "qtd": 8,
-      "increment": "100.00",
-      "decrement": "0.00"
-    }
-  ],
-  "parcelable": true,
-  "max_installments": 12
+  "product": {
+    "brand": 1,
+    "categories": [1, 2],
+    "colors": [
+      {
+        "product_id": 1,
+        "name": "Black",
+        "images": ["https://example.com/black.jpg"]
+      },
+      {
+        "product_id": 1,
+        "name": "White",
+        "images": ["https://example.com/white.jpg"]
+      }
+    ],
+    "condition": "new",
+    "details": ["64GB Storage", "12MP Camera", "5G Compatible"],
+    "flags": ["featured", "discounted"],
+    "installments": 12,
+    "last_price": "1099.99",
+    "price": "999.99",
+    "sizes": [
+      {
+        "name": "64GB",
+        "qtd": 5,
+        "increment": 10,
+        "decrement": 0
+      },
+      {
+        "name": "128GB",
+        "qtd": 5,
+        "increment": 10,
+        "decrement": 0
+      }
+    ],
+    "store_id": 1,
+    "summary": "Latest smartphone with advanced features",
+    "title": "Smartphone X1"
+  }
 }

@@ -20,4 +20,12 @@ const getBrands = async () => {
   const response = await api.get<Settings.Brand[] | null>("/settings/brands");
   return response.data;
 };
-export const Settings = { getGenders, getCountries, getBrands, getCategories, getStores };
+const getSizes = async () => {
+  const response = await api.get<Settings.Sizes[] | null>("/settings/sizes");
+  return response.data;
+};
+const getColors = async () => {
+  const response = await api.get<Settings.Sizes[] | null>("/settings/colors");
+  return response.data;
+};
+export const Settings = { getGenders, getCountries, getBrands, getCategories, getStores, getSizes, getColors };

@@ -21,4 +21,10 @@ export class SettingsRepository {
   async getCategories() {
     return await this.prisma.category.findMany();
   }
+  async getSizes() {
+    return await this.prisma.sizes.findMany();
+  }
+  async getColors() {
+    return await this.prisma.colors.findMany();
+  }
 }

@@ -43,10 +43,10 @@ export function FormRegister() {
 
       router.push("/account");
 
-      ShowToast("user logged in!", "take advantage of our innovative promotions.", "success");
+      ShowToast("user logged in!", "success");
     } catch (err) {
       if (err instanceof Error) {
-        ShowToast("an error occurred!", err.message, "error");
+        ShowToast("an error occurred!", "error");
       }
     } finally {
       setLoading(false);

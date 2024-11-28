@@ -28,10 +28,10 @@ export function ModalForgotPassword() {
         throw new Error("contact support!");
       }
 
-      ShowToast("email sent!", "if there is an account with that email, the code has been sent to it.", "success");
+      ShowToast("email sent!", "success");
     } catch (err) {
       if (err instanceof Error) {
-        ShowToast("an error occurred!", err.message, "error");
+        ShowToast("an error occurred!", "error");
       }
     } finally {
       setLoading(false);

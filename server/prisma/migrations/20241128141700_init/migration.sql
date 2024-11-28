@@ -89,6 +89,22 @@ CREATE TABLE `categories` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
+CREATE TABLE `colors` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(191) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `sizes` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(191) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `stores` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
@@ -120,8 +136,7 @@ CREATE TABLE `products` (
     `store_id` INTEGER NOT NULL,
     `price` DECIMAL(10, 2) NOT NULL,
     `last_price` DECIMAL(10, 2) NOT NULL,
-    `parcelable` BOOLEAN NOT NULL DEFAULT true,
-    `max_installments` INTEGER NULL DEFAULT 12,
+    `installments` INTEGER NULL DEFAULT 12,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
@@ -149,22 +164,22 @@ CREATE TABLE `product_flags` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `product_variations` (
+CREATE TABLE `product_colors` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `increment` DECIMAL(10, 2) NULL DEFAULT 0,
-    `decrement` DECIMAL(10, 2) NULL DEFAULT 0,
-    `color` VARCHAR(191) NOT NULL,
-    `url` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(191) NOT NULL,
+    `images` JSON NOT NULL,
     `product_id` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `variation_sizes` (
+CREATE TABLE `product_colors_sizes` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
     `qtd` INTEGER NOT NULL DEFAULT 10,
+    `increment` DECIMAL(10, 2) NOT NULL DEFAULT 0,
+    `decrement` DECIMAL(10, 2) NOT NULL DEFAULT 0,
     `variation_id` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
@@ -186,16 +201,16 @@ ALTER TABLE `product_categories` ADD CONSTRAINT `product_categories_category_id_
 ALTER TABLE `products` ADD CONSTRAINT `products_brand_id_fkey` FOREIGN KEY (`brand_id`) REFERENCES `brands`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `products` ADD CONSTRAINT `products_store_id_fkey` FOREIGN KEY (`store_id`) REFERENCES `stores`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `products` ADD CONSTRAINT `products_store_id_fkey` FOREIGN KEY (`store_id`) REFERENCES `stores`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `product_details` ADD CONSTRAINT `product_details_product_id_fkey` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `product_details` ADD CONSTRAINT `product_details_product_id_fkey` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `product_flags` ADD CONSTRAINT `product_flags_product_id_fkey` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `product_flags` ADD CONSTRAINT `product_flags_product_id_fkey` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `product_variations` ADD CONSTRAINT `product_variations_product_id_fkey` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `product_colors` ADD CONSTRAINT `product_colors_product_id_fkey` FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `variation_sizes` ADD CONSTRAINT `variation_sizes_variation_id_fkey` FOREIGN KEY (`variation_id`) REFERENCES `product_variations`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `product_colors_sizes` ADD CONSTRAINT `product_colors_sizes_variation_id_fkey` FOREIGN KEY (`variation_id`) REFERENCES `product_colors`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

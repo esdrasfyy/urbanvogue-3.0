@@ -37,14 +37,12 @@ function Profile() {
   const [canClose, setCanClose] = useState<boolean>(false);
   const route = useRouter();
 
-  const { data: countries } = useQuery({
-    queryFn: Settings.getCountries,
-    queryKey: ["countries"],
-  });
-
-  const { data: genders } = useQuery({
-    queryFn: Settings.getGenders,
-    queryKey: ["genders"],
+  const { data } = useQuery({
+    queryKey: ["genders&countries"],
+    queryFn: async () => {
+      const [genders, countries] = await Promise.all([Settings.getGenders(), Settings.getCountries()]);
+      return { genders, countries };
+    },
   });
 
   const { register, handleSubmit, setValue, formState, getValues, reset } = useForm<InputsProfileI>({ resolver: yupResolver(SchemaProfileI) });
@@ -79,17 +77,17 @@ function Profile() {
       /* eslint-enable @typescript-eslint/no-explicit-any */
       reset();
       route.back();
-      ShowToast("profile updated!", "your information has been successfully updated.", "success");
+      ShowToast("profile updated!", "success");
     } catch (err) {
       if (err instanceof Error) {
-        ShowToast("an error occurred!", err.message, "error");
+        ShowToast("an error occurred!", "error");
       }
     } finally {
       setLoading(false);
     }
   };
 
-  const formattedCountries = countries?.map((country) => ({
+  const formattedCountries = data?.countries?.map((country) => ({
     value: String(country.id),
     label: country.name,
   }));
@@ -98,7 +96,7 @@ function Profile() {
     setValue("country_id", Number(data.value));
   };
 
-  const formattedGenders = genders?.map((gender) => ({
+  const formattedGenders = data?.genders?.map((gender) => ({
     value: String(gender.id),
     label: gender.name,
   }));
@@ -109,7 +107,7 @@ function Profile() {
 
   const onClose = () => {
     if (isChanged(getValues, user!) && !canClose) {
-      ShowToast("don't lose your progress!", "your changes will be discarded if you proceed.", "warning");
+      ShowToast("don't lose your progress!", "warning");
       setCanClose(true);
       return;
     }

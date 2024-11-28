@@ -11,7 +11,11 @@ import { useRouter } from "next/navigation";
 import { InputsResetPasswordI, SchemaResetPasswordI } from "@/app/entities/schemas.entitie";
 
 export function FormResetPassword({ token }: { token: string }) {
-  const { register, handleSubmit, formState: { errors } } = useForm<InputsResetPasswordI>({ resolver: yupResolver(SchemaResetPasswordI) });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<InputsResetPasswordI>({ resolver: yupResolver(SchemaResetPasswordI) });
 
   const { setLoading, ShowToast } = useApp();
   const router = useRouter();
@@ -19,7 +23,7 @@ export function FormResetPassword({ token }: { token: string }) {
   const onSubmit: SubmitHandler<InputsResetPasswordI> = async (data) => {
     try {
       setLoading(true);
-      const status = await Auth.resetPassword({...data, token});
+      const status = await Auth.resetPassword({ ...data, token });
 
       if (status !== 200) {
         throw new Error("the link is expired or invalid.");
@@ -27,12 +31,12 @@ export function FormResetPassword({ token }: { token: string }) {
 
       router.push("/login");
 
-      ShowToast("password changed!", "Your new password is now available.", "success");
+      ShowToast("password changed!", "success");
 
       return;
     } catch (err) {
       if (err instanceof Error) {
-        ShowToast("an error occurred!", err.message, "error");
+        ShowToast("an error occurred!", "error");
       }
     } finally {
       setLoading(false);

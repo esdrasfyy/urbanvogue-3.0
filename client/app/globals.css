@@ -76,6 +76,9 @@
   color: var(--success-color) !important;
 }
 
+.chakra-alert__desc {
+  display: none !important;
+}
 body::-webkit-scrollbar {
   width: 10px;
 }

@@ -50,4 +50,22 @@ export class SettingsController {
     const data = await this.settingsService.getCategories();
     return res.status(HttpStatus.OK).json(data);
   }
+
+  @isPublic()
+  @Get("sizes")
+  @ApiOperation({ summary: "Retrieve a list of available genders." })
+  @ApiResponse({ status: 200, description: "List of genders retrieved successfully.", type: [GenderSwagger] })
+  async getSizes(@Res() res) {
+    const data = await this.settingsService.getSizes();
+    return res.status(HttpStatus.OK).json(data);
+  }
+
+  @isPublic()
+  @Get("colors")
+  @ApiOperation({ summary: "Retrieve a list of available genders." })
+  @ApiResponse({ status: 200, description: "List of genders retrieved successfully.", type: [GenderSwagger] })
+  async getColors(@Res() res) {
+    const data = await this.settingsService.getColors();
+    return res.status(HttpStatus.OK).json(data);
+  }
 }

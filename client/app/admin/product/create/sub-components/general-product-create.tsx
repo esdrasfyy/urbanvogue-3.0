@@ -2,6 +2,7 @@ import { Settings } from "@/app/api/settings/settings.api";
 import { InputDefault } from "@/app/components/ui/inputs/input-default";
 import { InputSelect, InputSelectCreatable } from "@/app/components/ui/inputs/input-select";
 import { InputSubmit } from "@/app/components/ui/inputs/input-submit";
+import { useAdmin } from "@/app/contexts/admin.context";
 import { GeneralProductCreateI, SchemaGeneralProductCreateI } from "@/app/entities/schemas.entitie";
 import { formatOptions, handleMultiSelect, handleSingleSelect } from "@/app/utils/masks.util";
 import { TabPanel } from "@chakra-ui/react";
@@ -9,7 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useQuery } from "@tanstack/react-query";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-export function GeneralInfoProductCreate({ handleGeneralInfoProduct }: { handleGeneralInfoProduct: (product: GeneralProductCreateI) => void }) {
+export function GeneralInfoProductCreate() {
   const { data } = useQuery({
     queryKey: ["settings"],
     queryFn: async () => {
@@ -17,14 +18,8 @@ export function GeneralInfoProductCreate({ handleGeneralInfoProduct }: { handleG
       return { brands, stores, categories };
     },
   });
-
+  const { setGeneralProductCreate, setTabProductCreate } = useAdmin();
   const { register, handleSubmit, setValue, formState } = useForm<GeneralProductCreateI>({ resolver: yupResolver(SchemaGeneralProductCreateI) });
-
-  const onSubmit: SubmitHandler<GeneralProductCreateI> = async (data) => {
-    handleGeneralInfoProduct(data);
-    console.log(data);
-    return;
-  };
   const formattedBrands = data?.brands && formatOptions(data?.brands);
   const formattedStores = data?.stores && formatOptions(data?.stores);
   const formattedCategories = data?.categories && formatOptions(data?.categories);
@@ -34,6 +29,12 @@ export function GeneralInfoProductCreate({ handleGeneralInfoProduct }: { handleG
   const handleCategories = handleMultiSelect("categories", setValue);
   const handleFlags = handleMultiSelect("flags", setValue, false);
   const handleDetails = handleMultiSelect("details", setValue, false);
+
+  const onSubmit: SubmitHandler<GeneralProductCreateI> = async (data) => {
+    setGeneralProductCreate(data);
+    setTabProductCreate(1);
+    return;
+  };
 
   return (
     <TabPanel padding="0" margin="30px 0 50px 0">

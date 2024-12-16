@@ -168,8 +168,14 @@ export const SchemaGeneralProductCreateI = yup.object().shape({
   details: yup.array().of(yup.string().required("Detalhes devem ser strings")).max(10, "Não é permitido mais de 10 detalhes").required("O campo de categorias é obrigatório"),
   flags: yup.array().of(yup.string().required("Detalhes devem ser strings")).max(10, "Não é permitido mais de 10 detalhes").required("O campo de categorias é obrigatório"),
 });
-
+interface Size {
+  name: string;
+  qtd: number;
+  increment: number;
+  decrement: number;
+}
 export type ColorProductCreateI = {
+  sizes?: Size[] | [];
   name: string;
   images: string[];
 };

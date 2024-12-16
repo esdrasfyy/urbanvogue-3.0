@@ -13,7 +13,7 @@ declare namespace Product {
         decrement: number;
       }[];
     }[];
-    condition: "new" | "used" | "refurbished";
+    condition: string;
     details: string[];
     flags: string[];
     installments: number;

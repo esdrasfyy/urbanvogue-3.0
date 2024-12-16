@@ -1,7 +1,18 @@
 /* eslint-disable */
 import { UseDisclosureReturn } from "@chakra-ui/react";
+import { ColorProductCreateI, GeneralProductCreateI, SizesProductCreateI } from "./schemas.entitie";
 
 export declare namespace Contexts {
+  interface AdminProps {
+    tabProductCreate: number;
+    setTabProductCreate: React.Dispatch<React.SetStateAction<number>>;
+    colorsProductCreate: ColorProductCreateI[];
+    setColorsProductCreate: React.Dispatch<React.SetStateAction<ColorProductCreateI[]>>;
+    sizesProductCreate: SizesProductCreateI[];
+    setSizesProductCreate: React.Dispatch<React.SetStateAction<SizesProductCreateI[]>>;
+    generalProductCreate: GeneralProductCreateI | null;
+    setGeneralProductCreate: React.Dispatch<React.SetStateAction<GeneralProductCreateI | null>>;
+  }
   interface AppProps {
     loading: boolean;
     setLoading: React.Dispatch<React.SetStateAction<boolean>>;

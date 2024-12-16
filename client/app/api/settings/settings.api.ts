@@ -25,7 +25,7 @@ const getSizes = async () => {
   return response.data;
 };
 const getColors = async () => {
-  const response = await api.get<Settings.Sizes[] | null>("/settings/colors");
+  const response = await api.get<Settings.Colors[] | null>("/settings/colors");
   return response.data;
 };
 export const Settings = { getGenders, getCountries, getBrands, getCategories, getStores, getSizes, getColors };

@@ -1,18 +1,13 @@
 "use client";
 import React, { createContext, useState, ReactNode, useContext } from "react";
-import { useDisclosure, useToast } from "@chakra-ui/react";
-import { trans } from "../libs/i18n.lib";
 import { Contexts } from "../entities/contexts.entitie";
 import { ColorProductCreateI, GeneralProductCreateI, SizesProductCreateI } from "../entities/schemas.entitie";
-import { useApp } from "./app.context";
 
 export const ContextAdmin = createContext<Contexts.AdminProps | undefined>(undefined);
 
 export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const { ShowToast } = useApp();
-  
   // START - PRODUCT CREATE
-  const [tabProductCreate, setTabProductCreate] = useState<number>(1);
+  const [tabProductCreate, setTabProductCreate] = useState<number>(0);
   const [colorsProductCreate, setColorsProductCreate] = useState<ColorProductCreateI[]>([]);
   const [sizesProductCreate, setSizesProductCreate] = useState<SizesProductCreateI[]>([]);
   const [generalProductCreate, setGeneralProductCreate] = useState<GeneralProductCreateI | null>(null);

@@ -30,7 +30,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <Providers>
-        <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} bg-custom-primaryBrand text-custom-textColor light`}>
+        <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} bg-custom-primaryBrand text-custom-textColor dark`}>
           <Header />
           {children}
           <Footer />

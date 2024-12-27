@@ -113,5 +113,15 @@
   "must be a valid country!": "Deve ser um país válido!",
   "must be a valid national id!": "Deve ser um CPF válido!",
   "incorrect format!": "Formato incorreto!",
-  "must be 18 or older.": "Deve ter 18 anos ou mais."
+  "must be 18 or older.": "Deve ter 18 anos ou mais.",
+  "the price must be a valid number with up to two decimal places.": "O preço deve ser um número válido com até duas casas decimais.",
+  "you must have at least one category.": "É necessário ter pelo menos uma categoria.",
+  "no more than 10 categories allowed.": "Não é permitido mais de 10 categorias.",
+  "no more than 10 details allowed.": "Não é permitido mais de 10 detalhes.",
+  "no more than 10 flags allowed.": "Não é permitido mais de 10 flags.",
+  "no more than 4 images allowed.": "Não é permitido mais de 4 imagens.",
+  "quantity must be a whole number.": "Quantidade deve ser um número inteiro.",
+  "quantity cannot be negative.": "Quantidade não pode ser negativa.",
+  "the price must be a number": "O preço deve ser um número.",
+  "the last price must be a number": "O último preço deve ser um número."
 }

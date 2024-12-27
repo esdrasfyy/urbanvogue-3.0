@@ -113,5 +113,14 @@
   "must be a valid country!": "Must be a valid country!",
   "must be a valid national id!": "Must be a valid national id!",
   "incorrect format!": "Incorrect format!",
-  "must be 18 or older.": "Must be 18 or older."
+  "must be 18 or older.": "Must be 18 or older.",
+  "the price must be a valid number with up to two decimal places.": "The price must be a valid number with up to two decimal places.",
+  "you must have at least one category.": "You must have at least one category.",
+  "no more than 10 categories allowed.": "No more than 10 categories allowed.",
+  "no more than 10 details allowed.": "No more than 10 details allowed.",
+  "no more than 10 flags allowed.": "No more than 10 flags allowed.",
+  "no more than 4 images allowed.": "No more than 4 images allowed.",
+  "quantity must be a whole number.": "Quantity must be a whole number.",
+  "quantity cannot be negative.": "Quantity cannot be negative.",
+  "the last price must be a number": "The last price must be a number"
 }

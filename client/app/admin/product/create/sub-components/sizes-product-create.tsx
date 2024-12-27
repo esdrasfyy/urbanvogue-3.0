@@ -1,15 +1,12 @@
-import { Admin } from "@/app/@types/admin";
-import { AdminProduct } from "@/app/api/admin/admin-product.api";
 import { Settings } from "@/app/api/settings/settings.api";
 import { InputDefault } from "@/app/components/ui/inputs/input-default";
 import { InputSelect, InputSelectCreatable } from "@/app/components/ui/inputs/input-select";
 import { useAdmin } from "@/app/contexts/admin.context";
 import { useApp } from "@/app/contexts/app.context";
-import { ColorProductCreateI, SchemaSizesProductCreateI, SizesProductCreateI } from "@/app/entities/schemas.entitie";
+import { SchemaSizesProductCreateI, SizesProductCreateI } from "@/app/entities/schemas.entitie";
 import { formatOptions, handleMultiSelect, handleSingleSelect } from "@/app/utils/masks.util";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 export function SizesPorductCreate() {
@@ -20,11 +17,12 @@ export function SizesPorductCreate() {
       return { sizes, colors };
     },
   });
-  const { sizesProductCreate, setSizesProductCreate, colorsProductCreate, generalProductCreate, setColorsProductCreate } = useAdmin();
+  const { sizesProductCreate, setSizesProductCreate, colorsProductCreate, setColorsProductCreate } = useAdmin();
   const { ShowToast } = useApp();
   const { register, handleSubmit, setValue, formState, reset } = useForm<SizesProductCreateI>({ resolver: yupResolver(SchemaSizesProductCreateI) });
   const formattedSizes = data?.sizes && formatOptions(data?.sizes);
   let colorslist: { id: number; name: string }[] = [];
+  
   if (Array.isArray(colorsProductCreate)) {
     colorslist = colorsProductCreate?.map((e, index) => ({
       id: index,
@@ -62,9 +60,6 @@ export function SizesPorductCreate() {
     ShowToast("New Size Added!", "success");
     return;
   };
-  useEffect(() => {
-    console.log(colorsProductCreate);
-  }, [colorsProductCreate]);
 
   return (
     <div className="rounded-md flex flex-col gap-6 bg-custom-secondaryBrand shadow-md my-12 p-10">

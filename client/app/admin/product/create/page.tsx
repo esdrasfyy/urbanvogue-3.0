@@ -5,15 +5,21 @@ import { GeneralInfoProductCreate } from "./sub-components/general-product-creat
 import { ColorsProductCreate } from "./sub-components/colors-product-create";
 import { SizesPorductCreate } from "./sub-components/sizes-product-create";
 import { useAdmin } from "@/app/contexts/admin.context";
+import { AdminProduct } from "@/app/api/admin/admin.api";
 export default function ProductCreate() {
-  const { tabProductCreate, setTabProductCreate, colorsProductCreate, generalProductCreate, sizesProductCreate } = useAdmin();
-  const create = () => {
-    const product = { ...generalProductCreate, colors: [...colorsProductCreate] };
-    console.log({ colors: colorsProductCreate, ...generalProductCreate, sizes: sizesProductCreate });
+  const { tabProductCreate, colorsProductCreate, generalProductCreate, sizesProductCreate } = useAdmin();
+  const create = async () => {
+    try {
+      const product: Product.Create = { ...generalProductCreate, colors: [...colorsProductCreate] };
+
+      const res = await AdminProduct.createProduct({ product });
+
+      console.log(res);
+    } catch (error) {}
   };
   return (
     <main className="max-w-[1250px] mx-auto px-2">
-      <Tabs onChange={(index) => setTabProductCreate(index)} position="relative" variant="unstyled" isLazy index={tabProductCreate}>
+      <Tabs variant="unstyled" isLazy index={tabProductCreate}>
         <TabList>
           <Tab fontSize="14px" fontWeight="600" _selected={{ color: theme.colors.accent }}>
             GENERAL

@@ -14,7 +14,7 @@ export class ProductRepository {
         price: new Prisma.Decimal(dto.price),
         last_price: new Prisma.Decimal(dto.last_price),
         installments: dto.installments,
-        store_id: dto.store_id,
+        store_id: dto.store,
         brand_id: dto.brand,
         categories: {
           create: dto.categories.map((categoryId) => ({
@@ -25,7 +25,6 @@ export class ProductRepository {
           create: dto.colors.map((color) => ({
             name: color.name,
             images: color.images,
-            product_id: color.product_id,
             sizes: {
               create: color.sizes.map((size) => ({
                 name: size.name,

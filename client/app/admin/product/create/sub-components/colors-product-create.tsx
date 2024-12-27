@@ -68,9 +68,7 @@ export function ColorsProductCreate() {
           <button type="submit" className="border border-custom-accentColor rounded-md shadow-md p-2 uppercase text-xs font-semibold hover-effect hover-bg-accent">
             {colorsProductCreate.length === 0 ? "Add Color" : " Add Other"}
           </button>
-          <button onClick={() => setTabProductCreate(2)} type="button" className="border border-custom-accentColor rounded-md shadow-md p-2 uppercase text-xs font-semibold hover-effect hover-bg-accent">
-            next
-          </button>
+          <button onClick={() => setTabProductCreate(2)} type="button" className="border border-custom-accentColor rounded-md shadow-md p-2 uppercase text-xs font-semibold hover-effect hover-bg-accent">next</button>
         </div>
         {colorsProductCreate.length > 0 && (
           <div className="flex gap-4">

@@ -35,6 +35,7 @@ export const ImageDragDrop: React.FC<ImageDragDropProps> = ({ handleImages, curr
       reader.onload = () => {
         const image = reader.result?.toString();
         if (image) {
+          navigator.clipboard.writeText(image);
           handleImages(image);
         }
       };

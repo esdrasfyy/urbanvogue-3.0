@@ -143,8 +143,8 @@ export type GeneralProductCreateI = {
   title: string;
   summary: string;
   condition: string;
-  price: number;
-  last_price: number;
+  price: string;
+  last_price: string;
   parcelable: boolean;
   installments?: number;
   brand: number;
@@ -158,15 +158,23 @@ export const SchemaGeneralProductCreateI = yup.object().shape({
   title: yup.string().required("this field is required!"),
   summary: yup.string().required("this field is required!"),
   condition: yup.string().required("this field is required!"),
-  price: yup.number().typeError("O preço deve ser um número").positive("O preço deve ser positivo").max(999999.99, "O preço deve ser menor que 1 milhão").required("this field is required!"),
-  last_price: yup.number().typeError("O preço deve ser um número").positive("O preço deve ser positivo").max(999999.99, "O preço deve ser menor que 1 milhão").required("this field is required!"),
+  price: yup
+    .string()
+    .transform((value) => value.replace(",", "."))
+    .matches(/^\d+(\.\d{1,2})?$/, "the price must be a valid number with up to two decimal places.")
+    .required("this field is required!"),
+  last_price: yup
+    .string()
+    .transform((value) => value.replace(",", "."))
+    .matches(/^\d+(\.\d{1,2})?$/, "the last price must be a valid number with up to two decimal places.")
+    .required("this field is required!"),
   parcelable: yup.boolean().default(false),
   installments: yup.number().max(24, "max 24 parcelas"),
-  brand: yup.number().required("Este campo é obrigatório!"),
-  store: yup.number().required("Este campo é obrigatório!"),
-  categories: yup.array().of(yup.number().required("Cada categoria deve ser uma string")).min(1, "É necessário ter pelo menos uma categoria").max(10, "Não é permitido mais de 10 categorias").required("O campo de categorias é obrigatório"),
-  details: yup.array().of(yup.string().required("Detalhes devem ser strings")).max(10, "Não é permitido mais de 10 detalhes").required("O campo de categorias é obrigatório"),
-  flags: yup.array().of(yup.string().required("Detalhes devem ser strings")).max(10, "Não é permitido mais de 10 detalhes").required("O campo de categorias é obrigatório"),
+  brand: yup.number().required("this field is required!"),
+  store: yup.number().required("this field is required!"),
+  categories: yup.array().of(yup.number().required("this field is required!")).min(1, "you must have at least one category.").max(10, "no more than 10 categories allowed.").required("this field is required!"),
+  details: yup.array().of(yup.string().required("this field is required!")).max(10, "no more than 10 details allowed.").required("this field is required!"),
+  flags: yup.array().of(yup.string().required("this field is required!")).max(10, "no more than 10 flags allowed.").required("this field is required!"),
 });
 interface Size {
   name: string;
@@ -182,7 +190,7 @@ export type ColorProductCreateI = {
 
 export const SchemaColorsProductCreateI = yup.object().shape({
   name: yup.string().required("this field is required!"),
-  images: yup.array().of(yup.string().required("Imagens devem ser strings")).max(4, "Não é permitido mais de 4 imagens").required("O campo de categorias é obrigatório"),
+  images: yup.array().of(yup.string().required("this field is required!")).max(4, "mo more than 4 images allowed.").required("this field is required!"),
 });
 
 export type SizesProductCreateI = {
@@ -194,9 +202,9 @@ export type SizesProductCreateI = {
 };
 
 export const SchemaSizesProductCreateI = yup.object().shape({
-  colors: yup.array().of(yup.number().required("Detalhes devem ser strings")).max(10, "Não é permitido mais de 10 detalhes").required("O campo de categorias é obrigatório"),
+  colors: yup.array().of(yup.number().required("this field is required!")).max(10, "Não é permitido mais de 10 detalhes").required("this field is required!"),
   name: yup.string().required("this field is required!"),
-  qtd: yup.number().integer("Quantidade deve ser um número inteiro").min(0, "Quantidade não pode ser negativa").required("A quantidade é obrigatória"),
-  increment: yup.number().typeError("O preço deve ser um número").max(999999.99, "O preço deve ser menor que 1 milhão").default(0),
-  decrement: yup.number().typeError("O preço deve ser um número").max(999999.99, "O preço deve ser menor que 1 milhão").default(0),
+  qtd: yup.number().integer("quantity must be a whole number.").min(0, "quantity cannot be negative.").required("this field is required!"),
+  increment: yup.number().typeError("the price must be a number.").default(0),
+  decrement: yup.number().typeError("the price must be a number.").default(0),
 });

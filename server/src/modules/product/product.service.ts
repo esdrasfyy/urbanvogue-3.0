@@ -10,6 +10,8 @@ export class ProductService {
   ) {}
 
   async create(dto: Product.Create) {
+    console.log(dto);
+    
     return await this.productRepository.create(dto);
   }
 

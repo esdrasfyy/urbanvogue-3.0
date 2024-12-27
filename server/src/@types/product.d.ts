@@ -3,7 +3,6 @@ declare namespace Product {
     brand: number;
     categories: number[];
     colors: {
-      product_id: number;
       name: string;
       images: string[];
       sizes: {
@@ -19,7 +18,7 @@ declare namespace Product {
     installments: number;
     last_price: string;
     price: string;
-    store_id: number;
+    store: number;
     summary: string;
     title: string;
   };

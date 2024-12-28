@@ -7,7 +7,7 @@ import { SizesPorductCreate } from "./sub-components/sizes-product-create";
 import { useAdmin } from "@/app/contexts/admin.context";
 import { AdminProduct } from "@/app/api/admin/admin.api";
 export default function ProductCreate() {
-  const { tabProductCreate, colorsProductCreate, generalProductCreate, sizesProductCreate } = useAdmin();
+  const { tabProductCreate, colorsProductCreate, generalProductCreate } = useAdmin();
   const create = async () => {
     try {
       const product: Product.Create = { ...generalProductCreate, colors: [...colorsProductCreate] };

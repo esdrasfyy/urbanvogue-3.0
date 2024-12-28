@@ -1,3 +1,4 @@
+import { ImageProviders } from "@/app/services/images.service";
 import React, { useState, DragEvent } from "react";
 import { TbCloudUpload } from "react-icons/tb";
 
@@ -9,18 +10,23 @@ interface ImageDragDropProps {
 
 export const ImageDragDrop: React.FC<ImageDragDropProps> = ({ handleImages, current, max }) => {
   const [isHouvered, setIsHouvered] = useState<boolean>(false);
-  const handleDrop = (e: React.DragEvent<HTMLLabelElement>) => {
+  const handleDrop = async (e: React.DragEvent<HTMLLabelElement>) => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
 
     if (file && file.type.startsWith("image/")) {
       const reader = new FileReader();
 
-      reader.onload = () => {
+      reader.onload = async () => {
         const image = reader.result?.toString();
         if (image) {
-          handleImages(image);
           setIsHouvered(false);
+          const test = await new ImageProviders().upload(file);
+          console.log(test);
+
+          if (test) {
+            handleImages(test);
+          }
         }
       };
 
@@ -30,12 +36,15 @@ export const ImageDragDrop: React.FC<ImageDragDropProps> = ({ handleImages, curr
 
   const handleInputFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
+    if (file && e.target.files) {
       const reader = new FileReader();
       reader.onload = () => {
         const image = reader.result?.toString();
         if (image) {
           navigator.clipboard.writeText(image);
+          console.log(file);
+          return;
+          const test = new ImageProviders().upload([file]);
           handleImages(image);
         }
       };

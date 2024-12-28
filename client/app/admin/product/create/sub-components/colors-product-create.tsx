@@ -1,6 +1,7 @@
 import { Admin } from "@/app/@types/admin";
 import { Settings } from "@/app/api/settings/settings.api";
 import { ImageDragDrop } from "@/app/components/drag-drop/image-drag-drop";
+import Dropzone from "@/app/components/dropzone/dropzone.component";
 import { InputSelect } from "@/app/components/ui/inputs/input-select";
 import { useAdmin } from "@/app/contexts/admin.context";
 import { useApp } from "@/app/contexts/app.context";
@@ -34,6 +35,8 @@ export function ColorsProductCreate() {
       const currentImages = getValues("images") || [];
       setImages([...currentImages, image]);
       setValue("images", [...currentImages, image]);
+
+      console.log(images);
     }
   };
 
@@ -50,7 +53,8 @@ export function ColorsProductCreate() {
         <h2 className="text-center text-xl font-semibold"> COLORS </h2>
         {formattedColors && <InputSelect onchange={handleColorsSelect} label="color" list={formattedColors} />}
         <div className="flex gap-6 w-full mt-5">
-          <ImageDragDrop handleImages={addImageForColor} max={4} current={images.length} />
+          {/* <ImageDragDrop handleImages={addImageForColor} max={4} current={images.length} /> */}
+          <Dropzone folder="products" onProgress={null} handleImages={addImageForColor} />
           {images?.length > 0 && (
             <div className="grid grid-rows-2 grid-flow-col gap-4">
               {images.map((item, index_image) => (
@@ -68,7 +72,9 @@ export function ColorsProductCreate() {
           <button type="submit" className="border border-custom-accentColor rounded-md shadow-md p-2 uppercase text-xs font-semibold hover-effect hover-bg-accent">
             {colorsProductCreate.length === 0 ? "Add Color" : " Add Other"}
           </button>
-          <button onClick={() => setTabProductCreate(2)} type="button" className="border border-custom-accentColor rounded-md shadow-md p-2 uppercase text-xs font-semibold hover-effect hover-bg-accent">next</button>
+          <button onClick={() => setTabProductCreate(2)} type="button" className="border border-custom-accentColor rounded-md shadow-md p-2 uppercase text-xs font-semibold hover-effect hover-bg-accent">
+            next
+          </button>
         </div>
         {colorsProductCreate.length > 0 && (
           <div className="flex gap-4">

@@ -1,4 +1,3 @@
-"use client";
 import { EmblaOptionsType } from "embla-carousel";
 import { CarouselProducts } from "./components/carousel/product/corousel-product";
 import { CarouselHomepage } from "./components/carousel/homepage/carousel-homepage";

@@ -7,25 +7,27 @@ import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import { trans } from "@/app/libs/i18n.lib";
 import { CardProduct } from "../../product/card-product";
+import { useQuery } from "@tanstack/react-query";
+import { Product } from "@/app/api/product/product.api";
 
 export const CarouselProducts: React.FC<General.PropType> = (props) => {
   const { slides, options } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()]);
+  const { data } = useQuery({
+    queryKey: ["products-all"],
+    staleTime: 24 * 60 * 60 * 1000,
+    queryFn: Product.getProductsAll,
+  });
 
   const onNavButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
     const autoplay = emblaApi?.plugins()?.autoplay;
     if (!autoplay) return;
-
-    const resetOrStop = autoplay.options.stopOnInteraction === false ? autoplay.reset : autoplay.stop;
-
-    resetOrStop();
+    autoplay.play();
   }, []);
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi, onNavButtonClick);
 
   const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } = usePrevNextButtons(emblaApi, onNavButtonClick);
-
-  const urls = ["https://static.ecosweb.com.br/public/produtos/plus-size-feminino/conjunto/conjunto-azul-marinho-em-canelado_374121_301_1.webp", "https://static.ecosweb.com.br/public/produtos/plus-size-feminino/conjunto/conjunto-azul-marinho-em-canelado_374121_301_2.webp"];
 
   return (
     <section className="embla w-full m-auto">
@@ -33,11 +35,7 @@ export const CarouselProducts: React.FC<General.PropType> = (props) => {
         <h3 className="text-lg uppercase font-semibold tracking-widest">{trans.t("releases")}</h3>
       </div>
       <div className="overflow-hidden rounded-md" ref={emblaRef}>
-        <ul className="embla__container flex">
-          {slides.map((index) => (
-            <CardProduct brand="LOUISE VUITTON" title="Conjunto Azul Marinho em Canelado" url={urls} price="100,99" last_price="139,99" key={index} />
-          ))}
-        </ul>
+        <ul className="embla__container flex">{data && data?.map((product) => <CardProduct product={product} key={product.id} />)}</ul>
       </div>
 
       <div className="grid grid-cols-[auto_1fr] justify-between gap-[1.2rem] mt-[1.8rem]">

@@ -13,6 +13,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 export function GeneralInfoProductCreate() {
   const { data } = useQuery({
     queryKey: ["settings"],
+    staleTime: 24 * 60 * 60 * 1000,
     queryFn: async () => {
       const [brands, stores, categories] = await Promise.all([Settings.getBrands(), Settings.getStores(), Settings.getCategories()]);
       return { brands, stores, categories };

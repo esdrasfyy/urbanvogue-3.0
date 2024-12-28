@@ -1,4 +1,17 @@
 declare namespace Product {
+  type Mini = {
+    id: number;
+    brand: string;
+    condition: string;
+    last_price: string;
+    price: string;
+    store: string;
+    summary: string;
+    title: string;
+    images: string[];
+    created_at: Date;
+  };
+
   type Create = {
     brand: number;
     categories: number[];

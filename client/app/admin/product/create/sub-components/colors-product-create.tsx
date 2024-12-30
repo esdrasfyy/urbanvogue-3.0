@@ -1,6 +1,4 @@
-import { Admin } from "@/app/@types/admin";
 import { Settings } from "@/app/api/settings/settings.api";
-import { ImageDragDrop } from "@/app/components/drag-drop/image-drag-drop";
 import Dropzone from "@/app/components/dropzone/dropzone.component";
 import { InputSelect } from "@/app/components/ui/inputs/input-select";
 import { useAdmin } from "@/app/contexts/admin.context";
@@ -35,8 +33,6 @@ export function ColorsProductCreate() {
       const currentImages = getValues("images") || [];
       setImages([...currentImages, image]);
       setValue("images", [...currentImages, image]);
-
-      console.log(images);
     }
   };
 

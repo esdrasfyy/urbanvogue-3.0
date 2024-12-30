@@ -7,9 +7,8 @@ import { NextButton, PrevButton, usePrevNextButtons } from "../product/sub-compo
 import { trans } from "@/app/libs/i18n.lib";
 import Image from "next/image";
 
-export const CarouselCategories: React.FC<General.PropType> = (props) => {
-  const { slides, options } = props;
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()]);
+export const CarouselCategories = () => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({loop:true}, [Autoplay()]);
 
   const onNavButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
     const autoplay = emblaApi?.plugins()?.autoplay;
@@ -29,7 +28,7 @@ export const CarouselCategories: React.FC<General.PropType> = (props) => {
       </div>
       <div className="overflow-hidden mx-8 rounded-md" ref={emblaRef}>
         <div className="embla__container flex ml-3">
-          {slides.map((index) => (
+          {Array.from(Array(10).keys())?.map((index) => (
             <div className="mx-3 transform translate-x-0 translate-y-0 translate-z-0 flex-shrink-0 max-w-fit relative" key={index}>
               <Image className="rounded-full shadow-md text-[4rem] font-semibold flex items-center justify-center select-none w-[90px] h-[90px] border" src="https://ph-cdn3.ecosweb.com.br/Web/posthaus/mobile/menu/06_128.png" alt="image" width={90} height={90} />
               <h4 className="text-center uppercase mt-4 font-semibold text-sm">category</h4>

@@ -2,16 +2,6 @@ import { initializeApp } from "firebase/app";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 import handleUnknownError from "../utils/handle-unknown-error.util";
-interface FirebaseConfig {
-  apiKey: string;
-  authDomain: string;
-  databaseURL?: string;
-  projectId: string;
-  storageBucket: string;
-  messagingSenderId: string;
-  appId: string;
-}
-
 export class Firebase {
   private credentials = {
     apiKey: process.env.NEXT_FIREBASE_API_KEY as string,
@@ -42,7 +32,7 @@ export class Firebase {
           "state_changed",
           (snapshot) => {
             const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            onProgress && onProgress(progress);
+            if(onProgress) onProgress(progress);
           },
           (error) => {
             reject(new Error(`Upload failed: ${error.message}`));

@@ -10,13 +10,12 @@ import { CardProduct } from "../../product/card-product";
 import { useQuery } from "@tanstack/react-query";
 import { Product } from "@/app/api/product/product.api";
 
-export const CarouselProducts: React.FC<General.PropType> = (props) => {
-  const { slides, options } = props;
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()]);
+export const CarouselProducts = ({ queries, title }: { queries?: string; title: string }) => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()]);
   const { data } = useQuery({
-    queryKey: ["products-all"],
+    queryKey: [queries],
     staleTime: 24 * 60 * 60 * 1000,
-    queryFn: Product.getProductsAll,
+    queryFn: () => Product.getProductsAll({ queries: queries ?? null }),
   });
   console.log(data);
 
@@ -33,7 +32,7 @@ export const CarouselProducts: React.FC<General.PropType> = (props) => {
   return (
     <section className="embla w-full m-auto">
       <div className="mb-16 max-md:mb-6 border-l-4 px-4 py-1 rounded-md border-custom-accentColor bg-[var(--accent-color-10)] flex justify-between w-full items-center">
-        <h3 className="text-lg uppercase font-semibold tracking-widest">{trans.t("releases")}</h3>
+        <h3 className="text-lg uppercase font-semibold tracking-widest">{trans.t(title)}</h3>
       </div>
       <div className="overflow-hidden rounded-md" ref={emblaRef}>
         <ul className="embla__container flex">{data && data?.map((product) => <CardProduct product={product} key={product.id} />)}</ul>

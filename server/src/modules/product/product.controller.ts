@@ -16,7 +16,7 @@ export class ProductController {
   @isPublic()
   @Get("get")
   async getAll(@Res() res, @Query() queries) {
-    const products = await this.productService.getAll(queries);
+    const products = await this.productService.get(queries);
     return res.status(HttpStatus.OK).json(products);
   }
 }

@@ -59,7 +59,7 @@ export class ProductRepository {
     });
   }
 
-  async getAll() {
+  async get(queries:Product.ParametersSearch) {
     return await this.prisma.product.findMany({
       include: {
         brand: { select: { name: true } },
@@ -67,10 +67,21 @@ export class ProductRepository {
         flags: true,
         store: true,
         colors: { include: { sizes: true } },
-        categories: {
-          select: { category: { select: { name: true } } },
-        },
+        categories: { select: { category: { select: { name: true } } } },
       },
+      where: {
+        ...(queries.brands !== undefined && { brand: { name: { in: queries.brands.split("%") } } }),
+        ...(queries.ids !== undefined && { id: { in: queries.ids.split("%").map(Number) } }),
+        ...(queries.store !== undefined && { store: { id: { equals: +queries.store } } }),
+        ...(queries.min !== undefined && { price: { gte: +queries.min } }),
+        ...(queries.max !== undefined && { price: { lte: +queries.max } }),
+        ...(queries.search !== undefined && {
+          OR: [{ title: { contains: queries.search } }, { summary: { contains: queries.search } }, { brand: { name: { contains: queries.search } } }, { categories: { every: { category: { name: { contains: queries.search } } } } }, { condition: { contains: queries.search } }, { details: { data: { array_contains: queries.search } } }, { colors: { every: { name: { contains: queries.search } } } }],
+        }),
+      },
+      orderBy: queries.orderBy ? { [queries.orderBy.split("%")[0]]: queries.orderBy.split("%")[1] } : undefined,
+      take: queries.limit ? +queries.limit : undefined,
+      skip: queries.offset ? +queries.offset : undefined,
     });
   }
 }

@@ -2,7 +2,7 @@ import { ImageProviders } from "@/app/services/images.service";
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
-const Dropzone = ({ folder, onProgress, handleImages }: { folder: string; onProgress: ((progress: number) => void) | null; handleImages: (image: string) => void }) => {
+const Dropzone = ({ folder, handleImages }: { folder: string; onProgress: ((progress: number) => void) | null; handleImages: (image: string) => void }) => {
   const [files, setFiles] = useState<File[]>([]);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
@@ -10,14 +10,16 @@ const Dropzone = ({ folder, onProgress, handleImages }: { folder: string; onProg
       setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
       for (let i = 0; i < acceptedFiles.length; i++) {
         try {
-          const test = await new ImageProviders().upload({
+          const images = await new ImageProviders().upload({
             file: acceptedFiles[i],
             folder: folder,
             onProgress: (progress: number) => console.log(` ${acceptedFiles[i].name}: ${progress.toFixed(2)}%`),
           });
-          if (test) handleImages(test);
-          console.log(`File uploaded to: ${test}`);
-        } catch (error) {}
+          if (images) handleImages(images);
+          console.log(`File uploaded to: ${images}`);
+        } catch (error) {
+          console.log(error);
+        }
       }
     };
     processFiles();

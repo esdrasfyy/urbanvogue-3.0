@@ -4,16 +4,15 @@ import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 
-export const CarouselHomepage: React.FC<General.PropType> = (props) => {
-  const { slides, options } = props;
-  const [emblaRef] = useEmblaCarousel(options, [Autoplay()]);
+export const CarouselHomepage = () => {
+  const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay()]);
 
   return (
     <section>
       <div className="w-full h-[450px] flex max-sm:flex-col max-sm:h-[380px] max-sm:gap-3">
         <div className="w-3/4 overflow-hidden h-full mr-5 max-sm:w-full rounded-md" ref={emblaRef}>
           <ul className="h-full embla__container flex">
-            {slides.map((index) => (
+            {Array.from(Array(2).keys()).map((index) => (
               <li className="relative h-full mr-6 transform translate-x-0 translate-y-0 translate-z-0 flex-shrink-0 w-full" key={index}>
                 <Image className="rounded-md shadow-md" src="/images/ad-1.webp" alt="image" fill />
               </li>

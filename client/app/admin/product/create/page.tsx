@@ -12,10 +12,11 @@ export default function ProductCreate() {
     try {
       const product: Product.Create = { ...generalProductCreate, colors: [...colorsProductCreate] };
 
-      const res = await AdminProduct.createProduct({ product });
-
-      console.log(res);
-    } catch (error) {}
+      await AdminProduct.createProduct({ product });
+      
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <main className="max-w-[1250px] mx-auto px-2">

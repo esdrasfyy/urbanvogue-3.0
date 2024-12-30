@@ -33,7 +33,7 @@ export default function AdminProduct() {
     ],
     []
   );
-  const cols = useMemo<ColumnDef<Product.I>[]>(
+  const cols = useMemo<ColumnDef<Product.Mini>[]>(
     () => [
       {
         header: "#ID",

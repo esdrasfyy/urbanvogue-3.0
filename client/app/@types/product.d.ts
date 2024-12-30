@@ -36,5 +36,4 @@ declare namespace Product {
     summary?: string;
     title?: string;
   };
-  s;
 }

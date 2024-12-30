@@ -18,6 +18,7 @@ export const CarouselProducts: React.FC<General.PropType> = (props) => {
     staleTime: 24 * 60 * 60 * 1000,
     queryFn: Product.getProductsAll,
   });
+  console.log(data);
 
   const onNavButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
     const autoplay = emblaApi?.plugins()?.autoplay;

@@ -10,6 +10,7 @@ declare namespace Product {
     title: string;
     images: string[];
     created_at: Date;
+    targets: ProductTarget[];
   };
 
   type Create = {
@@ -34,5 +35,18 @@ declare namespace Product {
     store: number;
     summary: string;
     title: string;
+  };
+
+  type ParametersSearch = {
+    brands: string;
+    ids: string;
+    store: string;
+    min: string;
+    max: string;
+    search: string;
+    orderBy: string;
+    offset: string;
+    limit: string;
+    categories: string;
   };
 }

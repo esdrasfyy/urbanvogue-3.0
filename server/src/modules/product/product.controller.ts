@@ -1,8 +1,6 @@
 import { isPublic } from "./../../decorators/public.decorator";
-import { Body, Controller, Get, HttpStatus, Post, Put, Res } from "@nestjs/common";
-import { User } from "../../decorators/user.decorator";
-import { ApiBody, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { UpdateProfileSwagger } from "src/docs/account.doc";
+import { Body, Controller, Get, HttpStatus, Post, Query, Res } from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
 import { ProductService } from "./product.service";
 
 @ApiTags("Product")
@@ -16,9 +14,9 @@ export class ProductController {
     return res.status(HttpStatus.CREATED).end();
   }
   @isPublic()
-  @Get("all")
-  async getAll(@Res() res) {
-    const products = await this.productService.getAll();
+  @Get("get")
+  async getAll(@Res() res, @Query() queries) {
+    const products = await this.productService.getAll(queries);
     return res.status(HttpStatus.OK).json(products);
   }
 }

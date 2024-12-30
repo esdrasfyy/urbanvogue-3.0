@@ -10,6 +10,7 @@ declare namespace Product {
     title: string;
     images: string[];
     created_at: Date;
+    targets: ProductTarget[];
   };
 
   type Create = {

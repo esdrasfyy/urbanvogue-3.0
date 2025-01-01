@@ -362,10 +362,6 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
-.soft-entry {
-  animation: entrar 0.15s ease-in-out;
-}
-
 .writing {
   writing-mode: vertical-rl;
   text-orientation: upright;

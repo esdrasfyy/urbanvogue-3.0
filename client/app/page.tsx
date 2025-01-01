@@ -15,15 +15,15 @@ export default function Home() {
       <CarouselProducts title="releases" queries="orderBy=created_at%asc&limit=10" />
       <TopProducts />
       <CarouselBrands title="brands" />
-      <CarouselProducts title="releases" />
-      <CarouselHomepage/>
+      <CarouselProducts title="popular" />
+      <CarouselHomepage />
       <TopProducts />
-      <CarouselProducts title="releases" />
+      <CarouselProducts title="releases 2" />
       <section>
         <video src="https://firebasestorage.googleapis.com/v0/b/urban-vogue-br.appspot.com/o/images%2Fslogan.mp4?alt=media&token=f806cf48-9b51-4266-bfaf-ca36ff514ce8" muted playsInline loop autoPlay className="rounded-md shadow-md"></video>
       </section>
-      <CarouselProducts title="releases" />
-      <CarouselProducts title="releases" />
+      <CarouselProducts title="releases 3" />
+      <CarouselProducts title="releases 4" />
       <section className="w-full gap-6 flex max-md:flex-col">
         <div className="w-full h-full border border-custom-accentColor shadow-md rounded-md flex justify-between py-3">
           <div className="text-7xl text-custom-accentColor flex items-center justify-center pl-5 max-sm:text-5xl">

@@ -59,7 +59,7 @@ export class ProductRepository {
     });
   }
 
-  async get(queries:Product.ParametersSearch) {
+  async get(queries: Product.ParametersSearch) {
     return await this.prisma.product.findMany({
       include: {
         brand: { select: { name: true } },
@@ -82,6 +82,20 @@ export class ProductRepository {
       orderBy: queries.orderBy ? { [queries.orderBy.split("%")[0]]: queries.orderBy.split("%")[1] } : undefined,
       take: queries.limit ? +queries.limit : undefined,
       skip: queries.offset ? +queries.offset : undefined,
+    });
+  }
+
+  async getById(id: number) {
+    return await this.prisma.product.findFirst({
+      include: {
+        brand: { select: { name: true } },
+        details: true,
+        flags: true,
+        store: true,
+        colors: { include: { sizes: true } },
+        categories: { select: { category: { select: { name: true } } } },
+      },
+      where: { id },
     });
   }
 }

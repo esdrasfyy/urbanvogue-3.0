@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { useCart } from "@/app/contexts/cart.context";
 import { useNotifications } from "@/app/contexts/notifications.context";
 import { AlertItemHeader } from "../../ui/alerts/alert-header";
 import { ButtonMenu } from "../../ui/buttons/button-menu";
@@ -8,10 +7,6 @@ import { RiSearchEyeFill, RiShoppingCartFill } from "react-icons/ri";
 import { FaBell } from "react-icons/fa";
 
 export function MenuActions() {
-  const {
-    disclosure: { onOpen: onOpenCart },
-  } = useCart();
-
   const {
     disclosure: { onOpen: onOpenNotifications },
   } = useNotifications();
@@ -30,7 +25,7 @@ export function MenuActions() {
           <span className="w-full h-full text-[11px] flex justify-center items-center font-semibold text-custom-textColor">9</span>
         </AlertItemHeader>
       </li>
-      <li className="relative w-10 h-10 flex justify-center items-center" onClick={onOpenCart}>
+      <li className="relative w-10 h-10 flex justify-center items-center">
         <button className="hover-effect hover-link text-3xl">
           <RiShoppingCartFill />
         </button>

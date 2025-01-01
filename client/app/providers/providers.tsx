@@ -2,7 +2,6 @@
 
 import { ChakraProvider } from "@chakra-ui/react";
 import { UserProvider } from "../contexts/user.context";
-import { CartProvider } from "../contexts/cart.context";
 import { NotificationProvider } from "../contexts/notifications.context";
 import { AppProvider } from "../contexts/app.context";
 import { theme } from "../components/ui/theme/theme";
@@ -15,13 +14,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <QueryClientProvider client={queryClient}>
       <AppProvider>
         <AdminProvider>
-          <CartProvider>
-            <UserProvider>
-              <NotificationProvider>
-                <ChakraProvider theme={theme}>{children}</ChakraProvider>
-              </NotificationProvider>
-            </UserProvider>
-          </CartProvider>
+          <UserProvider>
+            <NotificationProvider>
+              <ChakraProvider theme={theme}>{children}</ChakraProvider>
+            </NotificationProvider>
+          </UserProvider>
         </AdminProvider>
       </AppProvider>
     </QueryClientProvider>

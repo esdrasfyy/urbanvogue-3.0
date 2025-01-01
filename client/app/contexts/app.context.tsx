@@ -9,6 +9,7 @@ export const ContextApp = createContext<Contexts.AppProps | undefined>(undefined
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { isOpen: isOpenForgotPassword, onOpen: onOpenForgotPassword, onClose: onCloseForgotPassword } = useDisclosure();
   const [loading, setLoading] = useState<boolean>(false);
+  const [addingItem, setAddingItem] = useState<number | null>(null);
   const toast = useToast();
 
   const ShowToast = (title: string, status: "info" | "warning" | "success" | "error") => {
@@ -23,6 +24,15 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     });
   };
 
+  const AddItemToCart = (id: number) => {
+    if (addingItem === null) {
+      setAddingItem(id);
+      setTimeout(() => {
+        setAddingItem(null);
+        ShowToast("Product Added!", "success");
+      }, 1000);
+    }
+  };
   const contextValue: Contexts.AppProps = {
     loading,
     setLoading,
@@ -30,6 +40,9 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     isOpenForgotPassword,
     onCloseForgotPassword,
     onOpenForgotPassword,
+    AddItemToCart,
+    addingItem,
+    setAddingItem,
   };
 
   return <ContextApp.Provider value={contextValue}>{children}</ContextApp.Provider>;

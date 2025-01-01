@@ -16,7 +16,10 @@ export declare namespace Contexts {
   interface AppProps {
     loading: boolean;
     setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+    addingItem: number | null;
+    setAddingItem: React.Dispatch<React.SetStateAction<number | null>>;
     ShowToast: (title: string, status: "info" | "warning" | "success" | "error") => void;
+    AddItemToCart: (id: number) => void;
     isOpenForgotPassword: boolean;
     onOpenForgotPassword: () => void;
     onCloseForgotPassword: () => void;

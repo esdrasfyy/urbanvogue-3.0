@@ -13,6 +13,9 @@ export class AuthRepository {
         username: dto.username,
         password: dto.password,
         ...dto,
+        carts: {
+          create: {},
+        },
       },
     });
   }
@@ -38,6 +41,7 @@ export class AuthRepository {
       where: {
         OR: [{ google_id: String(id) }, { email: email }],
       },
+      include: { carts: { include: { items: true } } },
     });
   }
 

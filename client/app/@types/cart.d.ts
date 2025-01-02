@@ -34,18 +34,4 @@ declare namespace Cart {
     images: JsonValue;
     product_id: number;
   }
-  interface Dto {
-    cart_id: number;
-    product_id: number;
-    variation_id: number;
-    quantity: number;
-  }
-  interface Add {
-    cart_id: number;
-    product_id: number;
-    price: Decimal;
-    quantity: number;
-    title: string;
-    variation_id: number;
-  }
 }

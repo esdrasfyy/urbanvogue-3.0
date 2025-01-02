@@ -1,4 +1,4 @@
-import { Body, Controller, HttpStatus, Post, Put, Res, UploadedFile, UseInterceptors } from "@nestjs/common";
+import { Body, Controller, HttpStatus, Put, Res } from "@nestjs/common";
 import { AccountService } from "./account.service";
 import { User } from "../../decorators/user.decorator";
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
@@ -8,17 +8,6 @@ import { UpdateProfileSwagger } from "src/docs/account.doc";
 @Controller("account")
 export class AccountController {
   constructor(private readonly accountService: AccountService) {}
-
-  // @UseInterceptors(
-  //   FileInterceptor("avatar", {
-  //     storage: diskStorage({
-  //       destination: "./uploads", // Caminho onde você deseja salvar o arquivo
-  //       filename: (req, file, callback) => {
-  //         callback(null, `${Date.now()}-${file.originalname}`);
-  //       },
-  //     }),
-  //   })
-  // )
 
   @Put("edit")
   @ApiOperation({ summary: "Update user account details.", description: "This endpoint allows users to update their account details such as fullname, username, birthdate, gender, national ID, and country ID. Only fields provided in the request will be updated." })

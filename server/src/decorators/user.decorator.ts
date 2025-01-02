@@ -1,14 +1,19 @@
-import { createParamDecorator, ExecutionContext } from "@nestjs/common";
+import { createParamDecorator, ExecutionContext, UnauthorizedException } from "@nestjs/common";
 import { verify } from "jsonwebtoken";
 
-export const User = createParamDecorator((context: ExecutionContext): Account.UserI => {
-  const cookies = context.switchToHttp().getRequest().headers.cookie;
-  const token = cookies
-    ?.split("; ")
-    .find((cookie) => cookie.startsWith(`${process.env.SESSION_COOKIE}=`))
-    ?.split("=")[1];
+export const User = createParamDecorator((_: unknown, context: ExecutionContext): Account.UserI => {
+  const request = context.switchToHttp().getRequest();
+  const cookies = request.cookies;
 
-  const { user } = verify(token, process.env.SECRET) as { user: Account.UserI; iat: number; exp: number };
+  const token = cookies[process.env.SESSION_COOKIE];
+  if (!token) {
+    throw new UnauthorizedException("Token not found in cookies");
+  }
 
-  return user;
+  try {
+    const { user } = verify(token, process.env.SECRET) as { user: Account.UserI; iat: number; exp: number };
+    return user;
+  } catch (error) {
+    throw new UnauthorizedException("Invalid or expired token");
+  }
 });

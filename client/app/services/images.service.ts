@@ -10,7 +10,6 @@ export class ImageProviders {
       case "firebase":
         return this.firebase.upload({ file, folder, onProgress });
       default:
-        console.log("break");
         return null;
     }
   }

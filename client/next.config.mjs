@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["urbanvogue.cloud", "firebasestorage.googleapis.com", "localhost", "as1.ftcdn.net", "www.balancaservice.com.br", "static.ecosweb.com.br", "ph-cdn3.ecosweb.com.br", "example.com", "lh3.googleusercontent.com", "avatars.githubusercontent.com"],
+    domains: ["imgs.search.brave.com", "urbanvogue.cloud", "firebasestorage.googleapis.com", "localhost", "as1.ftcdn.net", "www.balancaservice.com.br", "static.ecosweb.com.br", "ph-cdn3.ecosweb.com.br", "example.com", "lh3.googleusercontent.com", "avatars.githubusercontent.com"],
   },
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,

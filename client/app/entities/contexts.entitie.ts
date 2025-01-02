@@ -19,10 +19,13 @@ export declare namespace Contexts {
     addingItem: number | null;
     setAddingItem: React.Dispatch<React.SetStateAction<number | null>>;
     ShowToast: (title: string, status: "info" | "warning" | "success" | "error") => void;
-    AddItemToCart: (id: number) => void;
+    AddItemToCart: (dto: { product_id: number; quantity: number; variation_id: number }) => void;
     isOpenForgotPassword: boolean;
     onOpenForgotPassword: () => void;
     onCloseForgotPassword: () => void;
+    isOpenCart: boolean;
+    onOpenCart: () => void;
+    onCloseCart: () => void;
   }
 
   interface UserProps {

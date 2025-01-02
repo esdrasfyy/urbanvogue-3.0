@@ -5,6 +5,7 @@ import { Providers } from "./providers/providers";
 import { Footer } from "./components/footer/footer";
 import { Header } from "./components/header/header";
 import { BackToTop } from "./components/back-to-top/back-to-top";
+import { Cart } from "./components/cart/cart.component";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           {children}
           <Footer />
           <BackToTop />
+          <Cart />
         </body>
       </Providers>
     </html>

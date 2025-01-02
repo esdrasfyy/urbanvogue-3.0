@@ -41,7 +41,6 @@ export class AuthRepository {
       where: {
         OR: [{ google_id: String(id) }, { email: email }],
       },
-      include: { carts: { include: { items: true } } },
     });
   }
 

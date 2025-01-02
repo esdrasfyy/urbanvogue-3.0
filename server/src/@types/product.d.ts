@@ -4,7 +4,7 @@ declare namespace Product {
     brand: string;
     condition: string;
     last_price: string;
-    price: string;
+    price: Decimal;
     store: string;
     summary: string;
     title: string;
@@ -31,7 +31,7 @@ declare namespace Product {
     flags: string[];
     installments: number;
     last_price: string;
-    price: string;
+    price: Decimal;
     store: number;
     summary: string;
     title: string;

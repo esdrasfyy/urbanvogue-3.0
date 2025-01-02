@@ -57,7 +57,6 @@ export class Firebase {
 
     try {
       await deleteObject(storageRef);
-      console.log(`Image ${imageName} deleted successfully.`);
     } catch (error: unknown) {
       if (error instanceof Error) {
         throw new Error(`Failed to delete image: ${error.message}`);

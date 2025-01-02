@@ -113,11 +113,9 @@ export class AuthService {
       const user_google = await GetGoogleUser(access_token, id_token);
 
       let user = await this.authRepository.findGoogleAccount(user_google.id, user_google.email);
-      console.log(user);
-      return;
-      // if (!user) {
-      //   user = await this.authRepository.create({ google_id: String(user_google.id), email: user_google.email, username: generateUsername(), avatar: user_google.picture });
-      // }
+      if (!user) {
+        user = await this.authRepository.create({ google_id: String(user_google.id), email: user_google.email, username: generateUsername(), avatar: user_google.picture });
+      }
 
       LoginUser(res, user);
 

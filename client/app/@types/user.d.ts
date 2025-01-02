@@ -46,7 +46,7 @@ declare namespace Account {
     user_id: number;
     color: string;
     title: string;
-    price: string;
+    price: Decimal;
     image: string;
     size: string;
     quantity: number;

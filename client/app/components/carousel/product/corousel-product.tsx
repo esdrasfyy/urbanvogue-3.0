@@ -17,7 +17,6 @@ export const CarouselProducts = ({ queries, title }: { queries?: string; title: 
     staleTime: 24 * 60 * 60 * 1000,
     queryFn: () => Product.getProductsAll({ queries: queries ?? null }),
   });
-  console.log(data);
 
   const onNavButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
     const autoplay = emblaApi?.plugins()?.autoplay;

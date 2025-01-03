@@ -1,10 +1,13 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { TbMinus, TbPlus, TbTrash } from "react-icons/tb";
 import Image from "next/image";
 import Link from "next/link";
+import { useApp } from "@/app/contexts/app.context";
 
 export function CardProductCart({ isLastItem, product }: { isLastItem: boolean; product: Cart.Items }) {
+  const { AddItemToCart } = useApp();
+
   return (
     <li className={`${!isLastItem && "border-solid border-b-[1px] border-custom-tertiaryBrand"} pb-6 mt-4 flex flex-col items-start gap-2  w-full text-custom-textColor`}>
       <div className="w-full flex gap-3">
@@ -25,17 +28,17 @@ export function CardProductCart({ isLastItem, product }: { isLastItem: boolean; 
             </div>
             <div className="flex w-[70%] justify-end items-start gap-[10%] max-sm:justify-between max-sm:items-end max-sm:mb-1 max-sm:w-full">
               <div className="flex items-center">
-                <div className="relative flex items-center">
+                <div className="relative flex items-center gap-4">
                   <button type="button" className="p-1 rounded-full bg-custom-tertiaryBrand">
-                    <TbMinus size={20} />
+                    <TbMinus size={20} onClick={() => AddItemToCart({ product_id: product.product_id, quantity: -1, variation_id: product.variation_id })} />
                   </button>
-                  <input type="number" defaultValue={product.quantity} className="text-custom-accentColor font-extrabold border-0 bg-transparent text-lg w-8" />
+                  <span className="text-custom-accentColor font-extrabold border-0 bg-transparent text-lg ">{product.quantity}</span>
                   <button type="button" className="p-1 rounded-full bg-custom-tertiaryBrand">
-                    <TbPlus size={20} />
+                    <TbPlus size={20} onClick={() => AddItemToCart({ product_id: product.product_id, quantity: 1, variation_id: product.variation_id })} />
                   </button>
                 </div>
               </div>
-              <div className="h-[42px] flex items-center max-sm:h-full">
+              <div className="flex items-center max-sm:h-full">
                 <button className="flex items-center text-2xl text-custom-tertiaryBrand">
                   <TbTrash />
                 </button>

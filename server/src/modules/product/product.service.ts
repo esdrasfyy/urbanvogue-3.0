@@ -28,26 +28,29 @@ export class ProductService {
     const res = await this.productRepository.get(queries);
 
     for (let i = 0; i < res.length; i++) {
-      let images: string[] = [];
       let targets: ProductTarget[] = [];
-      const { brand: { name: brand }, condition, created_at, id, last_price, price, summary, store: { name: store }, title, colors } = res[i];
+      const {
+        brand: { name: brand },
+        condition,
+        created_at,
+        id,
+        last_price,
+        price,
+        summary,
+        store: { name: store },
+        title,
+        colors,
+      } = res[i];
 
-      colors.forEach((color) => {
-        if (Array.isArray(color.images)) {
-          color.images.forEach((image) => {
-            images.push(String(image));
-          });
-        }
-      });
-      
       const thirtyDaysAgo = new Date();
 
       thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
       if (created_at > thirtyDaysAgo) targets.push(ProductTarget.new);
 
-      products.push({ condition, created_at, id, images, last_price: last_price.toString(), price: price.toString(), summary, store, title, brand, targets });
+      products.push({ condition, created_at, id, last_price: last_price.toString(), price: price.toString(), summary, store, title, brand, targets, color: colors[0] });
     }
+
     return [...products, ...products];
   }
 }

@@ -1,6 +1,6 @@
 "use client";
 import { Drawer, DrawerBody, DrawerFooter, DrawerOverlay, DrawerContent, DrawerCloseButton, Divider } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useApp } from "@/app/contexts/app.context";
 import { theme } from "../ui/theme/theme";
 import { EmptyUi } from "../empty/empty.component";
@@ -9,9 +9,18 @@ import { useQuery } from "@tanstack/react-query";
 import { CartApi } from "@/app/api/cart/cart.api";
 
 export function Cart() {
-  const { onCloseCart, isOpenCart } = useApp();
-  const { data } = useQuery({ queryKey: ["cart"], queryFn: CartApi.get });
-  return (
+  const { onCloseCart, isOpenCart, addingItem } = useApp();
+const { data, refetch } = useQuery({
+  queryKey: ["cart"],
+  queryFn: CartApi.get,
+  enabled: false, 
+});
+
+useEffect(() => {
+  if (addingItem) {
+    refetch();
+  }
+}, [addingItem, refetch]);  return (
     <>
       <Drawer size={"lg"} isOpen={isOpenCart} placement="right" onClose={onCloseCart}>
         <DrawerOverlay bg="none" backdropFilter="saturate(150%) blur(4px)" backdropInvert="50%" backdropBlur="3px" />

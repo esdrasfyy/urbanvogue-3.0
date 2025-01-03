@@ -8,10 +8,25 @@ declare namespace Product {
     store: string;
     summary: string;
     title: string;
-    images: string[];
     created_at: Date;
-    targets: ProductTarget[];
+    targets: string[];
+    color: ProductColor;
   };
+  interface ProductColor {
+    id: number;
+    name: string;
+    images: any;
+    product_id: number;
+    sizes: ProductColorSize[];
+  }
+
+  interface ProductColorSize {
+    id: number;
+    name: string;
+    qtd: number;
+    increment: Decimal;
+    decrement: Decimal;
+  }
 
   type Create = {
     brand: number;

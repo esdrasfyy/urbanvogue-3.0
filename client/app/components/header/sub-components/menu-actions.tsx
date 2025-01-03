@@ -2,19 +2,21 @@
 import React from "react";
 import { useNotifications } from "@/app/contexts/notifications.context";
 import { AlertItemHeader } from "../../ui/alerts/alert-header";
-import { ButtonMenu } from "../../ui/buttons/button-menu";
 import { RiSearchEyeFill, RiShoppingCartFill } from "react-icons/ri";
 import { FaBell } from "react-icons/fa";
 import { useApp } from "@/app/contexts/app.context";
 import { useQuery } from "@tanstack/react-query";
 import { CartApi } from "@/app/api/cart/cart.api";
+import { useUser } from "@/app/contexts/user.context";
+import Image from "next/image";
+import { background, Menu, MenuButton, MenuDivider, MenuGroup, MenuItem, MenuList } from "@chakra-ui/react";
+import Link from "next/link";
+import { theme } from "../../ui/theme/theme";
 
 export function MenuActions() {
-  const {
-    disclosure: { onOpen: onOpenNotifications },
-  } = useNotifications();
-  const { onOpenCart } = useApp();
-  const { data } = useQuery({ queryKey: ["cart"], queryFn: CartApi.get });
+  const { disclosure: { onOpen: onOpenNotifications } } = useNotifications();
+  const { onOpenCart, cart } = useApp();
+  const { user } = useUser();
   return (
     <ul className="flex gap-6 items-center justify-center">
       <li className="relative w-10 h-10 flex justify-center items-center">
@@ -33,16 +35,36 @@ export function MenuActions() {
       <li className="relative w-10 h-10 flex justify-center items-center">
         <button className="hover-effect hover-link text-3xl" onClick={onOpenCart}>
           <RiShoppingCartFill />
-        {data?.items && data?.items.length > 0 && (
-          <AlertItemHeader>
-            <span className="w-full h-full text-[11px] flex justify-center items-center font-semibold text-custom-textColor">{data?.items.length}</span>
-          </AlertItemHeader>
-        )}
+          {cart?.items && cart?.items.length > 0 && (
+            <AlertItemHeader>
+              <span className="w-full h-full text-[11px] flex justify-center items-center font-semibold text-custom-textColor">{cart?.items.reduce((total, item) => total + item.quantity, 0)}</span>
+            </AlertItemHeader>
+          )}
         </button>
       </li>
-      <li className="hover-effect hover-link">
-        <ButtonMenu />
-      </li>
+      {user?.avatar && (
+        <li className="">
+          <Menu>
+            <MenuButton>
+              <Image src={user?.avatar} alt={user?.avatar} width={30} height={30} className="rounded-full mt-1.5" />
+            </MenuButton>
+            <MenuList marginTop="30px" background={theme.colors.tertiary} border="none" paddingY="0">
+              <MenuItem background={theme.colors.tertiary} _hover={{ background: theme.colors.secondary }} rounded="7px">
+                <Link href="/my">My Account</Link>
+              </MenuItem>
+              <MenuItem background={theme.colors.tertiary} _hover={{ background: theme.colors.secondary }} rounded="7px">
+                Payments{" "}
+              </MenuItem>
+              <MenuItem background={theme.colors.tertiary} _hover={{ background: theme.colors.secondary }} rounded="7px">
+                Docs
+              </MenuItem>
+              <MenuItem background={theme.colors.tertiary} _hover={{ background: theme.colors.secondary }} rounded="7px">
+                FAQ
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        </li>
+      )}
     </ul>
   );
 }

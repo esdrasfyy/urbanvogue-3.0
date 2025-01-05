@@ -29,7 +29,7 @@ export function CardProductCart({ isLastItem, product }: { isLastItem: boolean; 
             <div className="flex w-[70%] justify-end items-start gap-[10%] max-sm:justify-between max-sm:items-end max-sm:mb-1 max-sm:w-full">
               <div className="flex items-center">
                 <div className="relative flex items-center gap-4">
-                  <button type="button" className="p-1 rounded-full bg-custom-tertiaryBrand">
+                  <button disabled={product.quantity < 2} type="button" className={`p-1 rounded-full bg-custom-tertiaryBrand ${product.quantity < 2 && "opacity-30"}`}>
                     <TbMinus size={20} onClick={() => AddItemToCart({ product_id: product.product_id, quantity: -1, variation_id: product.variation_id })} />
                   </button>
                   <span className="text-custom-accentColor font-extrabold border-0 bg-transparent text-lg ">{product.quantity}</span>

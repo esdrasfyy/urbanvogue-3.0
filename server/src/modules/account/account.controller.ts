@@ -2,7 +2,7 @@ import { Body, Controller, HttpStatus, Put, Res } from "@nestjs/common";
 import { AccountService } from "./account.service";
 import { User } from "../../decorators/user.decorator";
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { UpdateProfileSwagger } from "src/docs/account.doc.d";
+import * as docs from "src/docs/account.doc.d";
 
 @ApiTags("Account")
 @Controller("account")
@@ -15,7 +15,7 @@ export class AccountController {
   @ApiResponse({ status: 400, description: "Invalid input data or failed validation." })
   @ApiResponse({ status: 404, description: "User account not found." })
   @ApiResponse({ status: 500, description: "An internal server error occurred." })
-  @ApiBody({ type: UpdateProfileSwagger, description: "The request body should contain the updated account information." })
+  @ApiBody({ type: docs.UpdateProfileSwagger, description: "The request body should contain the updated account information." })
   async edit(@Body() dto: Account.UpdateI, @Res() res, @User() user: Account.UserI) {
     await this.accountService.edit(res, dto, user);
     return res.status(HttpStatus.OK).end();

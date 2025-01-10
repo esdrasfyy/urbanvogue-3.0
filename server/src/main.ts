@@ -30,7 +30,7 @@ async function bootstrap() {
   app.use(
     cors({
       origin: (origin, callback) => {
-        const allowedOrigins = ["http://localhost:3000"];
+        const allowedOrigins = ["http://localhost:3000", "3.142.252.95:3000", "3.142.252.95"];
         const dynamicOrigins = /\.ngrok-free\.app$/;
 
         if (!origin || allowedOrigins.includes(origin) || dynamicOrigins.test(origin)) {

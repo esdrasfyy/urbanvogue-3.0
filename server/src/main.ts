@@ -27,8 +27,12 @@ async function bootstrap() {
   SwaggerModule.setup("docs", app, document);
 
   app.use(cookieParser());
-app.use(cors({ origin: ["http://localhost:3000", "3.142.252.95", "http://3.142.252.95","http://3.142.252.95:3000"], credentials: true }));
-
+  app.use(
+    cors({
+      origin: ["http://localhost:3000", "http://3.142.252.95", "http://3.142.252.95:3000", "https://meudominio.com"],
+      credentials: true,
+    })
+  );
   await app.listen(process.env.PORT ?? 9000);
 }
 bootstrap();

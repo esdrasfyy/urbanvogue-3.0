@@ -29,8 +29,8 @@ async function bootstrap() {
   app.use(cookieParser());
   app.use(
     cors({
-      origin: ["http://localhost:3000", "http://3.142.252.95", "http://3.142.252.95:3000", "https://meudominio.com"],
-      credentials: true,
+      origin: "http://3.142.252.95:3000", // Permite apenas esta origem
+      credentials: true, // Necessário se você estiver usando cookies ou autenticação
     })
   );
   await app.listen(process.env.PORT ?? 9000);

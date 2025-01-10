@@ -28,6 +28,9 @@ export declare namespace Contexts {
     isOpenCart: boolean;
     onOpenCart: () => void;
     onCloseCart: () => void;
+    isOpenNeedAuth: boolean;
+    onOpenNeedAuth: () => void;
+    onCloseNeedAuth: () => void;
   }
 
   interface UserProps {

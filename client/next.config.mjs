@@ -19,6 +19,7 @@ const nextConfig = {
     NEXT_FIREBASE_STORAGE_BUCKET: process.env.NEXT_FIREBASE_STORAGE_BUCKET,
     NEXT_FIREBASE_MESSAGING_SENDER_ID: process.env.NEXT_FIREBASE_MESSAGING_SENDER_ID,
     NEXT_FIREBASE_APP_ID: process.env.NEXT_FIREBASE_APP_ID,
+    SESSION_COOKIE: process.env.SESSION_COOKIE,
   },
   experimental: {
     missingSuspenseWithCSRBailout: true,

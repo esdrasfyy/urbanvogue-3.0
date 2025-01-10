@@ -8,7 +8,7 @@ import { ModalForgotPassword } from "../components/modal/password/forgot-passwor
 
 export default function Login() {
   return (
-    <div className="h-full pt-28 pb-7 w-full flex items-center justify-center mx-2">
+    <div className="h-full min-h-screen pt-28 pb-7 w-full flex items-center justify-center mx-2">
       <div className="bg-custom-secondaryBrand rounded-lg shadow-xl w-full max-w-[1150px] flex mx-2">
         <main className="flex flex-col gap-5 pt-8 px-10 max-md:px-6 max-w-[835px] w-full max-sm:px-4">
           <div className="flex justify-between w-full">

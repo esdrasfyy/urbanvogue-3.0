@@ -11,6 +11,7 @@ export const ContextApp = createContext<Contexts.AppProps | undefined>(undefined
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { isOpen: isOpenForgotPassword, onOpen: onOpenForgotPassword, onClose: onCloseForgotPassword } = useDisclosure();
   const { isOpen: isOpenCart, onOpen: onOpenCart, onClose: onCloseCart } = useDisclosure();
+  const { isOpen: isOpenNeedAuth, onOpen: onOpenNeedAuth, onClose: onCloseNeedAuth } = useDisclosure();
   const [cart, setCart] = useState<Cart.I>();
   const [loading, setLoading] = useState<boolean>(false);
   const [addingItem, setAddingItem] = useState<number | null>(null);
@@ -74,6 +75,9 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     onOpenCart,
     cart,
     setCart,
+    isOpenNeedAuth,
+    onCloseNeedAuth,
+    onOpenNeedAuth,
   };
 
   return <ContextApp.Provider value={contextValue}>{children}</ContextApp.Provider>;

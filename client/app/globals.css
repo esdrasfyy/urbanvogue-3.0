@@ -40,6 +40,14 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.text-bold {
+  font-weight: bold;
+}
+
+.text-semibold {
+  font-weight: 600;
+}
+
 /* toast error */
 
 .chakra-alert[data-status="error"].css-i2y05k {

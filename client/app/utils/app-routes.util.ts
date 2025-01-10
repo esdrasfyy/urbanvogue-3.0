@@ -7,13 +7,10 @@ export const APP_ROUTES = {
       name: "/checkout/approve",
     },
     account: {
-      name: "/account",
+      name: "/my",
     },
     account_edit: {
-      name: "/account/edit",
-    },
-    account_orders: {
-      name: "/account/orders",
+      name: "/my/profile",
     },
   },
   public: {

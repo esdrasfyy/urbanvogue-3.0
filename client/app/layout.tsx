@@ -6,6 +6,7 @@ import { Footer } from "./components/footer/footer";
 import { Header } from "./components/header/header";
 import { BackToTop } from "./components/back-to-top/back-to-top";
 import { Cart } from "./components/cart/cart.component";
+import { NeedAuth } from "./components/need-auth/need-auth.component";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} bg-custom-primaryBrand text-custom-textColor dark`}>
           <Header />
           {children}
+          <NeedAuth />
           <Footer />
           <BackToTop />
           <Cart />

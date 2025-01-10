@@ -2,7 +2,7 @@ import { Body, Controller, HttpStatus, Put, Res } from "@nestjs/common";
 import { AccountService } from "./account.service";
 import { User } from "../../decorators/user.decorator";
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
-import * as docs from "src/docs/account.doc.d";
+import * as docs from "src/docs/account.doc";
 
 @ApiTags("Account")
 @Controller("account")

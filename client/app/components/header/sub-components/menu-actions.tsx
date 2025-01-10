@@ -2,7 +2,7 @@
 import React from "react";
 import { useNotifications } from "@/app/contexts/notifications.context";
 import { AlertItemHeader } from "../../ui/alerts/alert-header";
-import { RiSearchEyeFill, RiShoppingCartFill } from "react-icons/ri";
+import { RiSearchEyeFill, RiShoppingCartFill, RiUserAddFill } from "react-icons/ri";
 import { FaBell } from "react-icons/fa";
 import { useApp } from "@/app/contexts/app.context";
 import { useQuery } from "@tanstack/react-query";
@@ -12,18 +12,17 @@ import Image from "next/image";
 import { background, Menu, MenuButton, MenuDivider, MenuGroup, MenuItem, MenuList } from "@chakra-ui/react";
 import Link from "next/link";
 import { theme } from "../../ui/theme/theme";
+import { PiUserCirclePlus, PiUserCirclePlusBold } from "react-icons/pi";
+import { trans } from "@/app/libs/i18n.lib";
 
 export function MenuActions() {
-  const { disclosure: { onOpen: onOpenNotifications } } = useNotifications();
+  const {
+    disclosure: { onOpen: onOpenNotifications },
+  } = useNotifications();
   const { onOpenCart, cart } = useApp();
   const { user } = useUser();
   return (
     <ul className="flex gap-6 items-center justify-center">
-      <li className="relative w-10 h-10 flex justify-center items-center">
-        <button className="hover-effect hover-link text-[28px]">
-          <RiSearchEyeFill />
-        </button>
-      </li>
       <li className="relative w-10 h-10 flex justify-center items-center" onClick={onOpenNotifications}>
         <button className="hover-effect hover-link text-[28px]">
           <FaBell />
@@ -42,8 +41,8 @@ export function MenuActions() {
           )}
         </button>
       </li>
-      {user?.avatar && (
-        <li className="">
+      <li className="">
+        {user?.avatar ? (
           <Menu>
             <MenuButton>
               <Image src={user?.avatar} alt={user?.avatar} width={30} height={30} className="rounded-full mt-1.5" />
@@ -63,8 +62,12 @@ export function MenuActions() {
               </MenuItem>
             </MenuList>
           </Menu>
-        </li>
-      )}
+        ) : (
+          <Link href="/login" className="hover-effect hover-link text-3xl">
+            <RiUserAddFill size={26} />
+          </Link>
+        )}
+      </li>
     </ul>
   );
 }

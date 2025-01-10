@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { TbMinus, TbPlus, TbTrash } from "react-icons/tb";
 import Image from "next/image";
 import Link from "next/link";

@@ -23,7 +23,7 @@ const Dropzone = ({ folder, handleImages }: { folder: string; onProgress: ((prog
       }
     };
     processFiles();
-  }, []);
+  }, [folder]);
   const removeFile = (index: number) => {
     setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
   };

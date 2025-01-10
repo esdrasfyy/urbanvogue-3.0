@@ -2,18 +2,14 @@
 import React from "react";
 import { useNotifications } from "@/app/contexts/notifications.context";
 import { AlertItemHeader } from "../../ui/alerts/alert-header";
-import { RiSearchEyeFill, RiShoppingCartFill, RiUserAddFill } from "react-icons/ri";
+import { RiShoppingCartFill, RiUserAddFill } from "react-icons/ri";
 import { FaBell } from "react-icons/fa";
 import { useApp } from "@/app/contexts/app.context";
-import { useQuery } from "@tanstack/react-query";
-import { CartApi } from "@/app/api/cart/cart.api";
 import { useUser } from "@/app/contexts/user.context";
 import Image from "next/image";
-import { background, Menu, MenuButton, MenuDivider, MenuGroup, MenuItem, MenuList } from "@chakra-ui/react";
+import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import Link from "next/link";
 import { theme } from "../../ui/theme/theme";
-import { PiUserCirclePlus, PiUserCirclePlusBold } from "react-icons/pi";
-import { trans } from "@/app/libs/i18n.lib";
 
 export function MenuActions() {
   const {

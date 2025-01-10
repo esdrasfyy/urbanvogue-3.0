@@ -15,7 +15,7 @@ declare namespace Product {
   interface ProductColor {
     id: number;
     name: string;
-    images: any;
+    images: string[];
     product_id: number;
     sizes: ProductColorSize[];
   }

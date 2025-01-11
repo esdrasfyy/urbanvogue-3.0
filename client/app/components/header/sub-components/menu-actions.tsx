@@ -20,7 +20,7 @@ export function MenuActions() {
   return (
     <ul className="flex gap-6 items-center justify-center">
       <li className="relative w-10 h-10 flex justify-center items-center" onClick={onOpenNotifications}>
-        <button className="hover-effect hover-link text-[28px]">
+        <button className="hover-effect hover-link text-[28px] max-md:text-xl">
           <FaBell />
         </button>
         <AlertItemHeader>
@@ -28,7 +28,7 @@ export function MenuActions() {
         </AlertItemHeader>
       </li>
       <li className="relative w-10 h-10 flex justify-center items-center">
-        <button className="hover-effect hover-link text-3xl" onClick={onOpenCart}>
+        <button className="hover-effect hover-link text-3xl max-md:text-2xl" onClick={onOpenCart}>
           <RiShoppingCartFill />
           {cart?.items && cart?.items.length > 0 && (
             <AlertItemHeader>
@@ -41,26 +41,19 @@ export function MenuActions() {
         {user?.avatar ? (
           <Menu>
             <MenuButton>
-              <Image src={user?.avatar} alt={user?.avatar} width={30} height={30} className="rounded-full mt-1.5" />
+              <Image src={user?.avatar} alt={user?.avatar} width={30} height={30} className="rounded-full mt-1.5 max-md:w-6" />
             </MenuButton>
             <MenuList marginTop="30px" background={theme.colors.tertiary} border="none" paddingY="0">
               <MenuItem background={theme.colors.tertiary} _hover={{ background: theme.colors.secondary }} rounded="7px">
-                <Link href="/my">My Account</Link>
-              </MenuItem>
-              <MenuItem background={theme.colors.tertiary} _hover={{ background: theme.colors.secondary }} rounded="7px">
-                Payments{" "}
-              </MenuItem>
-              <MenuItem background={theme.colors.tertiary} _hover={{ background: theme.colors.secondary }} rounded="7px">
-                Docs
-              </MenuItem>
-              <MenuItem background={theme.colors.tertiary} _hover={{ background: theme.colors.secondary }} rounded="7px">
-                FAQ
+                <Link className="w-full" href="/my">
+                  My Account
+                </Link>
               </MenuItem>
             </MenuList>
           </Menu>
         ) : (
           <Link href="/login" className="hover-effect hover-link text-3xl">
-            <RiUserAddFill size={26} />
+            <RiUserAddFill className="texl-base max-md:text-[22px] mt-0.5" />
           </Link>
         )}
       </li>

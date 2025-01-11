@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ButtonPrimary } from "../ui/buttons/button-primary";
+import { LinkPrimary } from "../ui/links/link-primary.ui";
 import { trans } from "@/app/libs/i18n.lib";
 
 export function TopProducts() {
@@ -22,7 +22,7 @@ export function TopProducts() {
                 <p className="text-xl font-semibold text-custom-accentColor">R$ 100,99</p>
                 <span className="text-sm opacity-40 line-through">R$ 120,99</span>
               </div>
-              <ButtonPrimary classname="max-sm:hidden" />
+              <LinkPrimary href="/checkout" content="BUY NOW" classname="max-sm:hidden" />
             </div>
           </div>
         ))}

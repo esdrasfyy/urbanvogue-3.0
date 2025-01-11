@@ -1,7 +1,5 @@
 import { Injectable } from "@nestjs/common";
 import { CartRepository, ProductRepository } from "../../repository";
-import { User } from "src/decorators/user.decorator";
-
 @Injectable()
 export class CartService {
   constructor(

@@ -40,7 +40,7 @@ model User {
   email_verified_at    DateTime?
   phone_verified_at    DateTime?
   identity_verified_at DateTime?
-  avatar               String?
+  avatar               String?   @default("https://lh3.googleusercontent.com/a/ACg8ocIjS-kV3SknQdY5dBfUaWuK0kp4WtnhGK89iRlo5OvjIdGGcjM=s96-c")
   password             String?
   birthdate            DateTime?
   role_id              Int       @default(5)

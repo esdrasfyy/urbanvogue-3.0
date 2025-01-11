@@ -2,7 +2,6 @@
 import { Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay } from "@chakra-ui/react";
 import { InputSelect } from "@/app/components/ui/inputs/input-select";
 import { InputDefault } from "@/app/components/ui/inputs/input-default";
-import { InputSubmit } from "@/app/components/ui/inputs/input-submit";
 import { InputDate } from "@/app/components/ui/inputs/input-data";
 import { Settings } from "@/app/api/settings/settings.api";
 import { SubmitHandler, useForm, UseFormGetValues } from "react-hook-form";
@@ -16,6 +15,8 @@ import { InputsProfileI, SchemaProfileI } from "@/app/entities/schemas.entitie";
 import { Account } from "@/app/api/user/notifications.api";
 import { useState } from "react";
 import { format } from "date-fns";
+import { ButtonPrimary } from "@/app/components/ui/buttons/button-primary.ui";
+import { ButtonSecondary } from "@/app/components/ui/buttons/button-secondary.ui";
 
 const isChanged = (getValues: UseFormGetValues<InputsProfileI>, user: Account.UserI): boolean => {
   const currentValues = getValues();
@@ -130,7 +131,10 @@ function Profile() {
             </div>
             {formattedGenders && <InputSelect defaultvalue={String(user?.gender_id)} onchange={handleGender} label="gender" list={formattedGenders} />}
             {formattedCountries && <InputSelect defaultvalue={String(user?.country_id)} onchange={handleCountry} label="country" list={formattedCountries} />}
-            <InputSubmit type="submit" content="update" icon="FaArrowRight" classname="mt-5" />
+            <div className="w-full flex justify-end gap-5 mt-5">
+              <ButtonSecondary content="Cancel" type="submit" onclick={onClose} />
+              <ButtonPrimary content="Update" type="submit" />
+            </div>
           </form>
         </ModalBody>
       </ModalContent>

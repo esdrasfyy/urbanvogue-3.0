@@ -10,7 +10,7 @@ export function ProfilePreview() {
   const { user } = useUser();
 
   return (
-    <section className="w-full bg-custom-secondaryBrand shadow-md relative rounded-md flex justify-between gap-10 px-[10%] py-10 max-md:flex-col">
+    <section className="w-full bg-custom-secondaryBrand shadow-md relative rounded-md flex justify-between gap-10 px-[10%] py-10 max-md:flex-col max-md:items-center">
       <span className="absolute w-full left-0 top-0 h-24 bg-custom-tertiaryBrand rounded-md shadow-xl z-0"></span>
       <div className="z-10 flex flex-col items-center my-auto gap-4 text-center">
         <figure className="relative w-[120px] h-[120px] flex rounded-full border-8 border-custom-primaryBrand shadow-md">

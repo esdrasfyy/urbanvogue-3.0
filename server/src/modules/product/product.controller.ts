@@ -3,7 +3,7 @@ import { Body, Controller, Get, HttpStatus, Post, Query, Res } from "@nestjs/com
 import { ApiTags } from "@nestjs/swagger";
 import { ProductService } from "./product.service";
 
-@ApiTags("Product")
+@ApiTags("Products")
 @Controller("product")
 export class ProductController {
   constructor(private readonly productService: ProductService) {}

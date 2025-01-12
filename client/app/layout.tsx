@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   title: "Urban Vogue",
   description: "Urban Vogue, a marca que traz as últimas tendências da moda para você. Com produtos exclusivos e de alta qualidade, meu objetivo é proporcionar uma experiência de compra única e estilosa. Venha descobrir o seu novo look!",
   icons: {
-    icon: "favicon.ico",
+    icon: "/favicon.ico",
   },
   openGraph: {
     locale: "pt-BR",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     url: "https://urbanvogue.cloud/",
     images: [
       {
-        url: "favicon.ico",
+        url: "/favicon.ico",
       },
     ],
   },

@@ -38,12 +38,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     }
   }, [data]);
 
-  useEffect(() => {
-    if (addingItem) {
-      refetch();
-    }
-  }, [addingItem, refetch]);
-
   const AddItemToCart = async ({ ...dto }: { product_id: number; quantity: number; variation_id: number }) => {
     if (addingItem === null) {
       try {
@@ -53,6 +47,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         // }
         await CartApi.add({ ...dto, cart_id: 1 });
         ShowToast("Product Added!", "success");
+        refetch();
       } catch (error) {
         console.log(error);
       } finally {

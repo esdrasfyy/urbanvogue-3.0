@@ -18,7 +18,7 @@ export function InputSubmit(data: Inputs.SubmitPropsI) {
   return (
     <button type={data.type} className={` ${data.classname} relative group bg-none border-[1px] border-custom-accentColor flex justify-center text-custom-textColor py-1.5 rounded text-xl hover-effect ${!loading && "hover-bg-accent"} shadow-lg items-center`} disabled={loading}>
       {trans.t(data.content)}
-      {!loading ? (
+      {loading ? (
         <span className="absolute right-5 animate-spin text-custom-accentColor">
           <ImSpinner10 size={20} />
         </span>

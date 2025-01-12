@@ -22,10 +22,8 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Urban Vogue",
   description: "Urban Vogue, a marca que traz as últimas tendências da moda para você. Com produtos exclusivos e de alta qualidade, meu objetivo é proporcionar uma experiência de compra única e estilosa. Venha descobrir o seu novo look!",
-  viewport: "width=device-width, initial-scale=1.0",
-  themeColor: "var(--accent-color)",
   icons: {
-    icon: "/favicon.ico",
+    icon: "favicon.ico",
   },
   openGraph: {
     locale: "pt-BR",
@@ -36,7 +34,7 @@ export const metadata: Metadata = {
     url: "https://urbanvogue.cloud/",
     images: [
       {
-        url: "/favicon.ico",
+        url: "favicon.ico",
       },
     ],
   },
@@ -46,6 +44,11 @@ export const metadata: Metadata = {
   keywords: ["Fernando Esdras da Silva", "Esdras", "Esdras Silva", "moda feminina", "roupas estilosas", "tendências de moda", "compras online", "roupas urbanas", "roupas da moda", "roupas elegantes", "estilo moderno", "coleção de moda", "moda jovem", "looks urbanos", "acessórios de moda", "fashion online", "outfits urbanos", "moda acessível", "estilo único"],
   authors: [{ name: "Fernando Esdras", url: "https://github.com/esdrasfyy" }],
 };
+
+export const viewport = { width: "device-width", initialScale: 1.0 };
+
+export const themeColor = "var(--accent-color)";
+
 interface RootLayoutProps {
   children: React.ReactNode;
 }

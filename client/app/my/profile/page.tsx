@@ -14,21 +14,25 @@ import { useRouter } from "next/navigation";
 import { InputsProfileI, SchemaProfileI } from "@/app/entities/schemas.entitie";
 import { Account } from "@/app/api/user/notifications.api";
 import { useState } from "react";
-import { format } from "date-fns";
 import { ButtonPrimary } from "@/app/components/ui/buttons/button-primary.ui";
 import { ButtonSecondary } from "@/app/components/ui/buttons/button-secondary.ui";
+import { format } from "date-fns";
 
 const isChanged = (getValues: UseFormGetValues<InputsProfileI>, user: Account.UserI): boolean => {
   const currentValues = getValues();
-  const fieldsToCheck: (keyof InputsProfileI)[] = ["username", "fullname", "birthdate", "gender_id", "country_id", "national_id"];
+  const fieldsToCheck: (keyof InputsProfileI)[] = ["username", "fullname", "national_id", "birthdate"];
 
   return fieldsToCheck.some((field) => {
     const currentValue = currentValues[field];
     const userValue = user?.[field];
-    if (currentValue && userValue && field === "birthdate" && currentValue !== format(new Date(userValue), "yyyy-MM-dd")) {
-      return true;
+
+    if (field === "birthdate" && userValue) {
+      const formattedCurrentValue = currentValue ? format(new Date(new Date(currentValue).setDate(new Date(currentValue).getDate() + 1)), "yyyy-MM-dd") : null;
+      const formattedUserValue = userValue ? format(new Date(userValue), "yyyy-MM-dd") : null;
+      return formattedCurrentValue !== formattedUserValue;
     }
-    return currentValue !== undefined && currentValue !== null && currentValue !== "" && currentValue !== userValue;
+
+    return currentValue !== userValue;
   });
 };
 
@@ -132,7 +136,7 @@ function Profile() {
             {formattedGenders && <InputSelect defaultvalue={String(user?.gender_id)} onchange={handleGender} label="gender" list={formattedGenders} />}
             {formattedCountries && <InputSelect defaultvalue={String(user?.country_id)} onchange={handleCountry} label="country" list={formattedCountries} />}
             <div className="w-full flex justify-end gap-5 mt-5">
-              <ButtonSecondary content="Cancel" type="submit" onclick={onClose} />
+              <ButtonSecondary content="Cancel" type="button" onclick={onClose} />
               <ButtonPrimary content="Update" type="submit" />
             </div>
           </form>

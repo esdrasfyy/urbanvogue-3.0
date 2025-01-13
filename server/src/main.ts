@@ -31,7 +31,7 @@ async function bootstrap() {
   app.use(cookieParser());
   app.use(
     cors({
-      origin: ["http://localhost:3000", "http://3.142.252.95", "http://3.142.252.95:3000", "https://www.urbanvogue.cloud", "https://urbanvogue.cloud"],
+      origin: "https://www.urbanvogue.cloud",
       credentials: true,
     })
   );

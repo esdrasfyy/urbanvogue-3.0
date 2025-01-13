@@ -12,15 +12,15 @@ import { AdminProvider } from "../contexts/admin.context";
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
-      <AppProvider>
-        <AdminProvider>
-          <UserProvider>
+      <UserProvider>
+        <AppProvider>
+          <AdminProvider>
             <NotificationProvider>
               <ChakraProvider theme={theme}>{children}</ChakraProvider>
             </NotificationProvider>
-          </UserProvider>
-        </AdminProvider>
-      </AppProvider>
+          </AdminProvider>
+        </AppProvider>
+      </UserProvider>
     </QueryClientProvider>
   );
 }

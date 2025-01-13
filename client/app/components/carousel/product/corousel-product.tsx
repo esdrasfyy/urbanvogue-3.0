@@ -9,6 +9,7 @@ import { trans } from "@/app/libs/i18n.lib";
 import { CardProduct } from "../../product/card-product";
 import { useQuery } from "@tanstack/react-query";
 import { Product } from "@/app/api/product/product.api";
+import { CarouselProductLoading } from "./sub-components/carousel-product-loading";
 
 export const CarouselProducts = ({ queries, title }: { queries?: string; title: string }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()]);
@@ -34,7 +35,7 @@ export const CarouselProducts = ({ queries, title }: { queries?: string; title: 
         <h3 className="text-lg uppercase font-semibold tracking-widest">{trans.t(title)}</h3>
       </div>
       <div className="overflow-hidden rounded-md" ref={emblaRef}>
-        <ul className="embla__container flex">{data && data?.map((product) => <CardProduct product={product} key={product.id} />)}</ul>
+        <ul className={`embla__container flex ${!data && "gap-3"}`}>{data ? data?.map((product) => <CardProduct product={product} key={product.id} />) : [...Array(10)].map((_, index) => <CarouselProductLoading key={index} isLastItem={index === 9 ? true : false} />)}</ul>
       </div>
 
       <div className="grid grid-cols-[auto_1fr] justify-between gap-[1.2rem] mt-[1.8rem]">

@@ -5,6 +5,7 @@ import { trans } from "../libs/i18n.lib";
 import { Contexts } from "../entities/contexts.entitie";
 import { CartApi } from "../api/cart/cart.api";
 import { useQuery } from "@tanstack/react-query";
+import { useUser } from "./user.context";
 
 export const ContextApp = createContext<Contexts.AppProps | undefined>(undefined);
 
@@ -16,6 +17,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [loading, setLoading] = useState<boolean>(false);
   const [addingItem, setAddingItem] = useState<number | null>(null);
   const toast = useToast();
+  const { user } = useUser();
 
   const ShowToast = (title: string, status: "info" | "warning" | "success" | "error") => {
     toast({
@@ -31,7 +33,9 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const { data, refetch } = useQuery({
     queryKey: ["cart"],
     queryFn: CartApi.get,
+    enabled: user ? true : false,
   });
+  
   useEffect(() => {
     if (data) {
       setCart(data);

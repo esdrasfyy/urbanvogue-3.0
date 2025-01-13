@@ -1,8 +1,8 @@
 import React from "react";
 import { MdContactSupport } from "react-icons/md";
-import { InputSubmit } from "./components/ui/inputs/input-submit";
 import { IoHome, IoReloadCircle } from "react-icons/io5";
 import { trans } from "./libs/i18n.lib";
+import { LinkArrow } from "./components/ui/links/link-arrow.ui";
 
 export default function NotFound() {
   return (
@@ -11,7 +11,7 @@ export default function NotFound() {
         <div className="max-w-96 w-full flex flex-col gap-5 max-md:items-center max-md:text-center">
           <h1 className="font-semibold text-3xl w-fit tracking-wider max-sm:text-2xl">{trans.t("page not found")}</h1>
           <p className="max-w-80 tracking-wider">{trans.t("the page you are looking for does not exist or could not be found.")}</p>
-          <InputSubmit type="submit" content={trans.t("go to home")} icon="FaArrowRight" classname="w-full " />
+          <LinkArrow content="go to home" href="/" />
         </div>
         <div title="404" id="page-404">
           404

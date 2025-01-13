@@ -21,9 +21,7 @@ const nextConfig = {
     NEXT_FIREBASE_APP_ID: process.env.NEXT_FIREBASE_APP_ID,
     SESSION_COOKIE: process.env.SESSION_COOKIE,
   },
-  experimental: {
-    missingSuspenseWithCSRBailout: true,
-  },
+  experimental: {},
 };
 
 export default nextConfig;

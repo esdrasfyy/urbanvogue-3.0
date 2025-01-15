@@ -8,15 +8,15 @@ import useEmblaCarousel from "embla-carousel-react";
 import { trans } from "@/app/libs/i18n.lib";
 import { CardProduct } from "../../product/card-product";
 import { useQuery } from "@tanstack/react-query";
-import { Product } from "@/app/api/product/product.api";
-import { CarouselProductLoading } from "./sub-components/carousel-product-loading";
+import { ProductApi } from "@/app/api/product/product.api";
+import { CarouselProductLoading } from "../../product/card-product.loading";
 
 export const CarouselProducts = ({ queries, title }: { queries?: string; title: string }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()]);
   const { data } = useQuery({
     queryKey: [queries],
     staleTime: 24 * 60 * 60 * 1000,
-    queryFn: () => Product.getProductsAll({ queries: queries ?? null }),
+    queryFn: () => ProductApi.getProductsAll({ queries: { p: queries } }),
   });
 
   const onNavButtonClick = useCallback((emblaApi: EmblaCarouselType) => {

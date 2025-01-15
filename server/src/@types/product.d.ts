@@ -58,7 +58,7 @@ declare namespace Product {
     store: string;
     min: string;
     max: string;
-    search: string;
+    p: string;
     orderBy: string;
     offset: string;
     limit: string;

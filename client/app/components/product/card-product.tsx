@@ -14,7 +14,7 @@ export function CardProduct({ product }: { product: Product.Mini }) {
   const { onOpenNeedAuth } = useApp();
 
   return (
-    <li className="group rounded-md mr-3 shadow-md transform translate-x-0 translate-y-0 translate-z-0 flex-shrink-0 max-w-[225px] max-sm:max-w-[185px] w-full bg-custom-secondaryBrand h-fit" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+    <li className="list-none group rounded-md mr-3 shadow-md transform translate-x-0 translate-y-0 translate-z-0 flex-shrink-0 w-[225px] max-sm:w-[185px] bg-custom-secondaryBrand h-fit" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
       <div className="relative h-64 max-sm:h-48 shadow-[inset_0_0_0_0.2rem_var(--detail-medium-contrast)] rounded-[1.8rem] text-[4rem] font-semibold flex items-center justify-center select-none">
         {product?.targets.length > 0 && <span className="absolute text-sm px-3 py-1 tracking-tighter rounded-r-md top-4 left-0 bg-[var(--accent-color)] z-20 font-semibold">{product.targets[0]}</span>}
         <div className={`absolute z-20 top-4 gap-2 right-1.5 ${addingItem === product.id ? "flex" : "hidden group-hover:flex"} flex-col text-2xl max-sm:flex`}>

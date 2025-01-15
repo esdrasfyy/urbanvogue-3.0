@@ -6,6 +6,7 @@ import { Contexts } from "../entities/contexts.entitie";
 import { CartApi } from "../api/cart/cart.api";
 import { useQuery } from "@tanstack/react-query";
 import { useUser } from "./user.context";
+import { ProductApi } from "../api/product/product.api";
 
 export const ContextApp = createContext<Contexts.AppProps | undefined>(undefined);
 
@@ -16,6 +17,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [cart, setCart] = useState<Cart.I>();
   const [loading, setLoading] = useState<boolean>(false);
   const [addingItem, setAddingItem] = useState<number | null>(null);
+  const [queries, setQueries] = useState<Product.ParametersSearch>({});
   const toast = useToast();
   const { user } = useUser();
 
@@ -30,12 +32,20 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       position: "top-right",
     });
   };
+
   const { data, refetch } = useQuery({
     queryKey: ["cart"],
     queryFn: CartApi.get,
     enabled: user ? true : false,
   });
-  
+
+  const { data: searchProducts } = useQuery({
+    queryKey: [queries],
+    staleTime: 24 * 60 * 60 * 1000,
+    queryFn: () => ProductApi.getProductsAll({ queries: queries }),
+    enabled: queries ? true : false,
+  });
+
   useEffect(() => {
     if (data) {
       setCart(data);
@@ -46,9 +56,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     if (addingItem === null) {
       try {
         setAddingItem(dto.product_id);
-        // if (data?.items.find((e) => e.variation_id === dto.variation_id)) {
-        //   alert("ja tem");
-        // }
         await CartApi.add({ ...dto, cart_id: 1 });
         ShowToast("Product Added!", "success");
         refetch();
@@ -68,6 +75,9 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     onOpenForgotPassword,
     AddItemToCart,
     addingItem,
+    queries,
+    setQueries,
+    searchProducts,
     setAddingItem,
     isOpenCart,
     onCloseCart,

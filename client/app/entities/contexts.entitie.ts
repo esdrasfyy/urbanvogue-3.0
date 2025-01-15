@@ -18,6 +18,9 @@ export declare namespace Contexts {
     setLoading: React.Dispatch<React.SetStateAction<boolean>>;
     addingItem: number | null;
     setAddingItem: React.Dispatch<React.SetStateAction<number | null>>;
+    queries: Product.ParametersSearch;
+    setQueries: React.Dispatch<React.SetStateAction<Product.ParametersSearch>>;
+    searchProducts: Product.Mini[] | null | undefined;
     cart: Cart.I | undefined;
     setCart: React.Dispatch<React.SetStateAction<Cart.I | undefined>>;
     ShowToast: (title: string, status: "info" | "warning" | "success" | "error") => void;

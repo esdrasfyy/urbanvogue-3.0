@@ -70,16 +70,16 @@ export class ProductRepository {
         categories: { select: { category: { select: { name: true } } } },
       },
       where: {
-        ...(queries.brands !== undefined && { brand: { name: { in: queries.brands.split("%") } } }),
+        ...(queries.brands !== undefined && { brand: { name: { in: queries.brands.split("-").map((item) => item.replace("+", " ").trim()) } } }),
         ...(queries.ids !== undefined && { id: { in: queries.ids.split("%").map(Number) } }),
         ...(queries.store !== undefined && { store: { id: { equals: +queries.store } } }),
         ...(queries.min !== undefined && { price: { gte: +queries.min } }),
         ...(queries.max !== undefined && { price: { lte: +queries.max } }),
-        ...(queries.search !== undefined && {
-          OR: [{ title: { contains: queries.search } }, { summary: { contains: queries.search } }, { brand: { name: { contains: queries.search } } }, { categories: { every: { category: { name: { contains: queries.search } } } } }, { condition: { contains: queries.search } }, { details: { data: { array_contains: queries.search } } }, { colors: { every: { name: { contains: queries.search } } } }],
+        ...(queries.p !== undefined && {
+          OR: [{ title: { contains: queries.p } }, { summary: { contains: queries.p } }, { brand: { name: { contains: queries.p } } }, { categories: { every: { category: { name: { contains: queries.p } } } } }, { condition: { contains: queries.p } }, { details: { data: { array_contains: queries.p } } }, { colors: { every: { name: { contains: queries.p } } } }],
         }),
       },
-      orderBy: queries.orderBy ? { [queries.orderBy.split("%")[0]]: queries.orderBy.split("%")[1] } : undefined,
+      orderBy: queries.orderBy ? { [queries.orderBy.split("-")[0]]: queries.orderBy.split("-")[1] } : undefined,
       take: queries.limit ? +queries.limit : undefined,
       skip: queries.offset ? +queries.offset : undefined,
     });

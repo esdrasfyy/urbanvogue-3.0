@@ -13,13 +13,13 @@ export class ProductService {
   async create(dto: Product.Create) {
     return await this.productRepository.create(dto);
   }
-  // brands =  brands=Nike%Tommy Hilfiger
+  // brands =  brands=Nike-Tommy Hilfiger
   // ids =  ids=1%3
   // store =  store=1
   // min =  min=10
   // max =  max=100
-  // search =  search=Nike
-  // orderBy =  orderBy=price%asc
+  // p =  p=Nike
+  // orderBy =  orderBy=price-asc
   // limit =  limit=10
   // offset =  offset=10
 

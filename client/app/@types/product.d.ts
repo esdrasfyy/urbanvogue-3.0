@@ -12,21 +12,21 @@ declare namespace Product {
     targets: string[];
     color: ProductColor;
   };
-  interface ProductColor {
+  type ProductColor = {
     id: number;
     name: string;
     images: string[];
     product_id: number;
     sizes: ProductColorSize[];
-  }
+  };
 
-  interface ProductColorSize {
+  type ProductColorSize = {
     id: number;
     name: string;
     qtd: number;
     increment: Decimal;
     decrement: Decimal;
-  }
+  };
 
   type Create = {
     brand?: number;
@@ -50,5 +50,18 @@ declare namespace Product {
     store?: number;
     summary?: string;
     title?: string;
+  };
+
+  type ParametersSearch = {
+    brands?: string;
+    ids?: string;
+    store?: string;
+    min?: string;
+    max?: string;
+    p?: string;
+    orderBy?: string;
+    offset?: string;
+    limit?: string;
+    categories?: string;
   };
 }
